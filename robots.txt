@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://arsh34772-lang.github.io/arsh-portfolio/sitemap.xml
