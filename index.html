@@ -209,14 +209,16 @@ h2 .serif{color:var(--lime)}
 .price .fine{margin-top:18px;font-size:13.5px;line-height:1.6;color:var(--mut);max-width:44ch}
 
 /* ===== about ===== */
-.about{display:grid;grid-template-columns:.7fr 1.3fr;gap:clamp(24px,4vw,64px);align-items:center;margin-top:clamp(40px,6vw,88px)}
-.about__ph{aspect-ratio:4/5;border-radius:24px;border:1px dashed rgba(243,244,238,.25);background:rgba(255,255,255,.03);
-  display:flex;align-items:flex-end;padding:18px;font-size:12.5px;color:var(--mut);position:relative;overflow:hidden}
-.about__ph::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(200,247,81,.16),transparent 55%)}
-.about__ph span{position:relative}
-.about p{font-size:clamp(18px,1.7vw,24px);line-height:1.5;max-width:44ch;color:#D6DBD0}
-.about p+p{margin-top:1em}
-.about p b{color:var(--ink);font-weight:600}
+.about{margin-top:clamp(40px,6vw,88px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(24px,4vw,72px);align-items:start}
+.about__lede{grid-column:1/-1;margin-bottom:clamp(4px,1vw,10px)}
+.about__lede h2{max-width:20ch}
+.about__text p{font-size:clamp(17px,1.5vw,20px);line-height:1.58;color:#C9CEC6}
+.about__text p+p{margin-top:1em}
+.about__text b{color:var(--ink);font-weight:600}
+.about__facts{border-top:1px solid var(--line);padding-top:18px;margin-top:22px;display:grid;gap:12px}
+.about__facts div{display:flex;gap:14px;font-size:14.5px;color:#C9CEC6}
+.about__facts b{color:var(--lime);font-weight:600;flex:0 0 auto;min-width:96px;font-size:13px}
+
 
 /* ===== end ===== */
 .end{position:relative;margin-top:clamp(80px,11vw,160px);padding:clamp(70px,10vw,150px) 0 clamp(60px,8vw,110px);text-align:center;overflow:hidden;border-top:1px solid var(--line)}
@@ -256,7 +258,7 @@ h2 .serif{color:var(--lime)}
   .steps{grid-template-columns:1fr}
   .price{grid-template-columns:1fr}
   .about{grid-template-columns:1fr}
-  .about__ph{max-width:320px}
+  .about__facts b{min-width:84px}
   .nav a.nl{display:none}
   .card{transform:none !important}
 }
@@ -468,11 +470,19 @@ h2 .serif{color:var(--lime)}
   <section class="sec" id="about">
     <div class="w">
       <div class="about rv">
-        <div class="about__ph"><span>Your photo here</span></div>
-        <div>
+        <div class="about__lede">
           <p class="eyebrow mono">About</p>
-          <p>I'm <b>Arshdeep</b>, a designer in Ludhiana. For two years I've been rebuilding websites for shops, salons, showrooms and clinics around Punjab, the kind built once, years ago, and never touched again.</p>
+          <h2>Design, code and copy. <span class="serif">One person.</span></h2>
+        </div>
+        <div class="about__text">
+          <p>I'm <b>Arshdeep</b>, a designer in Ludhiana. For two years I've been rebuilding websites for shops, salons, showrooms and clinics around Punjab, the kind that were built once, years ago, and never touched again.</p>
           <p>I design the page, write the words and build it myself, so nothing gets lost between three people. The five sites above were built <b>first and sold afterwards</b>, because an owner should be able to click the thing before paying for it.</p>
+        </div>
+        <div class="about__facts">
+          <div><b>Where</b><span>Ludhiana. Working across Punjab, and remotely anywhere in India.</span></div>
+          <div><b>How long</b><span>A week from the first call to live, usually. Two if the photographs are not ready.</span></div>
+          <div><b>What I keep</b><span>The domain, hosting and email stay in your name from day one.</span></div>
+          <div><b>How to start</b><span>One message on WhatsApp with your shop name is enough.</span></div>
         </div>
       </div>
     </div>
