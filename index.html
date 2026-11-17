@@ -75,7 +75,7 @@ h1,h2,h3,p{margin:0}
 @media(max-width:720px){ .nav{display:none} .sign span{display:none} }
 
 /* ── hero ──────────────────────────────────────────────── */
-.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;padding-bottom:clamp(34px,6vw,72px)}
+.hero{position:relative;min-height:min(88svh,780px);display:flex;align-items:center;overflow:hidden;padding:clamp(58px,7vh,96px) 0 clamp(36px,5vh,64px)}
 .hero__bg{display:none}
 .hero__veil{position:absolute;inset:0;pointer-events:none;
   background:
@@ -83,7 +83,7 @@ h1,h2,h3,p{margin:0}
     radial-gradient(55% 45% at 10% 92%,rgba(120,200,170,.08),transparent 70%),
     linear-gradient(180deg,rgba(6,6,5,.35) 0%,rgba(6,6,5,.10) 40%,rgba(6,6,5,.92) 100%)}
 .hero__in{position:relative;z-index:2;width:100%}
-.hero__top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:clamp(40px,12vh,120px)}
+.hero__top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:clamp(22px,3.4vh,40px)}
 .chip{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line2);border-radius:999px;
   padding:7px 14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
 .dot{width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px rgba(200,247,81,.14)}
@@ -318,6 +318,13 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border:0;border-radiu
 .hero__url{margin-left:10px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dimmer)}
 @media(max-width:760px){ .hero__frame{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(9,13,16,.74)} }
 
+
+.intro__txt{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:10px;text-align:center;pointer-events:none;animation:introTxt .9s var(--ease) both}
+.intro__txt span{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#7E8B95}
+.intro__txt strong{font-size:clamp(20px,2.4vw,30px);font-weight:600;letter-spacing:-.02em;color:#F2F6F2}
+@keyframes introTxt{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.chap__no::after{content:"";display:block;height:1px;margin-top:12px;background:linear-gradient(90deg,var(--lime),transparent);transform:scaleX(0);transform-origin:left;transition:transform 1.1s var(--ease) .3s}
+.chap.in .chap__no::after{transform:scaleX(1)}
 </style>
 </head>
 <body class="locked">
@@ -326,6 +333,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border:0;border-radiu
 
 <div id="intro" aria-hidden="true">
   <canvas id="introCanvas"></canvas>
+  <div class="intro__txt"><span>Arshdeep Singh · Ludhiana</span><strong>Websites for shops</strong></div>
   <button id="skip">Skip</button>
 </div>
 
@@ -610,102 +618,42 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border:0;border-radiu
     }
     size(); addEventListener('resize', size, {passive:true});
 
-    var t0 = performance.now(), DUR = 2350;
-    var ease = function(t){ return 1-Math.pow(1-t,3); };
-
+    var t0 = performance.now(), DUR = 2000;
+    var ease = function(x){ return 1-Math.pow(1-x,3); };
+    function seg(x0,y0,c1x,c1y,x1,y1,k,w,col){
+      var steps=44, n=Math.max(2,Math.floor(steps*k));
+      ctx.beginPath();
+      for(var i=0;i<=n;i++){
+        var u=i/steps, iu=1-u;
+        var X=iu*iu*x0+2*iu*u*c1x+u*u*x1, Y=iu*iu*y0+2*iu*u*c1y+u*u*y1;
+        i?ctx.lineTo(X,Y):ctx.moveTo(X,Y);
+      }
+      ctx.strokeStyle=col; ctx.lineWidth=w; ctx.lineCap='round'; ctx.stroke();
+      var iu2=1-k;
+      return [iu2*iu2*x0+2*iu2*k*c1x+k*k*x1, iu2*iu2*y0+2*iu2*k*c1y+k*k*y1];
+    }
     function frame(now){
-      var t = Math.min((now-t0)/DUR, 1);
+      var x = Math.min((now-t0)/DUR, 1);
       ctx.clearRect(0,0,W,H);
-
-      var cx = W/2, cy = H/2;
-      var bw = Math.min(W*0.62, 620), bh = bw*0.62;
-      var bx = cx-bw/2, by = cy-bh/2;
-
-      /* guiding lines: three streams that arrive from the edges */
-      var lines = [
-        {p:[-0.1,0.18,0.32,0.0,0.78,0.9], c:'rgba(200,247,81,.28)', d:0.0},
-        {p:[-0.05,0.62,0.42,1.0,0.5,0.9], c:'rgba(61,242,192,.22)', d:0.12},
-        {p:[1.05,0.30,0.66,0.94,0.22,0.9], c:'rgba(242,244,239,.14)', d:0.24}
-      ];
-      lines.forEach(function(L){
-        var k = ease(Math.min(Math.max((t-L.d)/0.42,0),1));
-        if(k<=0) return;
-        var p = L.p;
-        var x0=p[0]*W, y0=p[1]*H, cx1=p[2]*W, cy1=p[3]*H, x1=p[4]*W, y1=p[5]*H;
-        var ex = x1, ey = y1;
-        if(k < 1){
-          /* partial bezier */
-          var steps = 40, n = Math.max(2, Math.floor(steps*k));
-          ctx.beginPath();
-          for(var i=0;i<=n;i++){
-            var u=i/steps, iu=1-u;
-            var X = iu*iu*x0 + 2*iu*u*cx1 + u*u*x1;
-            var Y = iu*iu*y0 + 2*iu*u*cy1 + u*u*y1;
-            i?ctx.lineTo(X,Y):ctx.moveTo(X,Y);
-          }
-          ctx.strokeStyle=L.c; ctx.lineWidth=1.2; ctx.stroke();
-        } else {
-          ctx.beginPath();
-          ctx.moveTo(x0,y0); ctx.quadraticCurveTo(cx1,cy1,x1,y1);
-          ctx.strokeStyle=L.c; ctx.lineWidth=1.2; ctx.stroke();
-          /* the line arrives at the frame edge */
-          ctx.beginPath(); ctx.arc(ex,ey,2.4,0,Math.PI*2);
-          ctx.fillStyle='rgba(200,247,81,.55)'; ctx.fill();
-        }
-      });
-
-      /* frame draws itself, side by side */
-      var fs = ease(Math.min(Math.max((t-0.22)/0.30,0),1));
-      if(fs>0){
-        ctx.strokeStyle='rgba(242,244,239,.5)'; ctx.lineWidth=1.4;
-        var per = (bw+bh)*2, draw = per*fs;
-        ctx.beginPath();
-        var segs=[[bx,by,bx+bw,by],[bx+bw,by,bx+bw,by+bh],[bx+bw,by+bh,bx,by+bh],[bx,by+bh,bx,by]];
-        var left=draw;
-        for(var s=0;s<4 && left>0;s++){
-          var g=segs[s], len=Math.hypot(g[2]-g[0],g[3]-g[1]), k=Math.min(1,left/len);
-          if(s===0) ctx.moveTo(g[0],g[1]);
-          ctx.lineTo(g[0]+(g[2]-g[0])*k, g[1]+(g[3]-g[1])*k);
-          left-=len;
-        }
-        ctx.stroke();
+      ctx.globalCompositeOperation='lighter';
+      var mx=W*0.56, my=H*0.50;
+      var k1 = ease(Math.min(Math.max(x/0.45,0),1));
+      if(k1>0){
+        seg(W*1.04,-H*0.05, W*0.84,H*0.12, mx,my, k1, 54, 'rgba(200,247,81,.045)');
+        var h1 = seg(W*1.04,-H*0.05, W*0.84,H*0.12, mx,my, k1, 2.4, 'rgba(200,247,81,.9)');
+        ctx.beginPath(); ctx.arc(h1[0],h1[1],3.6,0,6.283); ctx.fillStyle='rgba(224,255,160,.95)'; ctx.fill();
       }
-
-      /* blocks assemble inside: nav, headline, media, buttons */
-      var bs = ease(Math.min(Math.max((t-0.42)/0.34,0),1));
-      if(bs>0){
-        var pad = bw*0.075;
-        var blocks = [
-          [bx+pad, by+pad*0.7, bw*0.22, bh*0.045],          /* logo */
-          [bx+bw-pad-bw*0.16, by+pad*0.7, bw*0.16, bh*0.045],/* nav */
-          [bx+pad, by+bh*0.30, bw*0.52, bh*0.085],           /* headline 1 */
-          [bx+pad, by+bh*0.42, bw*0.40, bh*0.085],           /* headline 2 */
-          [bx+pad, by+bh*0.58, bw*0.26, bh*0.06],            /* button */
-          [bx+bw-pad-bw*0.34, by+bh*0.26, bw*0.34, bh*0.44]  /* image */
-        ];
-        blocks.forEach(function(b,i){
-          var k = ease(Math.min(Math.max((bs - i*0.06)/0.4,0),1));
-          if(k<=0) return;
-          var h = b[3]*k;
-          ctx.fillStyle = i===5 ? 'rgba(200,247,81,'+(0.16*k)+')' : 'rgba(242,244,239,'+(0.13*k)+')';
-          ctx.fillRect(b[0], b[1]+(b[3]-h)/2, b[2], h);
-        });
+      var k2 = ease(Math.min(Math.max((x-0.42)/0.42,0),1));
+      if(k2>0){
+        seg(mx,my, W*0.78,H*0.70, W*1.06,H*0.86, k2, 46, 'rgba(200,247,81,.04)');
+        var h2 = seg(mx,my, W*0.78,H*0.70, W*1.06,H*0.86, k2, 2.2, 'rgba(200,247,81,.75)');
+        ctx.beginPath(); ctx.arc(h2[0],h2[1],3.2,0,6.283); ctx.fillStyle='rgba(224,255,160,.9)'; ctx.fill();
       }
-
-      /* lime sweeps across the frame: it becomes real */
-      var sw = ease(Math.min(Math.max((t-0.74)/0.22,0),1));
-      if(sw>0){
-        var gx = bx + bw*sw;
-        var grd = ctx.createLinearGradient(gx-bw*0.35,0,gx,0);
-        grd.addColorStop(0,'rgba(200,247,81,0)');
-        grd.addColorStop(1,'rgba(200,247,81,.30)');
-        ctx.fillStyle=grd;
-        ctx.fillRect(bx,by,gx-bx,bh);
-      }
-
-      /* exit */
-      if(t>=1){ finish(); return; }
-      requestAnimationFrame(frame);
+      var k3 = Math.min(Math.max((x-0.86)/0.14,0),1);
+      if(k3>0) ctx.globalAlpha = 1 - k3*0.7;
+      ctx.globalCompositeOperation='source-over'; ctx.globalAlpha = 1;
+      if(x>=1){ finish(); }
+      else requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
     /* safety: never trap the page */
@@ -735,6 +683,8 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border:0;border-radiu
     els.forEach(function(el){ io.observe(el); });
   } else { els.forEach(function(el){ el.classList.add('in'); }); }
 
+  var chapIO=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');chapIO.unobserve(e.target);}});},{threshold:0.18});
+  [].forEach.call(document.querySelectorAll('.chap'),function(c){chapIO.observe(c);});
   /* ── the guiding rail: draws as you go down ── */
   var railPath = document.getElementById('railPath');
   if(railPath){
@@ -811,7 +761,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border:0;border-radiu
   }
   function draw(tm){
     var pr = window.__prog||0, sw = window.__sweep||0;
-    var bright = 1.30 - 0.72*pr;
+    var bright = 1.95 - 1.20*pr;
     var soft = 0.55 + 0.75*pr;
     cx.clearRect(0,0,W,H);
     cx.globalCompositeOperation='lighter';
