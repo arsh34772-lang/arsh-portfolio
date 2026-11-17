@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Lovely Marbles &amp; Sanitations — Concept (Independent)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#10140F;--ink2:#171C16;--bone:#EFEAE0;--bone2:#E3DDD0;--jade:#47705C;--jade2:#6E9481;--muted:#7C8479;--line:#2A312B}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;max-width:100%;overflow-x:hidden}
+  body{background:var(--bone);color:var(--ink);font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.62;padding-bottom:64px}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+  .serif{font-family:'Instrument Serif',Georgia,serif;font-weight:400;letter-spacing:-.01em}
+  .eyebrow{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--jade);font-weight:600}
+  .concept{background:var(--ink);color:#A9B0A6;font-size:11.5px;text-align:center;padding:9px 14px}
+  .concept b{color:var(--jade2);font-weight:600}
+
+  header.nav{position:sticky;top:0;z-index:40;background:rgba(239,234,224,.96);border-bottom:1px solid #DBD4C5}
+  header.nav .in{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+  .logo{font-family:'Instrument Serif',serif;font-size:21px;line-height:1.05;white-space:nowrap}
+  .logo i{display:block;font-family:'Inter',sans-serif;font-style:normal;font-size:8px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+  .navlinks{display:none;gap:24px;font-size:13px;color:#4A5148}
+  .navbtn{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;background:var(--ink);color:var(--bone);padding:11px 15px;border-radius:2px;white-space:nowrap}
+  @media(min-width:900px){.navlinks{display:flex}}
+
+  .hero{padding:38px 0 0;position:relative}
+  .hero .grid{display:grid;grid-template-columns:1fr;gap:24px;align-items:end}
+  .grid>*{min-width:0}
+  @media(min-width:900px){.hero .grid{grid-template-columns:1.05fr .95fr;gap:44px}}
+  .hero h1{font-size:clamp(40px,10vw,80px);line-height:.98;margin:14px 0 0;letter-spacing:-.02em}
+  .hero h1 em{font-style:italic;color:var(--jade)}
+  .hero p{font-size:16px;color:#464D44;max-width:42ch;margin:18px 0 24px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;text-align:center;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:15px 20px;border-radius:2px;border:1px solid transparent;white-space:normal;line-height:1.3;max-width:100%}
+  .btn-solid{background:var(--ink);color:var(--bone)}
+  .btn-jade{background:var(--jade);color:#fff}
+  .btn-line{border-color:#C6BEAE;color:var(--ink)}
+  .cta-row{display:flex;flex-wrap:wrap;gap:10px}
+  .cta-row .btn{flex:1 1 auto}
+  @media(max-width:480px){.cta-row{flex-direction:column}.cta-row .btn{width:100%}}
+
+  /* review proof */
+  .proof-strip{margin-top:28px;border-top:1px solid #DBD4C5;border-bottom:1px solid #DBD4C5;padding:18px 0;display:flex;gap:26px;flex-wrap:wrap}
+  .proof-strip div b{display:block;font-family:'Instrument Serif',serif;font-size:30px;line-height:1}
+  .proof-strip div span{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+  /* stone panel */
+  .panel{background:var(--ink);color:#D9DED6;border-radius:3px;padding:26px 22px;min-width:0}
+  .panel h3{font-family:'Instrument Serif',serif;font-size:24px;color:#fff;margin:0 0 6px;font-weight:400}
+  .panel p{font-size:14px;color:#A0A79C;margin:0 0 18px}
+  .samples{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:18px}
+  .smp{aspect-ratio:1/1;border-radius:2px;position:relative;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+  .smp::after{content:attr(data-n);position:absolute;left:0;right:0;bottom:0;font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:#0D100C;background:rgba(255,255,255,.82);padding:2px 3px;text-align:center}
+  .s1{background:linear-gradient(135deg,#F4F1EA,#DCD6C9 60%,#C9C2B3)}
+  .s2{background:linear-gradient(160deg,#2C332E,#171C18 70%)}
+  .s3{background:linear-gradient(120deg,#B7A992,#8E8271 65%,#A79A85)}
+  .s4{background:linear-gradient(200deg,#D9DEE0,#B3BCC0)}
+  .s5{background:linear-gradient(150deg,#7E5D4B,#5A4034)}
+  .s6{background:linear-gradient(170deg,#E7E2D6,#CFC8B8)}
+
+  section{padding:58px 0}
+  .sec-head{max-width:660px;margin-bottom:28px}
+  .sec-head h2{font-size:clamp(28px,5.6vw,44px);line-height:1.06;margin:10px 0 10px}
+  .sec-head p{margin:0;color:#464D44;font-size:15.5px}
+
+  /* rooms */
+  .rooms{display:grid;grid-template-columns:1fr;gap:12px}
+  @media(min-width:760px){.rooms{grid-template-columns:repeat(2,1fr);gap:16px}.rooms .wide{grid-column:1/-1}}
+  .room{border:1px solid #D9D2C2;border-radius:3px;padding:22px 20px;background:#F5F1E8;min-width:0}
+  .room .n{font-family:'Instrument Serif',serif;font-size:13px;color:var(--jade);letter-spacing:.1em}
+  .room h3{font-family:'Instrument Serif',serif;font-size:22px;margin:6px 0 8px;font-weight:400}
+  .room p{margin:0;font-size:14.5px;color:#4E554C}
+  .room .sw-row{display:flex;gap:6px;margin-top:14px}
+  .room .sw-row span{height:26px;flex:1;border-radius:2px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.07)}
+
+  /* matcher */
+  .match{background:var(--ink2);color:var(--bone);border-radius:3px;padding:26px 20px}
+  .match h3{font-family:'Instrument Serif',serif;font-size:26px;margin:8px 0 6px;color:#fff;font-weight:400}
+  .match p.lead{color:#9BA297;font-size:14.5px;margin:0 0 20px}
+  .step-lbl{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--jade2);font-weight:600;margin:0 0 8px}
+  .opts{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:20px}
+  @media(min-width:640px){.opts{grid-template-columns:repeat(4,1fr)}}
+  .opt{background:#1E241D;border:1px solid #333B33;color:#D9DED6;border-radius:2px;padding:11px 8px;font-family:inherit;font-size:12.5px;font-weight:500;cursor:pointer;text-align:center;line-height:1.25;transition:.16s}
+  .opt.on{background:var(--jade);border-color:var(--jade);color:#fff}
+  .msum{border-top:1px solid #333B33;padding-top:16px;font-size:13.5px;color:#A9B0A6}
+  .msum b{color:#fff}
+
+  /* process */
+  .steps{border-top:1px solid #DBD4C5}
+  .step{display:flex;gap:16px;padding:22px 0;border-bottom:1px solid #DBD4C5}
+  .step .n{font-family:'Instrument Serif',serif;font-size:26px;color:var(--jade);line-height:1}
+  .step h3{margin:0 0 4px;font-size:16px;font-weight:600}
+  .step p{margin:0;font-size:14.5px;color:#4E554C}
+
+  /* visit */
+  .cards{display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:880px){.cards{grid-template-columns:1fr 1fr;gap:20px}}
+  .card{background:#fff;border:1px solid #DCD5C5;border-radius:3px;padding:24px;min-width:0}
+  .card h3{font-family:'Instrument Serif',serif;font-size:23px;margin:0 0 12px;font-weight:400}
+  .kv{display:flex;gap:10px;padding:9px 0;border-top:1px solid #F0EBDF;font-size:14px;min-width:0}
+  .kv b{min-width:72px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-top:3px;flex:0 0 auto}
+  .kv span{min-width:0;overflow-wrap:anywhere}
+
+  details{border-bottom:1px solid #DBD4C5;padding:15px 0}
+  summary{cursor:pointer;list-style:none;font-weight:600;font-size:15.5px;display:flex;justify-content:space-between;gap:12px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";color:var(--jade);font-size:19px}
+  details[open] summary::after{content:"–"}
+  details p{margin:11px 0 0;font-size:14.5px;color:#4E554C;max-width:70ch}
+
+  footer{background:#0C100B;color:#8B9288;padding:40px 0 30px;font-size:13px}
+  footer .fw{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between}
+  footer b{display:block;color:#D9DED6;font-family:'Instrument Serif',serif;font-size:17px;margin-bottom:8px;font-weight:400}
+  .fine{margin-top:22px;padding-top:16px;border-top:1px solid #222922;color:#666E64;font-size:11.5px;line-height:1.7}
+
+  .mbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:1px;background:#0C100B;border-top:1px solid #232B23}
+  .mbar a{flex:1;text-align:center;padding:15px 8px;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#D9DED6;font-weight:600}
+  .mbar a.g{background:var(--jade);color:#fff}
+</style>
+</head>
+<body>
+<div class="concept">INDEPENDENT CONCEPT · A redesign proposal by <b>Arsh Studio</b> · not the official website</div>
+
+<header class="nav"><div class="wrap in">
+  <div class="logo">Lovely Marbles<i>&amp; Sanitations · Jalandhar</i></div>
+  <nav class="navlinks"><a href="#rooms">Stone by room</a><a href="#match">Stone finder</a><a href="#visit">Visit</a><a href="#faq">FAQ</a></nav>
+  <a class="navbtn" href="https://wa.me/919876633404?text=Hi%20Lovely%20Marbles%2C%20I%20want%20to%20ask%20about%20marble%20and%20tiles%20for%20my%20home." target="_blank" rel="noopener">WhatsApp</a>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div class="grid">
+    <div>
+      <p class="eyebrow">Nakodar Road · Model Town · Jalandhar</p>
+      <h1 class="serif">Four decades of stone,<br><em>one address.</em></h1>
+      <p>Marble, granite, tiles, sanitation and kitchens since 1984. Tell us the room and the finish — we send back the slabs that fit, with the price per square foot.</p>
+      <div class="cta-row">
+        <a class="btn btn-solid" href="#match">Find stone for your room</a>
+        <a class="btn btn-line" href="https://wa.me/919876633404?text=Hi%2C%20I%20want%20to%20visit%20the%20showroom.%20Which%20time%20is%20free%3F" target="_blank" rel="noopener">Book a visit</a>
+      </div>
+      <div class="proof-strip">
+        <div><b>4.6★</b><span>Google rating</span></div>
+        <div><b>1,105</b><span>Reviews</span></div>
+        <div><b>1984</b><span>Since</span></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>A slab talks better than a photo</h3>
+      <p>These six finishes are on the floor right now. Pick the ones you like and they come to WhatsApp with the size and price.</p>
+      <div class="samples">
+        <div class="smp s1" data-n="Statuario"></div>
+        <div class="smp s2" data-n="Black Marq"></div>
+        <div class="smp s3" data-n="Travertine"></div>
+        <div class="smp s4" data-n="Grey Onyx"></div>
+        <div class="smp s5" data-n="Coffee Brown"></div>
+        <div class="smp s6" data-n="Crema"></div>
+      </div>
+      <a class="btn btn-jade" style="width:100%" href="https://wa.me/919876633404?text=Hi%2C%20I%20liked%20a%20few%20slabs%20on%20your%20site.%20Can%20you%20send%20sizes%20and%20price%20per%20sq%20ft%3F" target="_blank" rel="noopener">Send these to WhatsApp</a>
+    </div>
+  </div>
+</div></section>
+
+<section id="rooms"><div class="wrap">
+  <div class="sec-head">
+    <p class="eyebrow">Stone by room</p>
+    <h2 class="serif">The right stone is a room decision, not a catalogue decision.</h2>
+    <p>A polished marble that looks perfect in a drawing room will show every wet footmark in a bathroom. This is how we separate them.</p>
+  </div>
+  <div class="rooms">
+    <div class="room wide">
+      <div class="n">01</div>
+      <h3 class="serif">Drawing room &amp; stairs</h3>
+      <p>Statuario, Crema and grey onyx in polished finish. Bigger slabs mean fewer joints, and fewer joints mean the floor reads as one piece.</p>
+      <div class="sw-row"><span class="s1"></span><span class="s6"></span><span class="s4"></span><span class="s3"></span></div>
+    </div>
+    <div class="room">
+      <div class="n">02</div>
+      <h3 class="serif">Bathroom &amp; wet areas</h3>
+      <p>Honed travertine and matt granite. Grippy underfoot, and they don't show water marks the way a gloss slab does.</p>
+      <div class="sw-row"><span class="s3"></span><span class="s2"></span><span class="s5"></span></div>
+    </div>
+    <div class="room">
+      <div class="n">03</div>
+      <h3 class="serif">Kitchen platform</h3>
+      <p>Black Marquina and coffee brown granite. A hot kadhai will not scar it, and it hides knife marks that a white stone shows.</p>
+      <div class="sw-row"><span class="s2"></span><span class="s5"></span><span class="s4"></span></div>
+    </div>
+    <div class="room">
+      <div class="n">04</div>
+      <h3 class="serif">Elevation &amp; carving</h3>
+      <p>Sandstone and carved panels for the outside face. We also handle the polishing and the fitting, so one team owns the finish.</p>
+      <div class="sw-row"><span class="s5"></span><span class="s3"></span><span class="s6"></span></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="match" style="padding-top:0"><div class="wrap">
+  <div class="match">
+    <p class="eyebrow" style="color:var(--jade2)">Two taps</p>
+    <h3>Stone finder</h3>
+    <p class="lead">Choose the room and the finish. The message arrives at our counter already written, so the reply is a price instead of five questions.</p>
+    <p class="step-lbl">1 · Which room</p>
+    <div class="opts" id="r">
+      <button class="opt" data-v="Drawing room">Drawing room</button>
+      <button class="opt" data-v="Bathroom">Bathroom</button>
+      <button class="opt" data-v="Kitchen platform">Kitchen</button>
+      <button class="opt" data-v="Elevation">Elevation</button>
+    </div>
+    <p class="step-lbl">2 · Which finish</p>
+    <div class="opts" id="f">
+      <button class="opt" data-v="Polished">Polished</button>
+      <button class="opt" data-v="Honed">Honed</button>
+      <button class="opt" data-v="Antique">Antique</button>
+      <button class="opt" data-v="Not sure yet">Not sure</button>
+    </div>
+    <div class="msum" id="msum">Pick a room and a finish to build the message.</div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="sec-head"><p class="eyebrow">How we work</p><h2 class="serif">Three visits and the polish is done.</h2></div>
+  <div class="steps">
+    <div class="step"><div class="n">01</div><div><h3>Select at the counter</h3><p>Bring the room size, or a photo. You see the actual slabs, not a picture of a slab.</p></div></div>
+    <div class="step"><div class="n">02</div><div><h3>Written rate</h3><p>Rate per square foot, number of slabs, cutting and polishing — on one page before anything is booked.</p></div></div>
+    <div class="step"><div class="n">03</div><div><h3>Delivery and fitting</h3><p>Slabs come wrapped and numbered for the room they were cut for. Fitting and polishing on the agreed date.</p></div></div>
+  </div>
+</div></section>
+
+<section id="visit" style="padding-top:0"><div class="wrap">
+  <div class="cards">
+    <div class="card">
+      <h3 class="serif">The showroom</h3>
+      <div class="kv"><b>Address</b><span>Nakodar Road, Malind Nagar, Model Town, Jalandhar 144001</span></div>
+      <div class="kv"><b>Hours</b><span>Open daily, closes 8 pm</span></div>
+      <div class="kv"><b>Call</b><span><a href="tel:+919876633404">+91 98766 33404</a></span></div>
+      <div class="kv"><b>WhatsApp</b><span><a href="https://wa.me/919876633404" target="_blank" rel="noopener">+91 98766 33404</a></span></div>
+      <div class="kv"><b>Instagram</b><span><a href="https://instagram.com/lovelymarblesandsanitations" target="_blank" rel="noopener">@lovelymarblesandsanitations</a></span></div>
+      <div class="kv"><b>Maps</b><span><a href="https://www.google.com/maps/search/?api=1&amp;query=Lovely+Marbles+and+Sanitations+Nakodar+Road+Jalandhar" target="_blank" rel="noopener">Open in Google Maps →</a></span></div>
+    </div>
+    <div class="card" style="background:var(--ink);border-color:var(--ink);color:#D9DED6">
+      <h3 class="serif" style="color:#fff">Send the room, get the rate</h3>
+      <p style="font-size:14.5px;color:#A0A79C;margin:0 0 18px">Photo of the room, rough size, and the finish you like. You get the slabs that suit it and a rate per square foot the same day.</p>
+      <a class="btn btn-jade" style="width:100%" href="https://wa.me/919876633404?text=Hi%2C%20here%20is%20my%20room.%20Size%20is%20about%20____%20sq%20ft.%20Please%20send%20suitable%20slabs%20and%20the%20rate." target="_blank" rel="noopener">Send room on WhatsApp</a>
+    </div>
+  </div>
+</div></section>
+
+<section id="faq" style="padding-top:0"><div class="wrap" style="max-width:840px">
+  <div class="sec-head"><p class="eyebrow">Before you come</p><h2 class="serif">What people ask at the counter</h2></div>
+  <details open><summary>How is marble priced?</summary><p>By square foot, and the rate depends on the stone and the slab size, not just the name. Send the room size and we quote the actual slabs available, so the number you hear is the number you pay.</p></details>
+  <details><summary>Marble or granite for the kitchen?</summary><p>Granite, in almost every case. It takes a hot vessel without marking. Marble is for the drawing room, the stairs and the bathroom, where looks matter more than heat.</p></details>
+  <details><summary>Do you do polishing and fitting?</summary><p>Yes, our own team. You are not left to find a fitter after buying the slab.</p></details>
+  <details><summary>Do you deliver outside Jalandhar?</summary><p>Yes, across Punjab. Delivery is quoted by distance and slab weight.</p></details>
+</div></section>
+
+<footer><div class="wrap"><div class="fw">
+  <div style="max-width:280px"><b>Lovely Marbles &amp; Sanitations</b>Nakodar Road, Malind Nagar, Model Town, Jalandhar 144001.<br><a href="tel:+919876633404">+91 98766 33404</a></div>
+  <div><b>Explore</b><a href="#rooms">Stone by room</a><br><a href="#match">Stone finder</a><br><a href="#faq">FAQ</a></div>
+  <div><b>Talk to us</b><a href="https://wa.me/919876633404" target="_blank" rel="noopener">WhatsApp</a><br><a href="https://instagram.com/lovelymarblesandsanitations" target="_blank" rel="noopener">Instagram</a></div>
+</div>
+<div class="fine">This page is an independent design concept created by Arsh Studio to demonstrate a possible redesign. It is not affiliated with, endorsed by, or operated by Lovely Marbles &amp; Sanitations. Business details are taken from public listings and the business's own published information. Colour swatches are illustrative, not photographs of specific slabs.</div>
+</div></footer>
+
+<div class="mbar"><a href="tel:+919876633404">Call</a><a class="g" href="https://wa.me/919876633404?text=Hi%2C%20I%20need%20marble%20for%20my%20home." target="_blank" rel="noopener">WhatsApp</a></div>
+
+<script>
+(function(){
+  var room=null,fin=null;
+  var sum=document.getElementById('msum');
+  function paint(){
+    var msg='';
+    if(!room&&!fin){ sum.innerHTML='Pick a room and a finish to build the message.'; return; }
+    var parts=[];
+    if(room) parts.push('room: <b>'+room+'</b>');
+    if(fin) parts.push('finish: <b>'+fin+'</b>');
+    var body='Hi Lovely Marbles, I used the stone finder on your site. Room: '+(room||'____')+'. Finish: '+(fin||'____')+'. Please send suitable slabs, size and rate per sq ft.';
+    sum.innerHTML=parts.join(' · ')+'<br><a href="https://wa.me/919876633404?text='+encodeURIComponent(body)+'" target="_blank" rel="noopener" style="display:inline-flex;margin-top:12px;background:#47705C;color:#fff;padding:12px 16px;border-radius:2px;font-size:11px;letter-spacing:.13em;text-transform:uppercase;font-weight:600;text-decoration:none">Send this to WhatsApp</a>';
+  }
+  function wire(id,setter){
+    var el=document.getElementById(id);
+    el.addEventListener('click',function(e){
+      var b=e.target.closest('.opt'); if(!b) return;
+      var on=b.classList.contains('on');
+      for(var i=0;i<el.children.length;i++) el.children[i].classList.remove('on');
+      if(!on){ b.classList.add('on'); setter(b.getAttribute('data-v')); }
+      else setter(null);
+      paint();
+    });
+  }
+  wire('r',function(v){room=v;});
+  wire('f',function(v){fin=v;});
+  paint();
+  var smps=document.querySelectorAll('.smp');
+  for(var i=0;i<smps.length;i++){
+    smps[i].style.cursor='pointer';
+    smps[i].addEventListener('click',function(){
+      var n=this.getAttribute('data-n');
+      var body='Hi Lovely Marbles, I liked the '+n+' slab on your site. Can you send sizes and price per sq ft?';
+      window.open('https://wa.me/919876633404?text='+encodeURIComponent(body),'_blank');
+    });
+  }
+})();
+</script>
+</body>
+</html>
