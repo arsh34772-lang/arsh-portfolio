@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Bath Impressions — Concept (Independent)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0D1B24;--deep:#132A36;--paper:#F2F4F6;--line:#DCE2E5;--steel:#2E6E8E;--steel2:#4E90B0;--sand:#D8C3A5;--muted:#6E7B83}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;max-width:100%;overflow-x:hidden}
+  body{background:var(--paper);color:var(--ink);font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.6;font-size:16px;padding-bottom:66px}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+  .bg{font-family:'Bricolage Grotesque',sans-serif;letter-spacing:-.03em;line-height:1.02}
+  .mono{font-size:10px;letter-spacing:.26em;text-transform:uppercase;font-weight:600;color:var(--steel)}
+  .concept{background:var(--ink);color:#A9B7BF;text-align:center;font-size:11.5px;padding:9px 14px}
+  .concept b{color:var(--sand)}
+
+  header.nav{position:sticky;top:0;z-index:40;background:rgba(242,244,246,.96);border-bottom:1px solid var(--line)}
+  header.nav .in{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+  .logo{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.02em;white-space:nowrap}
+  .logo i{font-style:normal;color:var(--steel)}
+  .navlinks{display:none;gap:22px;font-size:13px;color:#51606A}
+  .navbtn{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;background:var(--ink);color:#fff;padding:11px 15px;border-radius:3px;white-space:nowrap}
+  @media(min-width:900px){.navlinks{display:flex}}
+
+  .hero{padding:36px 0 0}
+  .hero .grid{display:grid;grid-template-columns:1fr;gap:26px}
+  .grid>*{min-width:0}
+  @media(min-width:900px){.hero .grid{grid-template-columns:1.02fr .98fr;gap:44px;align-items:center}}
+  .hero h1{font-size:clamp(34px,8.2vw,64px);margin:14px 0 0}
+  .hero h1 span{color:var(--steel)}
+  .hero p{font-size:16px;color:#46545E;max-width:44ch;margin:16px 0 22px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;text-align:center;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;padding:15px 19px;border-radius:3px;border:1px solid transparent;white-space:normal;line-height:1.3;max-width:100%}
+  .btn-ink{background:var(--ink);color:#fff}
+  .btn-steel{background:var(--steel);color:#fff}
+  .btn-line{border-color:#C9D2D7;color:var(--ink)}
+  .cta-row{display:flex;flex-wrap:wrap;gap:9px}
+  .cta-row .btn{flex:1 1 auto}
+  @media(max-width:480px){.cta-row{flex-direction:column}.cta-row .btn{width:100%}}
+
+  .brandwall{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#C9D3D8;border:1px solid #C9D3D8}
+  .brandwall div{background:#fff;display:flex;align-items:center;justify-content:center;padding:18px 8px;font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#54636C;text-align:center;line-height:1.25}
+  .stats{display:flex;gap:22px;flex-wrap:wrap;margin-top:26px;padding-top:16px;border-top:1px solid var(--line)}
+  .stats b{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:24px;line-height:1;letter-spacing:-.02em}
+  .stats span{font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+
+  section{padding:54px 0}
+  .sec-head{max-width:680px;margin-bottom:24px}
+  .sec-head h2{font-size:clamp(26px,5.4vw,40px);margin:10px 0 10px}
+  .sec-head p{margin:0;color:#46545E;font-size:15.5px}
+
+  .chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:16px;scrollbar-width:none}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto;font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;padding:9px 14px;border-radius:100px;border:1px solid #CCD6DB;background:#fff;color:#54636C;cursor:pointer}
+  .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .gal{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
+  @media(min-width:760px){.gal{grid-template-columns:repeat(3,1fr);gap:14px}}
+  .pcard{background:#fff;border:1px solid var(--line);border-radius:4px;overflow:hidden;cursor:pointer;position:relative}
+  .pcard .ph{aspect-ratio:4/3;position:relative}
+  .pcard .ph::after{content:attr(data-b);position:absolute;top:8px;left:8px;background:rgba(13,27,36,.82);color:#fff;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;padding:3px 6px;border-radius:2px}
+  .pcard .bd{padding:11px 12px 13px}
+  .pcard .bd b{display:block;font-size:13.5px;font-weight:600;line-height:1.3}
+  .pcard .bd i{font-style:normal;display:block;font-size:10.5px;color:#84939C;margin-top:3px;letter-spacing:.04em}
+  .pcard .tick{position:absolute;top:8px;right:8px;width:25px;height:25px;border-radius:50%;background:#fff;border:1px solid #DCE3E6;display:flex;align-items:center;justify-content:center;font-size:13px;color:#93A1A9;font-weight:700}
+  .pcard.sel{border-color:var(--steel);box-shadow:0 0 0 2px rgba(46,110,142,.16)}
+  .pcard.sel .tick{background:var(--steel);border-color:var(--steel);color:#fff}
+  .p1{background:linear-gradient(140deg,#EDF1F2,#D3DDE1)}
+  .p2{background:linear-gradient(140deg,#3B4A54,#1D262C)}
+  .p3{background:linear-gradient(140deg,#E7E0D3,#CFC4AE)}
+  .p4{background:linear-gradient(140deg,#C9D9DE,#9DB4BC)}
+  .p5{background:linear-gradient(140deg,#DED6CB,#B9A992)}
+  .p6{background:linear-gradient(140deg,#E9EEEF,#C4CFD4)}
+
+  .band{background:var(--ink);color:#C6D2D9}
+  .band .wrap{display:grid;grid-template-columns:1fr;gap:20px}
+  @media(min-width:820px){.band .wrap{grid-template-columns:1.05fr .95fr;gap:34px;align-items:center}}
+  .band h2{color:#fff;font-size:clamp(25px,5vw,36px);margin:8px 0 10px}
+  .band p{color:#9FAFB9;font-size:15px;margin:0}
+  .qbox{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:4px;padding:18px 20px;min-width:0}
+  .row{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.09)}
+  .row:last-child{border-bottom:0}
+  .row b{color:#fff}
+
+  .cards{display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:880px){.cards{grid-template-columns:1fr 1fr;gap:18px}}
+  .card{background:#fff;border:1px solid var(--line);border-radius:4px;padding:24px;min-width:0}
+  .card h3{font-family:'Bricolage Grotesque',sans-serif;font-size:19px;margin:0 0 12px;letter-spacing:-.01em}
+  .kv{display:flex;gap:10px;padding:9px 0;border-top:1px solid #EEF2F4;font-size:14px;min-width:0}
+  .kv b{min-width:74px;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-top:4px;flex:0 0 auto}
+  .kv span{min-width:0;overflow-wrap:anywhere}
+
+  details{border-bottom:1px solid var(--line);padding:15px 0}
+  summary{cursor:pointer;list-style:none;font-weight:600;font-size:15.5px;display:flex;justify-content:space-between;gap:12px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";color:var(--steel);font-size:19px}
+  details[open] summary::after{content:"–"}
+  details p{margin:11px 0 0;font-size:14.5px;color:#46545E;max-width:70ch}
+
+  footer{background:#08131A;color:#8A99A2;padding:40px 0 30px;font-size:13px}
+  footer .fw{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between}
+  footer b{display:block;color:#E4EAEE;font-family:'Bricolage Grotesque',sans-serif;font-size:16px;margin-bottom:8px}
+  .fine{margin-top:22px;padding-top:16px;border-top:1px solid #1C2A33;color:#66757E;font-size:11.5px;line-height:1.7}
+
+  .ebar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:#0B171E;border-top:1px solid #22323B;padding:10px 14px;display:flex;align-items:center;gap:10px;transform:translateY(120%);transition:transform .26s cubic-bezier(.2,.7,.2,1)}
+  .ebar.show{transform:translateY(0)}
+  .ebar .c{flex:1;min-width:0;font-size:11px;color:#8E9DA6;line-height:1.3}
+  .ebar .c b{display:block;color:#fff;font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ebar a{flex:0 0 auto;background:var(--steel);color:#fff;padding:13px 15px;border-radius:3px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;white-space:nowrap}
+  .ebar button{flex:0 0 auto;background:none;border:0;color:#7B8A93;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-family:inherit;padding:12px 2px;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="concept">INDEPENDENT CONCEPT · A redesign proposal by <b>Arsh Studio</b> · not the official website</div>
+
+<header class="nav"><div class="wrap in">
+  <div class="logo">Bath <i>Impressions</i></div>
+  <nav class="navlinks"><a href="#shop">Shop by brand</a><a href="#why">Why us</a><a href="#visit">Visit</a><a href="#faq">FAQ</a></nav>
+  <a class="navbtn" href="https://wa.me/918360313193?text=Hi%20Bath%20Impressions%2C%20I%20want%20to%20enquire%20about%20bathroom%20fittings." target="_blank" rel="noopener">WhatsApp</a>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div class="grid">
+    <div>
+      <p class="mono">G.T. Road · opposite Ram Talai · Amritsar</p>
+      <h1 class="bg">Ten brands.<br><span>One showroom.</span></h1>
+      <p>Kohler, Grohe, Jaquar, American Standard, Somany tiles and more, since 1992. Tap what you like and the list reaches us on WhatsApp with the brand and finish already written.</p>
+      <div class="cta-row">
+        <a class="btn btn-ink" href="#shop">Shop by brand</a>
+        <a class="btn btn-line" href="https://wa.me/918360313193?text=Hi%2C%20I%20am%20renovating%20a%20bathroom.%20Please%20send%20a%20budget%20list." target="_blank" rel="noopener">Send my budget</a>
+      </div>
+      <div class="stats">
+        <div><b>1992</b><span>Since</span></div>
+        <div><b>4.4★</b><span>Google</span></div>
+        <div><b>138</b><span>Reviews</span></div>
+      </div>
+    </div>
+    <div class="brandwall" aria-hidden="true">
+      <div>Kohler</div><div>Grohe</div><div>Jaquar</div>
+      <div>American<br>Standard</div><div>Somany</div><div>Colston</div>
+      <div>Robam</div><div>Ispira</div><div>Seron</div>
+    </div>
+  </div>
+</div></section>
+
+<section id="shop"><div class="wrap">
+  <div class="sec-head">
+    <p class="mono">The showroom wall</p>
+    <h2 class="bg">Pick the pieces. Send the list.</h2>
+    <p>A bathroom is decided piece by piece — basin, WC, shower, tiles. Tap what you like as you scroll, and one message goes to us with all of it.</p>
+  </div>
+
+  <div class="chips" id="chips">
+    <button class="chip on" data-f="all">All</button>
+    <button class="chip" data-f="basin">Basins</button>
+    <button class="chip" data-f="wc">WCs</button>
+    <button class="chip" data-f="shower">Showers</button>
+    <button class="chip" data-f="tile">Tiles</button>
+  </div>
+
+  <div class="gal" id="gal">
+    <div class="pcard" data-f="basin" data-n="Kohler wall-hung basin"><div class="ph p1" data-b="Kohler"></div><div class="tick">+</div><div class="bd"><b>Wall-hung basin</b><i>Kohler</i></div></div>
+    <div class="pcard" data-f="shower" data-n="Grohe rainshower set"><div class="ph p4" data-b="Grohe"></div><div class="tick">+</div><div class="bd"><b>Rainshower set</b><i>Grohe</i></div></div>
+    <div class="pcard" data-f="wc" data-n="Jaquar wall-hung WC"><div class="ph p6" data-b="Jaquar"></div><div class="tick">+</div><div class="bd"><b>Wall-hung WC</b><i>Jaquar</i></div></div>
+    <div class="pcard" data-f="basin" data-n="American Standard counter basin"><div class="ph p3" data-b="Am. Standard"></div><div class="tick">+</div><div class="bd"><b>Counter basin</b><i>American Standard</i></div></div>
+    <div class="pcard" data-f="tile" data-n="Somany vitrified tile 600x1200"><div class="ph p5" data-b="Somany"></div><div class="tick">+</div><div class="bd"><b>Vitrified 600 × 1200</b><i>Somany</i></div></div>
+    <div class="pcard" data-f="tile" data-n="Seron wall tile, matt"><div class="ph p1" data-b="Seron"></div><div class="tick">+</div><div class="bd"><b>Wall tile, matt</b><i>Seron</i></div></div>
+    <div class="pcard" data-f="shower" data-n="Jaquar single-lever diverter"><div class="ph p2" data-b="Jaquar"></div><div class="tick">+</div><div class="bd"><b>Single-lever diverter</b><i>Jaquar</i></div></div>
+    <div class="pcard" data-f="wc" data-n="Colston floor-mounted WC"><div class="ph p6" data-b="Colston"></div><div class="tick">+</div><div class="bd"><b>Floor-mounted WC</b><i>Colston</i></div></div>
+    <div class="pcard" data-f="basin" data-n="Jaquar table-top basin"><div class="ph p4" data-b="Jaquar"></div><div class="tick">+</div><div class="bd"><b>Table-top basin</b><i>Jaquar</i></div></div>
+  </div>
+</div></section>
+
+<section class="band" id="why"><div class="wrap">
+  <div>
+    <p class="mono" style="color:#7FB6D1">Thirty years, one counter</p>
+    <h2 class="bg">You are not buying a tap. You are buying the fit.</h2>
+    <p>A Kohler basin needs the right waste. A Grohe shower needs the right pressure. Because every brand sits in the same showroom, that conversation happens in one place instead of three shops.</p>
+  </div>
+  <div class="qbox">
+    <div class="row"><span>Bathroom, complete</span><b>One list</b></div>
+    <div class="row"><span>Brands under one roof</span><b>10</b></div>
+    <div class="row"><span>Price on WhatsApp</span><b>Same day</b></div>
+    <div class="row"><span>Delivery in Amritsar</span><b>Yes</b></div>
+  </div>
+</div></section>
+
+<section id="visit"><div class="wrap">
+  <div class="cards">
+    <div class="card">
+      <h3>Find the showroom</h3>
+      <div class="kv"><b>Address</b><span>G.T. Road, opposite Ram Talai, Sharifpura, Amritsar 143006</span></div>
+      <div class="kv"><b>Hours</b><span>Open daily, closes 8 pm</span></div>
+      <div class="kv"><b>Call</b><span><a href="tel:+918360313193">+91 83603 13193</a></span></div>
+      <div class="kv"><b>WhatsApp</b><span><a href="https://wa.me/918360313193" target="_blank" rel="noopener">+91 83603 13193</a></span></div>
+      <div class="kv"><b>Email</b><span><a href="mailto:bath.impressions@yahoo.com">bath.impressions@yahoo.com</a></span></div>
+      <div class="kv"><b>Maps</b><span><a href="https://www.google.com/maps/search/?api=1&amp;query=Bath+Impressions+GT+Road+Amritsar" target="_blank" rel="noopener">Open in Google Maps →</a></span></div>
+    </div>
+    <div class="card" style="background:#E8EEF1;border-color:#D6E0E5">
+      <h3>Send the bathroom size</h3>
+      <p style="font-size:14.5px;color:#42545E;margin:0 0 16px">Tell us the bathroom size and the budget you have in mind. You get a list of what fits that budget, with brands and prices, instead of a showroom tour.</p>
+      <a class="btn btn-steel" style="width:100%" href="https://wa.me/918360313193?text=Hi%2C%20my%20bathroom%20is%20about%20____%20ft%20x%20____%20ft.%20Budget%20around%20Rs%20____.%20Please%20send%20a%20list%20of%20what%20fits." target="_blank" rel="noopener">Send size and budget</a>
+    </div>
+  </div>
+</div></section>
+
+<section id="faq" style="padding-top:0"><div class="wrap" style="max-width:860px">
+  <div class="sec-head"><p class="mono">Before you drive over</p><h2 class="bg">The three questions we get daily</h2></div>
+  <details open><summary>What does a full bathroom cost?</summary><p>It depends on the four big pieces: WC, basin, shower and tiles. Send the bathroom size and your budget, and the list comes back with brands and prices that fit instead of a vague range.</p></details>
+  <details><summary>Why is the same WC cheaper online?</summary><p>Sometimes it is, sometimes it is a different variant or an older series. Send us the model you are comparing and we tell you which it is, and what our price is for the same piece.</p></details>
+  <details><summary>Do you supply tiles along with the fittings?</summary><p>Yes — Somany, Seron and others are on the floor, so the tile and the fitting are chosen together and arrive together.</p></details>
+</div></section>
+
+<footer><div class="wrap"><div class="fw">
+  <div style="max-width:290px"><b>Bath Impressions</b>G.T. Road, opposite Ram Talai, Sharifpura, Amritsar 143006.<br><a href="tel:+918360313193">+91 83603 13193</a></div>
+  <div><b>Explore</b><a href="#shop">Shop by brand</a><br><a href="#why">Why us</a><br><a href="#faq">FAQ</a></div>
+  <div><b>Talk to us</b><a href="https://wa.me/918360313193" target="_blank" rel="noopener">WhatsApp</a><br><a href="mailto:bath.impressions@yahoo.com">Email</a></div>
+</div>
+<div class="fine">This page is an independent design concept by Arsh Studio to demonstrate a possible redesign. It is not affiliated with, endorsed by, or operated by Bath Impressions. Brand names belong to their respective owners. Details are taken from public listings and the business's published information; product panels are illustrative, not photographs of specific stock.</div>
+</div></footer>
+
+<div class="ebar" id="ebar">
+  <div class="c"><b id="ebart">0 pieces selected</b>Tap a piece to add it</div>
+  <button id="clr">Clear</button>
+  <a id="ebarl" href="https://wa.me/918360313193" target="_blank" rel="noopener">Send list</a>
+</div>
+
+<script>
+(function(){
+  var sel=[],gal=document.getElementById('gal'),chips=document.getElementById('chips');
+  var ebar=document.getElementById('ebar'),ebart=document.getElementById('ebart'),ebarl=document.getElementById('ebarl');
+  var PHONE='918360313193';
+  chips.addEventListener('click',function(e){
+    var b=e.target.closest('.chip'); if(!b) return;
+    for(var i=0;i<chips.children.length;i++) chips.children[i].classList.remove('on');
+    b.classList.add('on');
+    var f=b.getAttribute('data-f');
+    for(var j=0;j<gal.children.length;j++){
+      var c=gal.children[j];
+      c.style.display=(f==='all'||c.getAttribute('data-f')===f)?'':'none';
+    }
+  });
+  gal.addEventListener('click',function(e){
+    var c=e.target.closest('.pcard'); if(!c) return;
+    var n=c.getAttribute('data-n'), i=sel.indexOf(n);
+    if(i>-1){ sel.splice(i,1); c.classList.remove('sel'); }
+    else { sel.push(n); c.classList.add('sel'); }
+    render();
+  });
+  document.getElementById('clr').addEventListener('click',function(){
+    sel=[]; for(var j=0;j<gal.children.length;j++) gal.children[j].classList.remove('sel'); render();
+  });
+  function render(){
+    if(!sel.length){ ebar.classList.remove('show'); ebart.textContent='0 pieces selected'; return; }
+    ebar.classList.add('show');
+    ebart.textContent=sel.length+(sel.length===1?' piece selected':' pieces selected');
+    var msg='Hi Bath Impressions, I picked these from your site:\n'+sel.map(function(s,i){return (i+1)+'. '+s;}).join('\n')+'\n\nPlease send the price for each and the total. My bathroom is about ____ ft x ____ ft.';
+    ebarl.href='https://wa.me/'+PHONE+'?text='+encodeURIComponent(msg);
+  }
+})();
+</script>
+</body>
+</html>
