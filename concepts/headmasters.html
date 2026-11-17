@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Headmasters Salon & Beauty Academy — Jalandhar</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0C0A0E;--sur:#15131C;--sur2:#1B1724;--gold:#C5A06D;--cham:#D9BE93;--ivory:#F6F1E7;--mut:#B4A897;--rose:#D4B483;--wa:#C5A06D}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+a{color:inherit;text-decoration:none}button{font:inherit}
+body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--ivory);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+#bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--rose));width:0;z-index:99}
+.wrap{width:min(1160px,92vw);margin:0 auto}
+h1,h2{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.12}
+h2{font-size:clamp(2rem,5vw,3.4rem);letter-spacing:.01em;text-wrap:balance}
+h2 em{font-style:italic;color:var(--gold)}
+.kick{font-size:.72rem;letter-spacing:.36em;text-transform:uppercase;color:#C5A06D;margin-bottom:16px}
+nav{position:fixed;inset:0 0 auto;display:flex;justify-content:space-between;align-items:center;padding:16px 5vw;z-index:50;background:linear-gradient(180deg,rgba(12,10,14,.85),transparent);backdrop-filter:blur(6px)}
+nav .logo{text-transform:uppercase;font-family:'Cormorant Garamond',serif;font-size:1.35rem;letter-spacing:.18em;color:var(--ivory)}
+nav .logo b{color:var(--gold)}
+nav a.wa{color:var(--ivory);text-decoration:none;border:1px solid rgba(197,160,109,.5);padding:10px 16px;border-radius:999px;font-size:clamp(10px,2.6vw,13px);letter-spacing:.06em;transition:.3s;white-space:nowrap}
+nav a.wa:hover{background:var(--gold);color:var(--bg)}
+header{min-height:94svh;display:flex;align-items:flex-end;position:relative;isolation:isolate}
+.hbg{position:absolute;inset:0;z-index:-2;background:url('https://media.base44.com/images/public/6ac87b1bfd845c3b4bdb7f2a/fc8beb112_generated_image.png') center/cover}
+.hbg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,9,13,.5) 0%,rgba(12,10,14,.35) 45%,rgba(12,10,14,.92) 100%)}
+.hero-in{width:min(1160px,92vw);margin:0 auto}
+.hkn{display:inline-flex;gap:10px;align-items:center;border:1px solid rgba(197,160,109,.45);border-radius:999px;padding:8px 18px;font-size:.75rem;letter-spacing:.24em;color:var(--cham);margin-bottom:26px;background:rgba(12,10,14,.35)}
+header h1{font-size:clamp(2.6rem,7.2vw,4.9rem);max-width:12ch}
+header h1 em{font-style:italic;color:var(--gold)}
+.hs{max-width:52ch;color:#D8CFC2;margin:22px 0 34px;font-size:clamp(1rem,2.4vw,1.18rem);font-weight:300}
+.btnrow{display:flex;flex-wrap:wrap;gap:16px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 34px;border-radius:999px;text-decoration:none;font-size:.95rem;letter-spacing:.1em;transition:.35s;min-height:54px}
+.pri{background:linear-gradient(120deg,#D4B483,#A68A6D);color:#131118;font-weight:600;box-shadow:0 12px 40px rgba(197,160,109,.4),0 0 24px rgba(212,180,131,.25)}
+.pri:hover{transform:translateY(-3px)}
+.sec{border:1px solid rgba(246,241,231,.4);color:var(--ivory)}
+.sec:hover{background:rgba(246,241,231,.08)}
+.stats{display:flex;flex-wrap:wrap;gap:34px;margin-top:48px;padding-top:26px;border-top:1px solid rgba(197,160,109,.25)}
+.stats div b{font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:var(--gold);display:block;line-height:1}
+.stats div span{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mut)}
+
+header{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;padding:110px 20px 64px;overflow:hidden;
+background:url('https://media.base44.com/images/public/6ac87b1bfd845c3b4bdb7f2a/fc8beb112_generated_image.png') center/cover fixed}
+header:before{content:"";position:absolute;inset:0;z-index:0;background:radial-gradient(circle at 50% 40%,rgba(197,160,109,.15),transparent 58%),linear-gradient(180deg,rgba(10,9,13,.80) 0%,rgba(10,9,13,.58) 45%,rgba(10,9,13,.88) 100%)}
+header .hero-in{position:relative;z-index:2;padding:0 5vw;width:min(1160px,92vw);margin:0 auto}
+.hkn{font-size:12px;letter-spacing:4px;color:var(--gold);border:1px solid rgba(197,160,109,.35);border-radius:999px;padding:8px 18px;background:rgba(197,160,109,.06)}
+header h1{position:relative;z-index:3;margin:18px 0 0;font-size:clamp(2.5rem,8vw,4.6rem);line-height:1.02;text-shadow:0 6px 40px rgba(0,0,0,.75)}
+.hs{max-width:520px;margin:16px auto 0;font-size:clamp(.95rem,2.6vw,1.1rem);color:var(--muted)}
+.cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:26px 0 0}
+.btn,.btn-o{white-space:nowrap!important;text-transform:uppercase;font-weight:600;font-size:clamp(11px,2.7vw,12.5px)!important;padding:15px 30px!important;letter-spacing:.14em!important}
+.btn{background:linear-gradient(120deg,#D4B483,#A68A6D);color:#14100B;box-shadow:0 10px 34px rgba(197,160,109,.4)}
+.btn:hover{filter:brightness(1.06);transform:translateY(-2px)}
+.btn-o{border:1px solid rgba(197,160,109,.55);color:#E8DCC3;background:rgba(197,160,109,.06)}
+.btn-o:hover{background:rgba(197,160,109,.16)}
+.stats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.stat{border:1px solid rgba(197,160,109,.22);border-radius:16px;padding:10px 16px;font-size:12px;color:var(--muted);background:rgba(255,255,255,.02)}
+.stat b{display:block;font-size:15px;color:var(--champ);font-family:'Cormorant Garamond',serif}
+@media(max-width:640px){header h1{margin-top:0}}
+
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<nav>
+<div class="logo">HEAD<b>MASTERS</b></div>
+
+</nav>
+<style>
+.mq{overflow:hidden;border-block:1px solid rgba(197,160,109,.2);padding:18px 0;background:var(--sur)}
+.mq-in{display:flex;gap:60px;width:max-content;animation:mq 26s linear infinite;font-size:.82rem;letter-spacing:.3em;text-transform:uppercase;color:var(--cham)}
+@keyframes mq{to{transform:translateX(-50%)}}
+section{padding:96px 0}
+.sec-h{margin-bottom:54px}
+.lead{color:var(--mut);max-width:56ch;font-weight:300}
+.grid{display:grid;gap:22px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.card{background:var(--sur);border:1px solid rgba(197,160,109,.16);border-radius:26px;padding:34px 30px;transition:.4s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-6px);border-color:rgba(197,160,109,.5);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.card h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin:14px 0 10px;color:var(--ivory)}
+.card p{font-size:.92rem;color:var(--mut);font-weight:300}
+.ic{width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,rgba(197,160,109,.22),rgba(212,180,131,.14));display:grid;place-items:center;font-size:1.4rem}
+.tag{position:absolute;top:22px;right:22px;font-size:.68rem;letter-spacing:.18em;color:var(--cham);border:1px solid rgba(197,160,109,.4);border-radius:999px;padding:5px 12px;text-transform:uppercase}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.gal figure{border-radius:24px;overflow:hidden;position:relative;aspect-ratio:4/5;border:1px solid rgba(197,160,109,.18)}
+.gal img{width:100%;height:100%;object-fit:cover;transition:1.2s}
+.gal figure:hover img{transform:scale(1.07)}
+.gal figcaption{position:absolute;inset:auto 0 0;padding:44px 22px 18px;background:linear-gradient(transparent,rgba(12,10,14,.9));font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--ivory)}
+.gal figcaption span{display:block;font-family:'Jost';font-size:.7rem;letter-spacing:.24em;color:var(--gold);text-transform:uppercase;margin-top:3px}
+.aca{position:relative;border-radius:30px;overflow:hidden;isolation:isolate}
+.aca img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.aca::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(12,10,14,.95) 25%,rgba(10,9,13,.5))}
+.aca-in{padding:86px 8%;max-width:640px}
+.stars{display:flex;gap:14px;flex-wrap:wrap;margin:40px 0 0}
+.stars div{border:1px solid rgba(212,180,131,.35);border-radius:999px;padding:10px 22px;font-size:.85rem;color:var(--rose);background:rgba(12,10,14,.5)}
+.cta{text-align:center;background:radial-gradient(ellipse at 50% 0%,rgba(197,160,109,.14),transparent 60%)}
+.cta .pri{font-size:13px;letter-spacing:.14em;padding:19px 40px}
+footer{border-top:1px solid rgba(197,160,109,.2);padding:56px 5vw;text-align:center;color:var(--mut);font-size:.85rem}
+footer .fl{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--ivory);letter-spacing:.15em;margin-bottom:14px}
+footer b{color:var(--gold);font-weight:500}
+.rv{opacity:0;transform:translateY(42px);transition:1s cubic-bezier(.16,1,.3,1)}
+.rv.on{opacity:1;transform:none}
+@media(max-width:680px){section{padding:70px 0}.stats{gap:22px}.hero-in{padding:0}}
+
+
+</style>
+
+
+<header>
+<div class="hero-in">
+<div class="hkn">✦ JALANDHAR'S MOST-FOLLOWED SALON</div>
+
+<h1>Where the city gets its <em>glow</em> done.</h1>
+<p class="hs">Luxury hair transformations, bridal glam, nail artistry &mdash; by Jalandhar's most-loved salon artists.</p>
+<div class="cta-row">
+<a class="btn" href="https://wa.me/919915707777?text=Hi%20Headmasters!%20I%20want%20to%20book%20an%20appointment.">Book on WhatsApp</a>
+<a class="btn-o" href="#services">View Services</a>
+</div>
+<div class="stats">
+<div class="stat"><b>112K+</b>Instagram family</div>
+<div class="stat"><b>Star visits</b>Celebrity clientele</div>
+<div class="stat"><b>&#8377;599</b>Nail art deals</div>
+<div class="stat"><b>1</b>Beauty academy</div>
+</div>
+</div>
+</header>
+<div class="mq"><div class="mq-in">Hair Artistry ✦ Bridal Glam ✦ Nail Art Studio ✦ Skin &amp; Radiance ✦ Beauty Academy ✦ Hair Artistry ✦ Bridal Glam ✦ Nail Art Studio ✦ Skin &amp; Radiance ✦ Beauty Academy ✦ </div></div>
+<section id="services"><div class="wrap">
+<div class="sec-h rv"><div class="kick">The Menu</div><h2>Every service, <em>done properly.</em></h2><p class="lead">From a precision cut to full bridal transformations — with the price list on WhatsApp, no guesswork, no waiting on DM replies.</p></div>
+<div class="grid g2">
+<div class="card rv"><div class="ic">✂️</div><h3>Hair Transformations</h3><p>Cuts, colour and styling that keep Jalandhar coming back — our reels speak for themselves.</p></div>
+<div class="card rv"><div class="ic">💍</div><h3>Bridal &amp; Party Glam</h3><p>Full bridal packages and event looks, planned with you on WhatsApp before the big day.</p></div>
+<div class="card rv"><div class="tag">from ₹599</div><div class="ic">💅</div><h3>Nail Art Studio</h3><p>Seasonal nail art deals from ₹599 — the detail that finishes every look.</p></div>
+<div class="card rv"><div class="ic">✨</div><h3>Skin &amp; Radiance Care</h3><p>Relaxing skin treatments in a calm, premium studio setting.</p></div>
+<div class="card rv"><div class="ic">🎓</div><h3>Beauty Academy</h3><p>Learn hair, makeup and nails professionally — trained the Headmasters way.</p></div>
+<div class="card rv"><div class="ic">⭐</div><h3>Celebrity-Favourite</h3><p>Visited by Punjabi film and music stars — trusted by faces you already follow.</p></div>
+</div>
+</div></section>
+<section id="gallery" style="background:var(--sur)"><div class="wrap">
+<div class="sec-h rv"><div class="kick">Inside Headmasters</div><h2>A salon that <em>feels</em> expensive.</h2></div>
+<div class="gal">
+<figure class="rv"><img src="https://media.base44.com/images/public/6ac87b1bfd845c3b4bdb7f2a/fc8beb112_generated_image.png" alt="Luxury salon interior"><figcaption>The Studio<span>Interior</span></figcaption></figure>
+<figure class="rv"><img src="https://media.base44.com/images/public/6ac87b1bfd845c3b4bdb7f2a/7d220f7d6_generated_image.png" alt="Hair styling"><figcaption>Hair Artistry<span>Styling Suite</span></figcaption></figure>
+<figure class="rv"><img src="https://media.base44.com/images/public/6ac87b1bfd845c3b4bdb7f2a/c413973e5_generated_image.png" alt="Manicure"><figcaption>Nail Studio<span>Manicure &amp; Art</span></figcaption></figure>
+<figure class="rv"><img src="https://media.base44.com/images/public/6ac87b1bfd845c3b4bdb7f2a/de8412586_generated_image.png" alt="Bridal makeup bar"><figcaption>The Glam Bar<span>Bridal</span></figcaption></figure>
+<figure class="rv"><img src="https://media.base44.com/images/public/6ac87b1bfd845c3b4bdb7f2a/b7be536f7_generated_image.png" alt="Beauty academy"><figcaption>The Academy<span>Training</span></figcaption></figure>
+</div>
+</div></section>
+<section><div class="wrap">
+<div class="aca rv"><div class="aca-in"><div class="kick">Headmasters Beauty Academy</div><h2>Turn your passion into a <em>profession.</em></h2><p class="lead" style="color:#D8CFC2">Jalandhar's most-followed salon trains the next generation of stylists — professional courses in hair, makeup and nails, taught inside a working luxury salon.</p><a class="btn pri" style="margin-top:30px" href="https://wa.me/919915707777" target="_blank" rel="noopener">Ask About Courses →</a></div></div>
+<div class="stars"><div>✦ Sruishty Mann</div><div>✦ Binnu Dhillon</div><div>✦ And more of Punjab's favourites</div></div>
+</div></section>
+<section class="cta"><div class="wrap rv">
+<div class="kick">Ready when you are</div>
+<h2>Your next look is one <em>message</em> away.</h2>
+<p class="lead" style="margin:18px auto 34px">Send your date and service — we'll confirm your slot instantly.</p>
+<a class="btn pri" href="https://wa.me/919915707777" target="_blank" rel="noopener">Book on WhatsApp →</a>
+</div></section>
+<footer>
+<div class="fl">HEAD<b>MASTERS</b></div>
+Headmasters Salon &amp; Beauty Academy · Jalandhar<br>
+WhatsApp: +91 99157 07777 · Instagram: @headmastersjalandhar<br><br>
+Demo concept by <b>Arsh Studio</b> — premium stock visuals; your own photos would feature on the live site.
+</footer>
+<script>
+const b=document.getElementById('bar');
+addEventListener('scroll',()=>{b.style.width=(scrollY/(document.body.scrollHeight-innerHeight)*100)+'%'},{passive:true});
+const io=new IntersectionObserver(es=>es.forEach((e,i)=>{if(e.isIntersecting){e.target.style.transitionDelay=(i%4)*90+'ms';e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
