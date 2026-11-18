@@ -33,10 +33,6 @@ img,svg{display:block;max-width:100%}
 .hero__stream{position:absolute;inset:-6vh -20vw 0 -20vw;z-index:0;pointer-events:none;overflow:hidden;
   -webkit-mask-image:radial-gradient(120% 82% at 62% 34%,#000 28%,rgba(0,0,0,.55) 62%,transparent 88%);
   mask-image:radial-gradient(120% 82% at 62% 34%,#000 28%,rgba(0,0,0,.55) 62%,transparent 88%)}
-.stream{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  opacity:0;transform-origin:100% 0%;transform:translate3d(42vw,-42vh,0) scale(.18);
-  transition:transform 2.1s var(--ease),opacity 1.6s ease;will-change:transform,opacity}
-.stream.in{opacity:.9;transform:translate3d(0,0,0) scale(1)}
 .hero{position:relative;overflow:hidden}
 .hero .w{position:relative;z-index:2}
 main,header,footer{position:relative;z-index:2}
@@ -164,8 +160,7 @@ h1 em{color:var(--lime)}
 .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){
   *{animation-duration:.001ms!important;transition-duration:.001ms!important}
-  .rv{opacity:1;transform:none}.stream{opacity:.7;transform:none}
-}
+  .rv{opacity:1;transform:none}}
 
 /* ---------- phone: one composed first screen, like the reference ---------- */
 @media(max-width:760px){
@@ -192,8 +187,10 @@ h1 em{color:var(--lime)}
   .hero__stream{inset:-2vh -30vw 0 -30vw;
     -webkit-mask-image:radial-gradient(135% 78% at 50% 30%,#000 34%,rgba(0,0,0,.5) 68%,transparent 90%);
     mask-image:radial-gradient(135% 78% at 50% 30%,#000 34%,rgba(0,0,0,.5) 68%,transparent 90%)}
-  .stream{object-position:52% 40%;object-fit:cover}
-}
+  }
+
+.lines{position:absolute;inset:0;width:100%;height:100%;display:block}
+
 </style>
 </head>
 <body>
@@ -217,9 +214,7 @@ h1 em{color:var(--lime)}
 
   <section class="hero">
     <div class="hero__stream" aria-hidden="true">
-      <video id="stream" class="stream" autoplay muted loop playsinline preload="auto" poster="bands2-frame.jpg">
-        <source src="stream-bands2.mp4" type="video/mp4">
-      </video>
+      <canvas id="lines" class="lines" aria-hidden="true"></canvas>
     </div>
     <div class="w">
       <div class="frame rv">
@@ -382,20 +377,82 @@ h1 em{color:var(--lime)}
   var steps = [].slice.call(document.querySelectorAll('#steps li'));
   var ticking = false;
 
-  if (stream) {
-    var enter = function(){ stream.classList.add('in'); };
-    if (stream.readyState >= 2) enter();
-    else { stream.addEventListener('canplay', enter, {once:true}); setTimeout(enter, 800); }
-    var base = matchMedia('(max-width:760px)').matches ? .68 : .9;
-    var shift = function(){
-      var h = innerHeight || 800;
-      var p = Math.min(1, Math.max(0, scrollY / (h * .9)));
-      var x = (-3 * Math.sin(p * Math.PI)).toFixed(2);
-      stream.style.transform = 'translate3d(' + x + 'vw,0,0) scale(1.05)';
-      stream.style.opacity = (base - .45 * p).toFixed(3);
+  /* ---- live guiding lines: bright at the top, blurring away as you scroll ---- */
+  var cv = document.getElementById('lines');
+  if (cv && cv.getContext) {
+    var ctx = cv.getContext('2d'), W = 0, H = 0, dpr = 1, prog = 0, target = 0;
+    function size(){
+      dpr = Math.min(devicePixelRatio || 1, 2);
+      W = cv.clientWidth; H = cv.clientHeight;
+      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    size(); addEventListener('resize', size, {passive:true});
+
+    /* five ribbons: they come in from the top, one side carries them down */
+    var bands = [];
+    for (var i = 0; i < 5; i++) {
+      var u = i / 4;
+      bands.push({
+        y0: -0.06 + u * 0.10,
+        x0: 0.28 + u * 0.34,
+        c1x: 0.62 + u * 0.26, c1y: 0.10 + u * 0.16,
+        c2x: 1.02 + u * 0.10, c2y: 0.34 + u * 0.22,
+        x1: 0.96 + u * 0.12, y1: 0.92 + u * 0.10,
+        a: 0.42 - u * 0.06,
+        sp: 0.5 + u * 0.35,
+        ph: u * 2.1
+      });
+    }
+
+    function ribbon(b, t, blur, core){
+      var wob = 0.018 * Math.sin(t * 1.4 + b.ph);
+      var pass = [[58 * blur, 0.030], [34 * blur, 0.055], [17 * blur, 0.10], [7 * blur, core]];
+      for (var p = 0; p < pass.length; p++) {
+        ctx.beginPath();
+        for (var k = 0; k <= 34; k++) {
+          var s = k / 34, iu = 1 - s;
+          var x = (iu*iu*iu*b.x0 + 3*iu*iu*s*b.c1x + 3*iu*s*s*b.c2x + s*s*s*b.x1) * W;
+          var y = (iu*iu*iu*b.y0 + 3*iu*iu*s*b.c1y + 3*iu*s*s*b.c2y + s*s*s*b.y1) * H;
+          y += wob * Math.sin(s * 3.1 + b.ph + t * 0.7) * H;
+          k ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+        }
+        ctx.lineWidth = pass[p][0];
+        ctx.strokeStyle = 'rgba(200,247,81,' + (pass[p][1] * b.a) + ')';
+        ctx.lineCap = 'round';
+        ctx.stroke();
+      }
+    }
+
+    var raf = null, t0 = performance.now();
+    function draw(){
+      var t = (performance.now() - t0) / 1000;
+      prog += (target - prog) * 0.08;
+      var blur = 1 + prog * 2.6;          /* first crisp, then soft */
+      var core = 0.62 * (1 - prog * 0.82); /* first bright, then dim */
+      var drop = prog * H * 0.16;          /* it travels downward with you */
+      ctx.clearRect(0, 0, W, H);
+      ctx.globalCompositeOperation = 'lighter';
+      ctx.save();
+      ctx.translate(0, drop);
+      for (var i = 0; i < bands.length; i++) ribbon(bands[i], t, blur, core);
+      ctx.restore();
+      raf = requestAnimationFrame(draw);
+    }
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) { ribbon(bands[0], 0, 1.6, .3); ribbon(bands[1], 0, 1.6, .3); }
+    else draw();
+
+    document.addEventListener('visibilitychange', function(){
+      if (document.hidden) { if (raf) cancelAnimationFrame(raf), raf = null; }
+      else if (!raf && !reduce) draw();
+    });
+
+    var syncProg = function(){
+      target = Math.min(1, Math.max(0, scrollY / (innerHeight * 0.85)));
     };
-    addEventListener('scroll', shift, {passive:true});
-    setTimeout(shift, 2200);
+    addEventListener('scroll', syncProg, {passive:true});
+    syncProg();
   }
 
   function onScroll(){
