@@ -166,6 +166,34 @@ h1 em{color:var(--lime)}
   *{animation-duration:.001ms!important;transition-duration:.001ms!important}
   .rv{opacity:1;transform:none}.stream{opacity:.7;transform:none}
 }
+
+/* ---------- phone: one composed first screen, like the reference ---------- */
+@media(max-width:760px){
+  .hero{padding:74px 0 26px}
+  .hd__in{height:56px}
+  .frame{border-radius:12px}
+  .chrome{padding:8px 11px;height:32px}
+  .chrome span{font-size:9.5px;letter-spacing:.12em}
+  .hero__grid{padding:16px 14px 18px;gap:18px}
+  .eyebrow{font-size:9.5px;letter-spacing:.1em;gap:7px}
+  h1{font-size:clamp(30px,8.6vw,40px);line-height:1;margin-top:12px;max-width:11ch}
+  .hero p.sub{font-size:13.5px;line-height:1.5;margin-top:12px;max-width:100%}
+  .hero__cta{margin-top:16px;gap:8px}
+  .btn{font-size:12.5px;padding:10px 14px}
+  .ghost{font-size:12.5px;padding:10px 13px}
+  .note{font-size:10.5px;margin-top:10px!important;line-height:1.5}
+  .flow{padding:12px;border-radius:10px}
+  .flow__t{font-size:12px}
+  .flow__meta{font-size:9.5px;margin-bottom:8px}
+  .flow__pill{font-size:8.5px;padding:3px 6px}
+  .flow svg{max-height:190px;margin:0 auto}
+  .flow__foot{margin-top:8px;padding-top:8px;gap:3px}
+  .flow__foot div{font-size:9.5px}
+  .hero__stream{inset:-2vh -30vw 0 -30vw;
+    -webkit-mask-image:radial-gradient(135% 78% at 50% 30%,#000 34%,rgba(0,0,0,.5) 68%,transparent 90%);
+    mask-image:radial-gradient(135% 78% at 50% 30%,#000 34%,rgba(0,0,0,.5) 68%,transparent 90%)}
+  .stream{object-position:52% 40%;object-fit:cover}
+}
 </style>
 </head>
 <body>
