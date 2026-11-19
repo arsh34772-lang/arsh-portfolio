@@ -101,7 +101,9 @@ main,header,footer{position:relative;z-index:3}
 .hero__copy{max-width:min(760px,100%)}
 .hero__grid{display:grid;grid-template-columns:1fr;gap:0;align-items:start}
 
-@media(max-width:760px){ h1{font-size:clamp(30px,8vw,38px);max-width:22ch} .hero{padding:96px 0 36px} }
+@media(max-width:760px){
+  h1{font-size:clamp(30px,8vw,38px);max-width:22ch}
+}
 h1{font-size:clamp(32px,4.15vw,60px);line-height:1.03;letter-spacing:-.04em;margin-top:20px;max-width:19ch}
 h1 .serif{color:var(--ink);letter-spacing:-.02em}
 .hline{display:block;overflow:hidden}
@@ -223,6 +225,15 @@ h1 .serif{color:var(--ink);letter-spacing:-.02em}
   .canvas--dev.is-phone .device{width:150px}
 }
 /* ---------- hero trust line (inline svg must not blow up) ---------- */
+
+/* button groups */
+.hero__cta,.final__cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:26px}
+.final__cta{justify-content:flex-start}
+.hero__cta .btn,.final__cta .btn{white-space:nowrap}
+@media(max-width:560px){
+  .hero__cta,.final__cta{flex-direction:column;align-items:stretch;gap:10px;margin-top:24px}
+  .hero__cta .btn,.final__cta .btn{width:100%;justify-content:center;white-space:normal}
+}
 .hero__trust{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:22px 0 0;
   font-size:12.5px;line-height:1.5;color:rgba(245,239,230,.52);letter-spacing:.01em}
 .hero__trust svg{width:15px;height:15px;flex:none;color:var(--acc);opacity:.85}
@@ -347,6 +358,18 @@ h1 .serif{color:var(--ink);letter-spacing:-.02em}
   .brand__s{font-size:8px;letter-spacing:.14em}
 }
 @media(max-width:360px){ .brand__s{display:none} }
+/* ---- mobile rhythm (last in cascade) ---- */
+@media(max-width:760px){
+  .hero{padding:88px 0 30px}
+  .sec{padding:50px 0}
+  .final{padding:60px 0 46px}
+  .sec__h{margin-bottom:10px}
+  .sec__p{margin-bottom:20px}
+}
+@media(max-width:560px){
+  .hero__cta,.final__cta{flex-direction:column;align-items:stretch;gap:10px}
+  .hero__cta .btn,.final__cta .btn{width:100%;justify-content:center;white-space:normal}
+}
 </style>
 </head>
 <body>
@@ -395,7 +418,7 @@ h1 .serif{color:var(--ink);letter-spacing:-.02em}
         <h1>The shop closes at nine. <span class="serif">The search doesn't.</span></h1>
         <p class="hero__sub">Somebody in Model Town typed “kitchen tiles near me” at eleven last night. He found three old photos and a number that rang out, then messaged the shop two streets down. I build the page that catches him.</p>
         <div class="hero__cta">
-          <a class="btn btn--acc btn--lg" href="https://wa.me/916283970879?text=Hi%20Arshdeep%2C%20I%20saw%20your%20site.%20My%20shop%20is%20___%20and%20we%20sell%20___." target="_blank" rel="noopener">Send me your shop's name <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h13M12 5l7 7-7 7"/></svg></a>
+          <a class="btn btn--acc btn--lg" href="https://wa.me/916283970879?text=Hi%20Arshdeep%2C%20I%20saw%20your%20site.%20My%20shop%20is%20___%20and%20we%20sell%20___." target="_blank" rel="noopener">Send me your shop name <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h13M12 5l7 7-7 7"/></svg></a>
           <a class="btn btn--ghost btn--lg" href="#work"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>See the work</a>
         </div>
         <p class="hero__trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l7 3v6c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6l7-3Z"/><path d="m9 12 2 2 4-4"/></svg>₹12,999 &nbsp;·&nbsp; one page &nbsp;·&nbsp; seven days &nbsp;·&nbsp; domain bought in your name</p>
