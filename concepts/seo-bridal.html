@@ -22,14 +22,15 @@ nav a{color:#F6EDE6;text-decoration:none;font-size:.82rem;letter-spacing:.14em;t
 nav a.wa{background:var(--rose);color:#fff;padding:7px 16px;border-radius:999px;font-weight:500}
 @media(max-width:640px){nav a:not(.wa){display:none}}
 /* hero */
-.hero{position:relative;min-height:96svh;display:flex;align-items:flex-end;overflow:hidden}
-.hero-bg{position:absolute;inset:-6% 0 0 0;background:url('https://base44.app/api/apps/6ac87b1bfd845c3b4bdb7f2a/files/mp/public/6ac87b1bfd845c3b4bdb7f2a/11c982e6e_b3.jpg') center 25%/cover no-repeat;will-change:transform}
-.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(36,19,24,.30) 0%,rgba(36,19,24,.16) 40%,rgba(36,19,24,.82) 100%)}
-.hero-in{position:relative;z-index:2;padding:0 26px 8vh;width:100%;max-width:1140px;margin:0 auto}
-.eyebrow{display:inline-block;color:#F3E4D8;font-size:.78rem;letter-spacing:.32em;text-transform:uppercase;border:1px solid rgba(243,228,216,.45);border-radius:999px;padding:8px 18px;background:rgba(36,19,24,.30)}
-.hero h1{color:#FBF6F1;font-size:clamp(2.6rem,7.5vw,5.2rem);line-height:1.08;font-weight:600;margin:22px 0 16px;max-width:12ch;text-shadow:0 2px 30px rgba(36,19,24,.45)}
-.hero h1 em{font-style:italic;color:var(--rose)}
-.hero p.sub{color:#EFDDD2;font-size:clamp(1rem,2.4vw,1.2rem);max-width:44ch;font-weight:300;text-shadow:0 1px 14px rgba(36,19,24,.5)}
+.hero{position:relative;display:block;overflow:visible;background:var(--bg)}
+.hero-bg{position:relative;height:clamp(300px,56svh,580px);background:url('https://base44.app/api/apps/6ac87b1bfd845c3b4bdb7f2a/files/mp/public/6ac87b1bfd845c3b4bdb7f2a/11c982e6e_b3.jpg') center 25%/cover no-repeat}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(247,240,234,.12) 0%,rgba(247,240,234,0) 42%,rgba(247,240,234,.62) 86%,var(--bg) 100%)}
+.hero-in{position:relative;z-index:2;padding:clamp(1.5rem,3.4vw,2.5rem) 26px clamp(2rem,4vw,3rem);width:100%;max-width:1140px;margin:0 auto}
+.hero .eyebrow{color:var(--maroon)}
+.hero h1{color:var(--ink);font-size:clamp(2.3rem,6.4vw,4.6rem);line-height:1.06;font-weight:600;margin:18px 0 14px;max-width:17ch}
+.hero h1 em{font-style:italic;color:var(--maroon)}
+.hero p.sub{color:#5B4046;font-size:clamp(1rem,2.3vw,1.16rem);max-width:50ch;font-weight:300}
+@media(max-width:640px){.hero-bg{height:42svh}}
 .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
 .btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;border-radius:999px;padding:15px 30px;font-size:.95rem;font-weight:500;transition:transform .25s,box-shadow .25s}
 .btn:hover{transform:translateY(-3px)}
@@ -190,7 +191,7 @@ Follow @seobridalstudio on Instagram
 <script>
 (function(){
 var pl=document.getElementById('pline');
-addEventListener('scroll',function(){var h=document.documentElement;var p=h.scrollTop/(h.scrollHeight-h.clientHeight||1);pl.style.width=(p*100)+'%';var hb=document.getElementById('hbg');if(hb)hb.style.transform='translateY('+(h.scrollTop*.18)+'px)';},{passive:true});
+addEventListener('scroll',function(){var h=document.documentElement;var p=h.scrollTop/(h.scrollHeight-h.clientHeight||1);pl.style.width=(p*100)+'%';var hb=document.getElementById('hbg');if(hb)hb.style.backgroundPositionY=(25+h.scrollTop*.02)+'%';},{passive:true});
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.12});
 document.querySelectorAll('.rv').forEach(function(el,i){el.style.transitionDelay=(Math.min(i%6,5)*90)+'ms';io.observe(el)});
 document.querySelectorAll('.card').forEach(function(c){
