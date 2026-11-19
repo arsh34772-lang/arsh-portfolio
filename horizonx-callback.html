@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HorizonX — connecting</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{min-height:100vh;display:grid;place-items:center;background:#0A0806;color:#F5EFE6;
+       font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;padding:24px}
+  .card{width:100%;max-width:460px;border:1px solid rgba(245,239,230,.14);border-radius:20px;padding:32px;
+        background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01))}
+  .dot{width:10px;height:10px;border-radius:50%;background:#F0A63C;display:inline-block;margin-right:8px;
+       box-shadow:0 0 12px #F0A63C}
+  h1{font-size:19px;font-weight:600;letter-spacing:-.01em;display:flex;align-items:center}
+  p{margin-top:14px;font-size:14.5px;line-height:1.6;color:rgba(245,239,230,.62)}
+  .state{margin-top:22px;padding:14px 16px;border-radius:14px;border:1px solid rgba(245,239,230,.12);
+         font-size:13.5px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;word-break:break-all}
+  .ok{border-color:rgba(240,166,60,.5);color:#F0A63C}
+  .err{border-color:rgba(255,120,90,.5);color:#FF8A6B}
+  a{color:#F0A63C}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1><span class="dot"></span>HorizonX</h1>
+  <p id="msg">Finishing sign-in…</p>
+  <div class="state" id="state">working</div>
+</div>
+<script>
+(async function(){
+  var q = new URLSearchParams(location.search);
+  var code = q.get('code');
+  var err = q.get('error');
+  var msg = document.getElementById('msg');
+  var state = document.getElementById('state');
+
+  if (err) {
+    msg.textContent = 'Sign-in was cancelled.';
+    state.className = 'state err';
+    state.textContent = err + (q.get('error_description') ? ' — ' + q.get('error_description') : '');
+    return;
+  }
+  if (!code) {
+    msg.textContent = 'No code in the link. Open the sign-in link again.';
+    state.className = 'state err';
+    state.textContent = 'missing ?code';
+    return;
+  }
+
+  try {
+    var res = await fetch('https://base44.app/api/apps/6ac87b1bfd845c3b4bdb7f2a/functions/horizonxExchange', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code: code })
+    });
+    var data = await res.json();
+    if (data && data.ok) {
+      msg.textContent = 'Connected. You can close this tab — your assistant has access now.';
+      state.className = 'state ok';
+      state.textContent = 'scope: ' + (data.scope || 'mcp');
+    } else {
+      msg.textContent = 'Could not finish the token exchange.';
+      state.className = 'state err';
+      state.textContent = JSON.stringify(data).slice(0, 300);
+    }
+  } catch (e) {
+    msg.textContent = 'Network error while finishing sign-in.';
+    state.className = 'state err';
+    state.textContent = String(e).slice(0, 200);
+  }
+})();
+</script>
+</body>
+</html>
