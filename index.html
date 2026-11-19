@@ -38,8 +38,12 @@ p{margin:0}
   text-transform:uppercase;color:var(--muted)}
 .eyebrow i{width:5px;height:5px;border-radius:50%;background:var(--acc);display:block;box-shadow:0 0 12px var(--acc)}
 
-/* ---------- signature light trails ---------- */
-#trails{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+/* ---------- one soft glow ---------- */
+body::before{content:"";position:fixed;inset:-20% -10% auto -10%;height:110vh;z-index:0;pointer-events:none;
+  background:radial-gradient(48% 42% at 68% 22%, rgba(240,166,60,.15), rgba(240,166,60,.045) 45%, transparent 72%);
+  filter:blur(10px);animation:drift 26s ease-in-out infinite alternate}
+@keyframes drift{from{transform:translate3d(-2%,-1%,0) scale(1)}to{transform:translate3d(3%,2%,0) scale(1.08)}}
+@media (prefers-reduced-motion: reduce){body::before{animation:none}}
 .grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.032;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
 .gridlines{position:fixed;inset:0;z-index:1;pointer-events:none}
@@ -329,7 +333,7 @@ h1 .serif{color:var(--ink);letter-spacing:-.02em}
 </head>
 <body>
 
-<canvas id="trails" aria-hidden="true"></canvas>
+
 <div class="grain" aria-hidden="true"></div>
 <div class="gridlines" aria-hidden="true"><div class="gridlines__in"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
 
@@ -622,114 +626,6 @@ h1 .serif{color:var(--ink);letter-spacing:-.02em}
 (function(){
   'use strict';
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* ---------------- signature light trails ---------------- */
-  var cv = document.getElementById('trails');
-  if (cv && cv.getContext) {
-    var ctx = cv.getContext('2d', { alpha: true });
-    var W = 0, H = 0, dpr = 1, raf = null, t = 0;
-
-    function size(){
-      dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-      W = cv.clientWidth; H = cv.clientHeight;
-      cv.width = Math.max(1, Math.round(W * dpr));
-      cv.height = Math.max(1, Math.round(H * dpr));
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    size();
-    window.addEventListener('resize', function(){ size(); makeBloom(); if (reduce) paint(0); }, { passive: true });
-
-    /* strands: thin luminous curves sweeping across the page */
-    var strands = [];
-    var N = 9;
-    for (var i = 0; i < N; i++) {
-      var u = i / (N - 1);
-      strands.push({
-        y0: 0.10 + u * 0.78,
-        amp: 0.10 + (i % 3) * 0.055,
-        freq: 0.9 + (i % 4) * 0.22,
-        phase: i * 1.7,
-        speed: 0.10 + (i % 5) * 0.028,
-        dir: i % 2 ? 1 : -1,
-        cyan: i % 3 === 2,
-        alpha: 0.46 + (i % 3) * 0.12
-      });
-    }
-
-    var particles = [];
-    for (var p = 0; p < 70; p++) {
-      particles.push({ x: Math.random(), y: Math.random(), r: 0.5 + Math.random() * 1.4,
-                       sp: 0.00002 + Math.random() * 0.00007, a: 0.10 + Math.random() * 0.35 });
-    }
-
-    var bloom = null;
-    function makeBloom(){
-      var gx = W * 0.54, gy = H * 0.44, gr = Math.max(W, H) * 0.42;
-      var g = ctx.createRadialGradient(gx, gy, 0, gx, gy, gr);
-      g.addColorStop(0, 'rgba(240,166,60,0.16)');
-      g.addColorStop(0.34, 'rgba(255,138,61,0.075)');
-      g.addColorStop(1, 'rgba(10,8,6,0)');
-      bloom = g;
-    }
-    makeBloom();
-
-    function paint(time){
-      ctx.clearRect(0, 0, W, H);
-      ctx.globalCompositeOperation = 'lighter';
-      if (bloom) { ctx.fillStyle = bloom; ctx.fillRect(0, 0, W, H); }
-
-      /* the strands */
-      for (var i = 0; i < strands.length; i++) {
-        var s = strands[i];
-        var col = s.cyan ? [255, 196, 107] : [240, 166, 60];
-        var passes = [[21, 0.055], [8.5, 0.17], [1.9, 0.62]];
-        for (var pass = 0; pass < passes.length; pass++) {
-          ctx.beginPath();
-          var steps = 38;
-          for (var k = 0; k <= steps; k++) {
-            var q = k / steps;
-            var x = q * W;
-            var y = s.y0 * H
-                  + Math.sin(q * Math.PI * 2 * s.freq + s.phase + time * s.speed) * s.amp * H
-                  + Math.sin(q * Math.PI * 3.1 + s.phase * 0.6 - time * s.speed * 0.6) * s.amp * H * 0.34;
-            var drift = Math.sin(time * 0.12 + s.phase) * 0.04 * H;
-            if (k === 0) ctx.moveTo(x, y + drift); else ctx.lineTo(x, y + drift);
-          }
-          ctx.lineWidth = passes[pass][0];
-          ctx.lineCap = 'round';
-          ctx.strokeStyle = 'rgba(' + col[0] + ',' + col[1] + ',' + col[2] + ',' +
-                            (passes[pass][1] * s.alpha).toFixed(3) + ')';
-          ctx.stroke();
-        }
-      }
-
-      /* particles */
-      for (var j = 0; j < particles.length; j++) {
-        var pt = particles[j];
-        var px = pt.x * W;
-        var py = ((pt.y + time * pt.sp * 1000) % 1) * H;
-        var tw = 0.55 + 0.45 * Math.sin(time * 1.4 + j);
-        ctx.beginPath();
-        ctx.arc(px, py, pt.r, 0, 6.2832);
-        ctx.fillStyle = 'rgba(240,166,60,' + (pt.a * tw * 0.7).toFixed(3) + ')';
-        ctx.fill();
-      }
-      ctx.globalCompositeOperation = 'source-over';
-    }
-
-    function frame(){
-      t += 0.006;
-      paint(t);
-      raf = requestAnimationFrame(frame);
-    }
-    if (reduce) { paint(0); }
-    else { raf = requestAnimationFrame(frame); }
-
-    document.addEventListener('visibilitychange', function(){
-      if (document.hidden) { if (raf) { cancelAnimationFrame(raf); raf = null; } }
-      else if (!raf && !reduce) { raf = requestAnimationFrame(frame); }
-    });
-  }
 
   /* ---------------- nav ---------------- */
   var nav = document.getElementById('nav');
