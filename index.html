@@ -270,7 +270,7 @@ h1 .serif{color:var(--ink);letter-spacing:-.02em}
 .cap{border:1px solid var(--line);border-radius:18px;padding:clamp(18px,2.4vw,26px);
   background:rgba(12,10,7,.62);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
   transition:border-color .35s,background .35s,transform .4s var(--ease)}
-.cap:hover{border-color:rgba(66,216,200,.3);background:rgba(10,18,14,.8);transform:translateY(-3px)}
+.cap:hover{border-color:rgba(255,196,107,.3);background:rgba(10,18,14,.8);transform:translateY(-3px)}
 .cap__ico{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;margin-bottom:14px;
   background:rgba(240,166,60,.10);border:1px solid rgba(240,166,60,.24);color:var(--acc)}
 .cap__ico svg{width:16px;height:16px}
@@ -666,9 +666,9 @@ h1 .serif{color:var(--ink);letter-spacing:-.02em}
     function makeBloom(){
       var gx = W * 0.54, gy = H * 0.44, gr = Math.max(W, H) * 0.42;
       var g = ctx.createRadialGradient(gx, gy, 0, gx, gy, gr);
-      g.addColorStop(0, 'rgba(200,255,54,0.11)');
-      g.addColorStop(0.34, 'rgba(117,214,43,0.05)');
-      g.addColorStop(1, 'rgba(5,8,5,0)');
+      g.addColorStop(0, 'rgba(240,166,60,0.11)');
+      g.addColorStop(0.34, 'rgba(255,138,61,0.05)');
+      g.addColorStop(1, 'rgba(10,8,6,0)');
       bloom = g;
     }
     makeBloom();
@@ -711,7 +711,7 @@ h1 .serif{color:var(--ink);letter-spacing:-.02em}
         var tw = 0.55 + 0.45 * Math.sin(time * 1.4 + j);
         ctx.beginPath();
         ctx.arc(px, py, pt.r, 0, 6.2832);
-        ctx.fillStyle = 'rgba(200,255,54,' + (pt.a * tw * 0.7).toFixed(3) + ')';
+        ctx.fillStyle = 'rgba(240,166,60,' + (pt.a * tw * 0.7).toFixed(3) + ')';
         ctx.fill();
       }
       ctx.globalCompositeOperation = 'source-over';
