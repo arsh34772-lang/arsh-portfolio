@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vakshana Interior | Bespoke Turnkey Design — Chandigarh</title>
+<meta name="description" content="Vakshana Interior — Tricity's atelier for turnkey interior transformations, 3D spatial visualization and bespoke material curation. Chandigarh • Mohali • Zirakpur.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#141110; --bg-2:#1b1614; --card:#1e1815;
+  --ink:#f2ece3; --muted:#b0a592; --dim:#7a7067;
+  --gold:#c5a06d; --gold-2:#d4b483; --bronze:#a68a6d; --bronze-d:#9c7a4d;
+  --line:rgba(197,160,109,.22);
+  --sans:'Manrope',-apple-system,sans-serif; --serif:'Cormorant Garamond',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{overflow-x:hidden;background:var(--bg)}
+body{font-family:var(--sans);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+section,div,p,h1,h2,h3,h4,li,span,ul{min-width:0}
+h1,h2,h3,h4,p,li,a,span{overflow-wrap:break-word;word-wrap:break-word}
+::selection{background:var(--gold);color:#1f1519}
+
+/* ——— nav ——— */
+.nav{position:fixed;inset:0 0 auto 0;z-index:60;display:flex;align-items:center;justify-content:space-between;
+padding:1.15rem clamp(16px,4vw,44px);background:linear-gradient(180deg,rgba(20,17,16,.88),rgba(20,17,16,0));
+backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:.35s}
+.nav.solid{background:rgba(20,17,16,.95);border-bottom:1px solid var(--line);padding-top:.8rem;padding-bottom:.8rem}
+.brand{display:flex;flex-direction:column;gap:2px}
+.brand b{font-weight:800;letter-spacing:.24em;font-size:clamp(.8rem,2.4vw,1rem);color:var(--ink)}
+.brand i{font-style:normal;font-size:.58rem;letter-spacing:.34em;color:var(--gold);text-transform:uppercase}
+.nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center}
+.nav-links a{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);transition:.25s}
+.nav-links a:hover{color:var(--gold-2)}
+.nav-cta{white-space:nowrap;flex-shrink:0;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-2);
+padding:.58rem 1.1rem;border-radius:999px;border:1px solid rgba(197,160,109,.5);background:transparent;font-weight:700;transition:.25s}
+.nav-cta:hover{background:rgba(197,160,109,.12);border-color:var(--gold)}
+
+/* ——— hero ——— */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%}
+.hero::after{content:"";position:absolute;inset:0;background:
+linear-gradient(180deg,rgba(20,17,16,.82),rgba(20,17,16,.45) 26%,rgba(20,17,16,.28) 48%,rgba(20,17,16,.86) 78%,var(--bg))}
+.hero::before{content:"";position:absolute;inset:auto 0 55vh 0;z-index:1;height:46vh;pointer-events:none;
+background:radial-gradient(ellipse 62% 55% at 50% 62%,rgba(197,160,109,.16),transparent 70%)}
+.hero-inner{position:relative;z-index:2;text-align:center;padding:6rem 20px 5rem;max-width:900px}
+.hero-eyebrow,.hero h1{text-shadow:0 2px 24px rgba(0,0,0,.55)}
+.hero-eyebrow{position:absolute;top:calc(4.8rem + env(safe-area-inset-top));left:50%;transform:translateX(-50%);
+white-space:nowrap;z-index:3;font-size:.66rem;letter-spacing:.42em;text-transform:uppercase;
+color:var(--gold-2);margin:0;text-shadow:0 2px 18px rgba(0,0,0,.75)}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(2.6rem,9vw,5.6rem);line-height:1.04;letter-spacing:.02em}
+.hero h1 em{font-style:italic;color:var(--gold-2)}
+
+/* ——— shared ——— */
+.wrap{max-width:1160px;margin:0 auto;padding:0 clamp(18px,4vw,40px)}
+.sec{padding:clamp(4rem,9vw,7.5rem) 0}
+.kicker{display:flex;align-items:center;gap:1rem;font-size:.62rem;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);margin-bottom:1.3rem}
+.kicker::after{content:"";height:1px;flex:1;background:var(--line)}
+.kicker b{font-weight:600;color:var(--gold)}
+h2.title{font-family:var(--serif);font-weight:500;font-size:clamp(1.9rem,5.5vw,3.2rem);line-height:1.12}
+h2.title em{font-style:italic;color:var(--gold-2)}
+.lede{color:var(--muted);max-width:640px;margin-top:1.2rem;font-size:.95rem}
+.btn{display:inline-flex;align-items:center;gap:.6rem;white-space:nowrap;border-radius:999px;
+padding:.95rem 1.7rem;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;transition:.3s}
+.btn-gold{background:linear-gradient(135deg,var(--gold-2),var(--bronze));color:#1f1519;box-shadow:0 10px 28px rgba(197,160,109,.28)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(197,160,109,.4)}
+.btn-o{border:1px solid var(--line);color:var(--gold-2)}
+.btn-o:hover{border-color:var(--gold);background:rgba(197,160,109,.08)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.on{opacity:1;transform:none}
+
+/* ——— chapters ——— */
+.chapters{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:1.4rem}
+.chap{border-top:1px solid var(--line);padding-top:1.4rem}
+.chap .no{font-size:.62rem;letter-spacing:.3em;color:var(--gold);text-transform:uppercase}
+.chap h3{font-family:var(--serif);font-weight:500;font-size:1.45rem;margin:.7rem 0 .6rem;color:var(--ink)}
+.chap p{color:var(--muted);font-size:.88rem}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:2.4rem}
+
+/* ——— about / stats ——— */
+.about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:3rem;align-items:start}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem}
+.stat{border:1px solid var(--line);border-radius:12px;padding:1.5rem 1.3rem;background:var(--card)}
+.stat b{display:block;font-family:var(--serif);font-size:2.2rem;color:var(--gold-2);font-weight:500}
+.stat span{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--dim)}
+.materials{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:1.1rem;margin-top:3rem}
+.mat{border:1px solid var(--line);border-radius:12px;padding:1.4rem 1.3rem;background:linear-gradient(135deg,var(--card),#171310)}
+.mat .m-no{font-size:.6rem;letter-spacing:.3em;color:var(--dim);text-transform:uppercase}
+.mat .m-name{font-family:var(--serif);font-size:1.35rem;color:var(--ink);margin-top:.45rem;font-weight:500}
+.mat .m-desc{font-size:.82rem;color:var(--muted);margin-top:.4rem}
+.mat .swatch{width:100%;height:4px;border-radius:2px;margin-top:1rem;background:linear-gradient(90deg,var(--gold-2),var(--bronze-d))}
+
+/* ——— portfolio ——— */
+.cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:1.6rem;margin-top:3rem}
+.case{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card);display:flex;flex-direction:column;transition:.35s}
+.case:hover{transform:translateY(-4px);border-color:rgba(197,160,109,.45)}
+.case-img{position:relative;aspect-ratio:4/4.6;overflow:hidden}
+.case-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.case:hover .case-img img{transform:scale(1.05)}
+.case-tag{position:absolute;top:14px;left:14px;font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;
+color:var(--gold-2);background:rgba(20,17,16,.72);border:1px solid var(--line);border-radius:999px;padding:.42rem .8rem;backdrop-filter:blur(6px)}
+.case-body{padding:1.5rem 1.4rem 1.7rem;display:flex;flex-direction:column;gap:.7rem;flex:1}
+.case-loc{font-size:.6rem;letter-spacing:.28em;color:var(--dim);text-transform:uppercase}
+.case h3{font-family:var(--serif);font-weight:500;font-size:1.5rem;line-height:1.15}
+.case p{color:var(--muted);font-size:.87rem;flex:1}
+.case a{font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-2);font-weight:700;display:inline-flex;gap:.5rem;align-items:center;padding:.35rem 0}
+.case a:hover{color:var(--gold)}
+
+/* ——— timeline ——— */
+.timeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:1.4rem;margin-top:3rem}
+.phase{border:1px solid var(--line);border-radius:14px;padding:1.7rem 1.5rem;background:var(--card);position:relative;overflow:hidden}
+.phase::before{content:"";position:absolute;top:0;left:0;height:3px;width:var(--w,0%);background:linear-gradient(90deg,var(--gold-2),var(--bronze-d))}
+.phase .ph-no{font-size:.6rem;letter-spacing:.3em;color:var(--gold);text-transform:uppercase}
+.phase .ph-pct{font-family:var(--serif);font-size:2.1rem;color:var(--gold-2);margin:.65rem 0 .1rem;font-weight:500}
+.phase h3{font-size:.95rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.phase p{color:var(--muted);font-size:.85rem;margin-top:.6rem}
+.blueprint{position:relative;margin-top:1.8rem;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.blueprint img{width:100%;aspect-ratio:16/8;object-fit:cover}
+.bp-note{position:absolute;bottom:12px;left:14px;right:14px;display:flex;gap:.8rem;flex-wrap:wrap}
+.bp-note span{font-size:.56rem;letter-spacing:.18em;color:var(--gold-2);background:rgba(20,17,16,.78);
+border:1px solid var(--line);padding:.32rem .6rem;border-radius:6px;text-transform:uppercase}
+
+/* ——— services ——— */
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:1.4rem;margin-top:3rem}
+.serv{border-top:1px solid var(--line);padding-top:1.5rem;position:relative}
+.serv .s-no{position:absolute;top:-0.9rem;right:0;font-family:var(--serif);font-size:2.6rem;color:rgba(197,160,109,.18);font-style:italic}
+.serv h3{font-family:var(--serif);font-weight:500;font-size:1.45rem;margin-bottom:.7rem}
+.serv p{color:var(--muted);font-size:.87rem;margin-bottom:1.1rem}
+.serv ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.serv li{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-2);display:flex;gap:.55rem;align-items:center}
+.serv li::before{content:"";width:14px;height:1px;background:var(--gold);flex-shrink:0}
+
+/* ——— gallery break ——— */
+.break{position:relative;min-height:72vh;min-height:72svh;display:flex;align-items:flex-end;overflow:hidden}
+.break img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.break::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,17,16,.35) 0%,rgba(20,17,16,.05) 40%,rgba(20,17,16,.88) 82%,var(--bg))}
+.break-inner h2,.break-inner .kicker{text-shadow:0 2px 20px rgba(0,0,0,.5)}
+.break-inner{position:relative;z-index:2;padding:0 clamp(18px,4vw,40px) 3.2rem;max-width:1160px;margin:0 auto;width:100%}
+.break-inner .kicker{max-width:1160px}
+.break h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.8rem,5vw,3rem)}
+
+/* ——— quote ——— */
+.quote{text-align:center;max-width:760px;margin:0 auto}
+.quote .q-eyebrow{font-size:.62rem;letter-spacing:.36em;color:var(--gold);text-transform:uppercase;margin-bottom:1.6rem}
+.quote blockquote{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(1.3rem,3.4vw,1.9rem);line-height:1.5;color:var(--ink)}
+.quote .who{margin-top:1.4rem;font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--dim)}
+.quote .note{margin-top:.6rem;font-size:.62rem;color:var(--dim);letter-spacing:.04em}
+
+/* ——— commission ——— */
+.commission{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:1.1rem;margin-top:2.4rem}
+.field{display:flex;flex-direction:column;gap:.45rem}
+.field label{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--dim)}
+.field input,.field textarea,.field select{background:transparent;border:1px solid var(--line);border-radius:10px;
+color:var(--ink);padding:.85rem 1rem;font-family:var(--sans);font-size:.9rem;outline:none;transition:.25s;appearance:none}
+.field textarea{grid-column:1/-1;min-height:110px;resize:vertical}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--gold)}
+.field select option{background:var(--bg)}
+.form-foot{margin-top:1.8rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.form-note{font-size:.68rem;color:var(--dim)}
+.contact-rows{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:1.1rem;margin-top:3rem}
+.c-row{border:1px solid var(--line);border-radius:12px;padding:1.3rem 1.2rem;background:var(--card)}
+.c-row .c-l{font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--dim);margin-bottom:.45rem}
+.c-row .c-v{font-size:.95rem;color:var(--gold-2);font-weight:600}
+
+/* ——— footer ——— */
+footer{padding:3rem 0 2.4rem}
+.foot-top{display:flex;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;align-items:center;
+border-top:1px solid var(--line);padding-top:2rem}
+.foot-links{display:flex;gap:1.6rem;flex-wrap:wrap}
+.foot-links a{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
+.foot-links a:hover{color:var(--gold-2)}
+.foot-note{margin-top:1.6rem;font-size:.62rem;color:var(--dim);letter-spacing:.06em}
+
+/* ——— mobile ——— */
+@media (max-width:900px){
+  .nav-links{display:none}
+  .about-grid{grid-template-columns:1fr;gap:2rem}
+}
+@media (max-width:640px){
+  .brand i{display:none}
+  .nav-cta{padding:.5rem .8rem;font-size:.6rem}
+  .hero-ctas .btn{width:100%;justify-content:center}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .case-img{aspect-ratio:4/4.8}
+  .bp-note span:nth-child(n+4){display:none}
+  .blueprint img{aspect-ratio:16/10}
+  .form-foot .btn{width:100%;justify-content:center}
+}
+
+/* ——— device-grade mobile polish ——— */
+@media (max-width:760px){
+  .hero img{object-position:center 62%}
+  .hero-eyebrow{letter-spacing:.32em;top:calc(4.2rem + env(safe-area-inset-top));font-size:.6rem}
+  .hero h1{line-height:1.06}
+  .lede{font-size:.9rem}
+  .case p,.serv p,.phase p{font-size:.85rem}
+  .case h3{font-size:1.35rem}
+  .case-tag{font-size:.55rem;padding:.36rem .7rem}
+  .bp-note span{font-size:.54rem;padding:.28rem .5rem}
+  .blueprint img{aspect-ratio:16/11}
+}
+@media (max-width:640px){
+  /* iOS: 16px inputs prevent auto-zoom on focus */
+  .field input,.field textarea,.field select{font-size:16px}
+  .nav{padding-top:calc(.9rem + env(safe-area-inset-top));padding-left:14px;padding-right:14px}
+  .brand b{letter-spacing:.18em;font-size:.78rem}
+  .nav-cta{font-size:.58rem;padding:.55rem .85rem;letter-spacing:.16em}
+  .hero{align-items:flex-end}
+  .hero-inner{padding:5.5rem 18px 4.5rem}
+  .hero-ctas{margin-top:2.1rem}
+  .hero-ctas .btn{padding:1rem 1.4rem}
+  .kicker{letter-spacing:.28em;font-size:.58rem}
+  .sec{padding:3.6rem 0}
+  .stat b{font-size:1.8rem}
+  .break{min-height:64vh;min-height:64svh}
+  .break-inner{padding-bottom:2.6rem}
+  .quote blockquote{line-height:1.55}
+  .form-foot .form-note{font-size:.62rem}
+}
+@media (max-width:380px){
+  .brand b{font-size:.72rem;letter-spacing:.14em}
+  .nav-cta{font-size:.54rem;padding:.5rem .7rem}
+  .hero-ctas .btn{font-size:.62rem}
+}
+@media (min-width:1400px){
+  .hero h1{font-size:6.4rem}
+  .wrap{max-width:1240px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a class="brand" href="#top">
+    <b>VAKSHANA</b>
+    <i>Interior Atelier — Tricity</i>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#timeline">Timeline</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="https://wa.me/918000077352?text=Hi%20Vakshana%20Interior%2C%20I%20am%20interested%20in%20a%20turnkey%20interior%20consultation." target="_blank" rel="noopener">Start a Project</a>
+</nav>
+
+<header class="hero" id="top">
+  <img src="https://media.base44.com/images/public/6ac87b1bfd845c3b4bdb7f2a/13cc8d140_generated_image.png" alt="Vakshana Interior — cinematic interior under final craft">
+  <p class="hero-eyebrow">Vakshana Interior — Chandigarh</p>
+  <div class="hero-inner">
+    <h1>CURATING <em>SPACES</em></h1>
+    <div class="hero-ctas">
+      <a class="btn btn-o" href="#contact">Start Your Project</a>
+    </div>
+  </div>
+</header>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="kicker"><b>01 / Vision</b></p>
+    <h2 class="title reveal">Luxury begins <em>here</em></h2>
+    <p class="lede reveal" style="margin-top:1.5rem">Turnkey interior transformations across the Tricity — from raw structural vision to bespoke, hand-finished homes and commercial landmarks.</p>
+    <div class="chapters" style="margin-top:2.6rem">
+      <div class="chap reveal"><span class="no">01 / Vision</span><h3>Visualize First</h3><p>Photorealistic 3D spatial visualization of your home before a single wall is touched. Decide with certainty, not guesswork.</p></div>
+      <div class="chap reveal"><span class="no">02 / Structure</span><h3>Precision Meets Design</h3><p>Every detail curated — false ceilings, lighting paths, and layouts tuned to how your family actually lives.</p></div>
+      <div class="chap reveal"><span class="no">03 / Craft</span><h3>Materials With Memory</h3><p>Hand-selected marble, brushed brass and walnut, sourced and finished by artisans who treat surfaces like heirlooms.</p></div>
+      <div class="chap reveal"><span class="no">04 / Handover</span><h3>Welcome Home</h3><p>Complete turnkey execution with a single point of accountability — you receive keys, not a punch-list.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="about">
+  <div class="wrap">
+    <p class="kicker"><b>Atelier Profile</b></p>
+    <div class="about-grid">
+      <div class="reveal">
+        <h2 class="title">The art of <em>living well</em></h2>
+        <p class="lede">We define premium interiors by what we refine, not what we accumulate. Vakshana Interior composes spatial sanctuaries focused on natural illumination, materials with raw tactility, and quiet, geometric precision — delivered turnkey across Chandigarh, Mohali and Zirakpur.</p>
+        <div class="hero-ctas" style="justify-content:flex-start;margin-top:2rem">
+          <a class="btn btn-gold" href="#portfolio">View Portfolio</a>
+          <a class="btn btn-o" href="#services">Our Services</a>
+        </div>
+      </div>
+      <div class="stats reveal">
+        <div class="stat"><b>3D</b><span>Visualization Included</span></div>
+        <div class="stat"><b>Turnkey</b><span>End-to-End Delivery</span></div>
+        <div class="stat"><b>Tricity</b><span>Chandigarh • Mohali • Zirakpur</span></div>
+        <div class="stat"><b>Site</b><span>Supervised Execution</span></div>
+      </div>
+    </div>
+    <div class="materials reveal">
+      <div class="mat"><span class="m-no">Material 01</span><div class="m-name">Italian Marble</div><p class="m-desc">Book-matched slabs, laid with seamless epoxy grout lines.</p><div class="swatch"></div></div>
+      <div class="mat"><span class="m-no">Material 02</span><div class="m-name">Brushed Brass</div><p class="m-desc">Profiles, handles and trims with a warm living patina.</p><div class="swatch"></div></div>
+      <div class="mat"><span class="m-no">Material 03</span><div class="m-name">Walnut & Veneer</div><p class="m-desc">Fluted panels and millwork finished by master carpenters.</p><div class="swatch"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="portfolio">
+  <div class="wrap">
+    <p class="kicker"><b>Selected Portfolio</b></p>
+    <h2 class="title reveal">Featured <em>projects</em></h2>
+    <div class="cases">
+      <div class="case reveal">
+        <div class="case-img"><span class="case-tag">Case Study 01</span><img loading="lazy" src="https://media.base44.com/images/public/6ac87b1bfd845c3b4bdb7f2a/c8d2e42cc_generated_image.png" alt="Sector Penthouse — Chandigarh"></div>
+        <div class="case-body">
+          <span class="case-loc">Chandigarh</span>
+          <h3>The Sector Penthouse</h3>
+          <p>Marble floors, brushed brass accents and cove-lit ceilings composed into a calm, volumetric living space above the city grid.</p>
+          <a href="https://wa.me/918000077352?text=Hi%20Vakshana%20Interior%2C%20I%20liked%20the%20Sector%20Penthouse%20case%20study.%20I%20would%20like%20to%20discuss%20my%20project." target="_blank" rel="noopener">Explore this project →</a>
+        </div>
+      </div>
+      <div class="case reveal">
+        <div class="case-img"><span class="case-tag">Case Study 02</span><img loading="lazy" src="https://media.base44.com/images/public/6ac87b1bfd845c3b4bdb7f2a/5293b442c_generated_image.png" alt="Walnut Kitchen — Mohali"></div>
+        <div class="case-body">
+          <span class="case-loc">Mohali</span>
+          <h3>The Walnut Kitchen</h3>
+          <p>Handleless dark-walnut cabinetry with integrated LED channels, bronze hardware and a marble work surface built for daily luxury.</p>
+          <a href="https://wa.me/918000077352?text=Hi%20Vakshana%20Interior%2C%20I%20liked%20the%20Walnut%20Kitchen%20case%20study.%20I%20would%20like%20to%20discuss%20my%20project." target="_blank" rel="noopener">Explore this project →</a>
+        </div>
+      </div>
+      <div class="case reveal">
+        <div class="case-img"><span class="case-tag">Case Study 03</span><img loading="lazy" src="https://media.base44.com/images/public/6ac87b1bfd845c3b4bdb7f2a/b1f00b594_generated_image.png" alt="Serene Suite — Zirakpur"></div>
+        <div class="case-body">
+          <span class="case-loc">Zirakpur</span>
+          <h3>The Serene Suite</h3>
+          <p>Fluted walnut panelling, warm bronze pendants and layered textiles shaped into a hotel-grade master retreat.</p>
+          <a href="https://wa.me/918000077352?text=Hi%20Vakshana%20Interior%2C%20I%20liked%20the%20Serene%20Suite%20case%20study.%20I%20would%20like%20to%20discuss%20my%20project." target="_blank" rel="noopener">Explore this project →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="timeline">
+  <div class="wrap">
+    <p class="kicker"><b>The Evolution</b></p>
+    <h2 class="title reveal">Construction <em>timeline</em></h2>
+    <div class="timeline">
+      <div class="phase reveal" style="--w:8%"><span class="ph-no">Phase 01 // Site Study</span><div class="ph-pct">0%</div><h3>Measure & Plan</h3><p>Site survey, structural mapping and photorealistic 3D layouts freeze the baseline before work begins.</p></div>
+      <div class="phase reveal" style="--w:50%"><span class="ph-no">Phase 02 // Execution</span><div class="ph-pct">50%</div><h3>Build in Progress</h3><p>Civil changes close, services and curated lighting tracks integrate invisibly behind finished surfaces.</p></div>
+      <div class="phase reveal" style="--w:100%"><span class="ph-no">Phase 03 // Handover</span><div class="ph-pct">100%</div><h3>Bespoke Curation</h3><p>Hand-rubbed metal trims, marble panelling, floating millwork and styling unified into a turnkey handover.</p></div>
+    </div>
+    <div class="blueprint reveal">
+      <img loading="lazy" src="https://media.base44.com/images/public/6ac87b1bfd845c3b4bdb7f2a/03c26a1c3_generated_image.png" alt="Layout blueprint — Vakshana Interior">
+      <div class="bp-note">
+        <span>Living Room</span><span>Dining Area</span><span>Kitchen</span>
+        <span>LED_CH_01</span><span>[ Marble Slab ]</span><span>Scale 1:50</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="services">
+  <div class="wrap">
+    <p class="kicker"><b>Atelier Services</b></p>
+    <h2 class="title reveal">Crafting immersive <em>spaces</em></h2>
+    <div class="services">
+      <div class="serv reveal"><span class="s-no">01</span>
+        <h3>Spatial Design & 3D</h3>
+        <p>Photorealistic visualization and volumetric layouts so you approve the exact look, light and mood before execution.</p>
+        <ul><li>3D Layout Mapping</li><li>False Ceiling Design</li><li>Lighting Path Planning</li></ul>
+      </div>
+      <div class="serv reveal"><span class="s-no">02</span>
+        <h3>Material Curation</h3>
+        <p>Marble, brass and walnut sourced from trusted quarries and mills — tactility that matures gracefully with the home.</p>
+        <ul><li>Marble & Stone Sourcing</li><li>Brass & Metal Detailing</li><li>Textile & Finish Curation</li></ul>
+      </div>
+      <div class="serv reveal"><span class="s-no">03</span>
+        <h3>Turnkey Execution</h3>
+        <p>Supervised site execution with modular millwork, furniture and styling — one contract, one accountable studio.</p>
+        <ul><li>Site Supervision</li><li>Modular Millwork</li><li>Styling & Handover</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="break">
+  <img loading="lazy" src="https://media.base44.com/images/public/6ac87b1bfd845c3b4bdb7f2a/93caddbf4_generated_image.png" alt="Immersive marble bathroom — Vakshana Interior">
+  <div class="break-inner">
+    <p class="kicker"><b>Gallery Visuals</b></p>
+    <h2>Immersive <em>residences</em></h2>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="quote reveal">
+      <p class="q-eyebrow">Client Words</p>
+      <blockquote>“Vakshana translated our raw flat into a home that feels composed, warm and quietly luxurious — the 3D preview matched the handover almost exactly.”</blockquote>
+      <p class="who">Sample testimonial — replaced with your real client words</p>
+      <p class="note">Demo preview · sample photos shown; real project photography replaces them on confirmation</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec commission" id="contact">
+  <div class="wrap">
+    <p class="kicker"><b>Commission the Atelier</b></p>
+    <h2 class="title reveal">Start your <em>spatial legacy</em></h2>
+    <p class="lede reveal">Share a few details and we will open the conversation on WhatsApp — typically replied within a day.</p>
+    <form class="form-grid reveal" id="cform">
+      <div class="field"><label>Your Name</label><input required id="f-name" type="text" placeholder="e.g. Simran Kaur"></div>
+      <div class="field"><label>Project Location</label><input id="f-loc" type="text" placeholder="e.g. Chandigarh"></div>
+      <div class="field"><label>Space Scope</label>
+        <select id="f-scope">
+          <option>Full Home — Turnkey</option>
+          <option>Modular Kitchen</option>
+          <option>Bedroom / Living Focus</option>
+          <option>Commercial Space</option>
+        </select>
+      </div>
+      <div class="field"><label>Your WhatsApp</label><input id="f-phone" type="tel" placeholder="10-digit mobile"></div>
+      <div class="field"><label>Project Vision</label><textarea id="f-vision" placeholder="Tell us about the space and the feeling you want…"></textarea></div>
+    </form>
+    <div class="form-foot reveal">
+      <button class="btn btn-gold" id="send" type="button">Initiate Commission</button>
+      <p class="form-note">Opens WhatsApp with your details pre-filled — nothing is stored.</p>
+    </div>
+    <div class="contact-rows reveal">
+      <div class="c-row"><p class="c-l">WhatsApp</p><p class="c-v">+91 80000 77352</p></div>
+      <div class="c-row"><p class="c-l">Instagram</p><p class="c-v">@vakshanainterior</p></div>
+      <div class="c-row"><p class="c-l">Studio Base</p><p class="c-v">Chandigarh • Mohali • Zirakpur</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <a class="brand" href="#top"><b>VAKSHANA</b><i>Interior Atelier — Tricity</i></a>
+      <div class="foot-links">
+        <a href="https://www.instagram.com/vakshanainterior/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://wa.me/918000077352" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <p class="foot-note">© 2026 Vakshana Interior. Sample demo site by Arsh Studio — photography shown is illustrative.</p>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>60),{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.getElementById('send').addEventListener('click',()=>{
+  const v=id=>(document.getElementById(id).value||'').trim();
+  const msg=`Hi Vakshana Interior! I'm ${v('f-name')||'...'} — project in ${v('f-loc')||'Tricity'} (${v('f-scope')}). ${v('f-vision')?'Vision: '+v('f-vision')+'. ':''}My WhatsApp: ${v('f-phone')||'—'}.`;
+  open('https://wa.me/918000077352?text='+encodeURIComponent(msg),'_blank');
+});
+</script>
+</body>
+</html>
