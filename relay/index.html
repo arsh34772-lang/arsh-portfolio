@@ -128,53 +128,41 @@ h1 .serif{display:block;font-size:1.04em;letter-spacing:-.02em;font-weight:400}
   var cv=document.getElementById('stream');
   var gl=cv.getContext('webgl',{antialias:false,alpha:false,premultipliedAlpha:false});
   if(!gl){cv.style.display='none';return}
-  var VS='attribute vec2 p;void main(){gl_Position=vec4(p,0.0,1.0);}';
+  var VS='attribute vec2 p;varying vec2 uv;void main(){uv=p*0.5+0.5;gl_Position=vec4(p,0.0,1.0);}';
   // Flow-field ribbons: each ribbon is a distance field to a curve that swirls through a focal point.
   var FS=[
-'precision mediump float;',
+'precision highp float;',
 'uniform vec2 R;uniform float T;',
-'float hash(float n){return fract(sin(n*91.345)*47453.5453);}',
-'float ribbon(vec2 uv,float id,float t){',
-'  float u=id/14.0;',
-'  vec2 F=vec2(0.50,0.60);',
-'  float d=1000.0;',
-'  float spread=u-0.5;',
-'  vec2 a=vec2(-0.10,0.95+spread*0.55);',
-'  vec2 b=vec2(0.30,1.02+spread*0.20);',
-'  vec2 c=vec2(0.62+spread*0.10,0.55+spread*0.70);',
-'  vec2 e=vec2(1.12,-0.05+u*0.85);',
-'  for(int k=0;k<10;k++){',
-'    float s=float(k)/9.0;',
-'    float m=1.0-s;',
-'    vec2 q=m*m*m*a+3.0*m*m*s*b+3.0*m*s*s*c+s*s*s*e;',
-'    float pull=exp(-pow((s-0.42)/0.2,2.0));',
-'    q+=(F-q)*pull*0.62*(1.0-abs(spread)*0.9);',
-'    q+=vec2(sin(s*6.0+t*0.35+id)*0.012,sin(s*5.0+t*0.28+id*1.7)*0.05)*(1.0-pull*0.8);',
-'    d=min(d,length((uv-q)*vec2(R.x/R.y,1.0)));',
-'  }',
-'  return d;',
-'}',
+'varying vec2 uv;',
 'void main(){',
-'  vec2 uv=gl_FragCoord.xy/R;uv.y=1.0-uv.y;',
-'  float t=T;',
-'  vec3 col=vec3(0.02,0.024,0.02);',
-'  float glow=0.0;float core=0.0;',
-'  for(int i=0;i<14;i++){',
-'    float id=float(i);',
-'    float d=ribbon(uv,id,t);',
-'    float w=0.0050+hash(id)*0.0080;',
-'    glow+=w*0.9/(d*d*900.0+w*5.0+0.010)*(0.55+0.45*sin(t*0.6+id));',
-'    core+=smoothstep(w*1.8,0.0,d)*(0.5+0.5*hash(id+3.0));',
+'  vec2 p=(uv*2.0-1.0); p.x*=R.x/R.y;',
+'  vec2 knot=vec2(0.04,-0.28);',
+'  vec2 d=p-knot;',
+'  float rad=length(d);',
+'  float ang=atan(d.y,d.x);',
+'  float t=T*0.22;',
+'  float silk=0.0;',
+'  for(int k=0;k<5;k++){',
+'    float f=float(k);',
+'    float ph=rad*(5.5+f*3.4)-ang*(1.4+f*1.9)+t*(1.1+f*0.45)+sin(rad*2.2-f*0.8+t*0.6)*1.3;',
+'    float ridge=1.0-abs(sin(ph));',
+'    silk+=pow(ridge,84.0-f*10.0)*(1.0-f*0.15);',
 '  }',
-'  vec2 fd=(uv-vec2(0.5,0.60))*vec2(R.x/R.y,1.0);',
-'  float fo=exp(-dot(fd,fd)*5.5)*(0.85+0.15*sin(t*0.9));',
-'  vec3 lime=vec3(0.78,0.97,0.32);vec3 hot=vec3(0.92,1.0,0.62);vec3 cy=vec3(0.55,1.0,0.82);',
-'  col+=lime*glow*0.55+hot*core*0.55+lime*fo*0.55+cy*glow*0.06*step(0.55,uv.x);',
-'  col*=1.0-0.55*smoothstep(0.55,1.15,length((uv-0.5)*vec2(1.1,1.0)));',
+'  float fall=exp(-rad*1.2);',
+'  float veil=exp(-rad*rad*2.0)*0.10;',
+'  float knotGlow=exp(-rad*rad*26.0)*3.0;',
+'  float lum=silk*fall*9.0+veil+knotGlow;',
+'  vec3 lime=vec3(0.784,0.969,0.318);',
+'  vec3 pale=vec3(0.93,1.0,0.80);',
+'  vec3 col=mix(lime,pale,clamp(knotGlow*0.55,0.0,1.0))*lum;',
+'  col+=vec3(0.020,0.028,0.018);',
+'  col=col/(1.0+col*0.44);',
+'  col=pow(col,vec3(0.90));',
 '  gl_FragColor=vec4(col,1.0);',
 '}'
 ].join('\n');
-  function sh(t,src){var s=gl.createShader(t);gl.shaderSource(s,src);gl.compileShader(s);
+
+function sh(t,src){var s=gl.createShader(t);gl.shaderSource(s,src);gl.compileShader(s);
     if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)){console.error(gl.getShaderInfoLog(s));return null}return s}
   var pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,VS));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,FS));gl.linkProgram(pr);
   if(!gl.getProgramParameter(pr,gl.LINK_STATUS)){console.error('link failed');cv.style.display='none';return}
@@ -183,7 +171,7 @@ h1 .serif{display:block;font-size:1.04em;letter-spacing:-.02em;font-weight:400}
   gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
   var loc=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
   var uR=gl.getUniformLocation(pr,'R'),uT=gl.getUniformLocation(pr,'T');
-  var scale=.35;                                  // render at half resolution, it is a blurred light field anyway
+  var scale=.62;                                  // render at half resolution, it is a blurred light field anyway
   function size(){cv.width=Math.round(innerWidth*scale);cv.height=Math.round(innerHeight*scale);gl.viewport(0,0,cv.width,cv.height)}
   size();addEventListener('resize',size);
   var t0=performance.now(),run=true;
