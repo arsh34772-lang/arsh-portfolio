@@ -666,8 +666,8 @@ h1 .serif{color:var(--ink);letter-spacing:-.02em}
     function makeBloom(){
       var gx = W * 0.54, gy = H * 0.44, gr = Math.max(W, H) * 0.42;
       var g = ctx.createRadialGradient(gx, gy, 0, gx, gy, gr);
-      g.addColorStop(0, 'rgba(240,166,60,0.11)');
-      g.addColorStop(0.34, 'rgba(255,138,61,0.05)');
+      g.addColorStop(0, 'rgba(240,166,60,0.16)');
+      g.addColorStop(0.34, 'rgba(255,138,61,0.075)');
       g.addColorStop(1, 'rgba(10,8,6,0)');
       bloom = g;
     }
@@ -681,7 +681,7 @@ h1 .serif{color:var(--ink);letter-spacing:-.02em}
       /* the strands */
       for (var i = 0; i < strands.length; i++) {
         var s = strands[i];
-        var col = s.cyan ? [66, 216, 200] : [76, 141, 255];
+        var col = s.cyan ? [255, 196, 107] : [240, 166, 60];
         var passes = [[21, 0.055], [8.5, 0.17], [1.9, 0.62]];
         for (var pass = 0; pass < passes.length; pass++) {
           ctx.beginPath();
