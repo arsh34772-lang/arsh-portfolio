@@ -184,7 +184,11 @@ header:before{display:none!important}
 .venue-band:after{content:"";position:absolute;inset:auto 0 0;height:30%;
   background:linear-gradient(180deg,rgba(12,10,14,0),rgba(12,10,14,.92))}
 header .hero-in{padding:32px 5vw 58px;width:min(1160px,92vw);margin:0 auto;text-align:left;position:relative;z-index:2}
-header h1{margin:14px 0 0;text-shadow:none;font-size:clamp(2.3rem,6vw,4rem);line-height:1.06;max-width:18ch}
+header h1{margin:14px 0 0;text-shadow:none;max-width:100%;width:100%;
+  font-family:'Cormorant Garamond',serif;font-weight:700;
+  font-size:clamp(2.5rem,5.6vw,4.6rem);line-height:1.03;letter-spacing:-.012em;
+  text-wrap:balance;color:var(--ivory)}
+header h1 em{font-style:italic;color:var(--gold);font-weight:600}
 .hs{margin:16px 0 0;max-width:52ch}
 .cta-row{justify-content:flex-start;margin-top:26px}
 .stats{justify-content:flex-start}
@@ -192,7 +196,7 @@ header h1{margin:14px 0 0;text-shadow:none;font-size:clamp(2.3rem,6vw,4rem);line
 @media(max-width:640px){
   .venue-band{height:clamp(240px,42svh,340px)}
   header .hero-in{padding:24px 5vw 44px}
-  header h1{font-size:clamp(2rem,8.4vw,2.6rem);max-width:14ch}
+  header h1{font-size:clamp(2.35rem,10.6vw,3.1rem);line-height:1.02;max-width:100%;letter-spacing:-.018em}
 }
 </style>
 <style id="mobile-polish">
