@@ -647,8 +647,8 @@ h1 .serif{color:var(--ink);letter-spacing:-.02em}
         phase: i * 1.7,
         speed: 0.10 + (i % 5) * 0.028,
         dir: i % 2 ? 1 : -1,
-        cyan: i % 4 === 3,
-        alpha: 0.30 + (i % 3) * 0.10
+        cyan: i % 3 === 2,
+        alpha: 0.46 + (i % 3) * 0.12
       });
     }
 
@@ -678,7 +678,7 @@ h1 .serif{color:var(--ink);letter-spacing:-.02em}
       for (var i = 0; i < strands.length; i++) {
         var s = strands[i];
         var col = s.cyan ? [66, 216, 200] : [200, 255, 54];
-        var passes = [[19, 0.05], [7.5, 0.15], [1.8, 0.55]];
+        var passes = [[21, 0.055], [8.5, 0.17], [1.9, 0.62]];
         for (var pass = 0; pass < passes.length; pass++) {
           ctx.beginPath();
           var steps = 38;
