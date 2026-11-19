@@ -169,5 +169,20 @@ addEventListener('scroll',()=>{b.style.width=(scrollY/(document.body.scrollHeigh
 const io=new IntersectionObserver(es=>es.forEach((e,i)=>{if(e.isIntersecting){e.target.style.transitionDelay=(i%4)*90+'ms';e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 </script>
+<style>
+header h1{overflow:visible;padding-bottom:.1em;line-height:1.08}
+</style>
+<style id="mobile-polish">
+@media(max-width:640px){
+  header h1{line-height:1.07;padding-bottom:.1em;overflow:visible;font-size:clamp(2.2rem,9.2vw,2.9rem);letter-spacing:-.005em}
+  .hkn{font-size:.63rem;letter-spacing:.19em;padding:7px 14px;margin-bottom:18px}
+  .hs{margin:16px 0 24px;font-size:.98rem;line-height:1.55}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:26px;padding-top:20px}
+  .stat{padding:12px 14px;border-radius:14px;font-size:.62rem;letter-spacing:.12em;line-height:1.4;
+    text-transform:uppercase;color:var(--mut);display:flex;flex-direction:column;justify-content:center;min-height:66px}
+  .stat b{font-size:1.5rem;line-height:1.05;margin-bottom:5px;color:var(--cham);letter-spacing:0}
+  .mq-in{font-size:.7rem;gap:34px}
+}
+</style>
 </body>
 </html>
