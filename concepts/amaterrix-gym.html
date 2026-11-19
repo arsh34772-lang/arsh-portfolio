@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Amaterrix Gym — Ferozepur Road, Ludhiana | Concept page</title>
+<meta name="description" content="An independent concept page for Amaterrix Gym, Ferozepur Road, Ludhiana. Six training zones under one roof.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0B0C0E; --ink-2:#141619; --ink-3:#1C1F23;
+  --paper:#F4F2ED; --mute:#9AA0A6; --line:rgba(244,242,237,.14);
+  --acc:#E8452F; --acc-2:#FF7A5C;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:hidden;-webkit-text-size-adjust:100%}
+body{background:var(--ink);color:var(--paper);font-family:'Inter Tight',system-ui,-apple-system,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.display{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:.94}
+.kicker{font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--mute);font-weight:500}
+.acc{color:var(--acc)}
+
+/* nav */
+header.nav{position:sticky;top:0;z-index:60;background:rgba(11,12,14,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+.wordmark{font-family:'Anton',sans-serif;font-size:1.02rem;letter-spacing:.16em;text-transform:uppercase}
+.wordmark span{color:var(--acc)}
+.nav-mid{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.nav-cta{display:inline-flex;align-items:center;gap:8px;background:var(--acc);color:#fff;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;padding:10px 16px;border-radius:999px;white-space:nowrap}
+.nav-cta svg{width:13px;height:13px}
+
+/* hero */
+.hero-figure{position:relative;background:var(--ink-3);overflow:hidden}
+.hero-figure img{width:100%;height:clamp(240px,56svh,560px);object-fit:cover;object-position:center 45%;filter:saturate(.92) contrast(1.04)}
+.hero-figure::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,12,14,.18),rgba(11,12,14,0) 40%,rgba(11,12,14,.9))}
+.hero-body{padding:clamp(1.6rem,4vw,3rem) 0 clamp(2.4rem,5vw,4rem);border-bottom:1px solid var(--line)}
+.hero-top{display:flex;flex-wrap:wrap;gap:14px 26px;align-items:baseline;margin-bottom:18px}
+h1{font-size:clamp(2.5rem,8.4vw,5.6rem);max-width:19ch}
+h1 em{font-style:normal;color:var(--acc)}
+.hero-sub{color:#C9C6BE;font-size:clamp(.98rem,2.2vw,1.12rem);max-width:56ch;font-weight:300;margin-top:18px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 22px;border-radius:999px;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;white-space:nowrap;border:1px solid transparent}
+.btn--a{background:var(--acc);color:#fff}
+.btn--g{border-color:rgba(244,242,237,.3);color:var(--paper)}
+.btn svg{width:14px;height:14px}
+.facts{display:flex;flex-wrap:wrap;gap:12px 34px;margin-top:30px;padding-top:22px;border-top:1px solid var(--line)}
+.fact b{display:block;font-family:'Anton',sans-serif;font-size:1.5rem;letter-spacing:.02em}
+.fact span{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+
+/* bands */
+section{padding:clamp(2.6rem,6vw,5rem) 0}
+.sec-head{display:flex;flex-wrap:wrap;gap:10px 24px;align-items:flex-end;justify-content:space-between;margin-bottom:clamp(1.4rem,3vw,2.4rem)}
+h2{font-size:clamp(1.7rem,4.6vw,2.9rem)}
+.sec-head p{color:var(--mute);max-width:42ch;font-size:.95rem;font-weight:300}
+
+/* photo cards */
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,24px)}
+.card{border:1px solid var(--line);background:var(--ink-2);border-radius:16px;overflow:hidden}
+.card figure{aspect-ratio:4/3;overflow:hidden;background:var(--ink-3)}
+.card img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+.card:hover img{transform:scale(1.04)}
+.card-body{padding:18px 18px 22px}
+.card-body h3{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin-bottom:8px}
+.card-body p{color:#B9B6AE;font-size:.9rem;font-weight:300}
+
+/* zone list */
+.zones{border-top:1px solid var(--line)}
+.zone{display:grid;grid-template-columns:64px minmax(0,1fr) minmax(0,1.1fr);gap:clamp(12px,2.4vw,28px);padding:22px 0;border-bottom:1px solid var(--line);align-items:start}
+.zone b{font-family:'Anton',sans-serif;font-size:.9rem;letter-spacing:.14em;color:var(--acc)}
+.zone h3{font-size:clamp(1.05rem,2.4vw,1.32rem);font-weight:500;letter-spacing:-.01em}
+.zone p{color:#A9A6A0;font-size:.92rem;font-weight:300}
+
+/* cta */
+.cta-band{background:var(--paper);color:var(--ink);border-radius:20px;padding:clamp(1.8rem,4.4vw,3.2rem);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(18px,3vw,34px);align-items:center}
+.cta-band h2{color:var(--ink)}
+.cta-band p{color:#4A4A46;font-size:.95rem;font-weight:300;margin-top:10px;max-width:44ch}
+.cta-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end}
+.cta-band .btn--a{background:var(--ink);color:var(--paper)}
+.cta-band .btn--g{border-color:rgba(11,12,14,.24);color:var(--ink)}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:26px 0 34px;color:var(--mute);font-size:.76rem}
+.foot{display:flex;flex-wrap:wrap;gap:10px 20px;justify-content:space-between;align-items:center}
+.tag{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase}
+.tag i{width:5px;height:5px;border-radius:50%;background:var(--acc);display:block}
+
+/* motion */
+.rv{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.card img{transition:none}}
+
+@media(max-width:900px){
+  .cards{grid-template-columns:1fr 1fr}
+  .cta-band{grid-template-columns:1fr}
+  .cta-actions{justify-content:flex-start}
+  .zone{grid-template-columns:48px minmax(0,1fr);}
+  .zone p{grid-column:2}
+}
+@media(max-width:620px){
+  .nav-mid{display:none}
+  .cards{grid-template-columns:1fr}
+  .hero-figure img{height:46svh}
+  .btn{width:100%}
+  .cta-band .btn{width:100%}
+  .facts{gap:12px 22px}
+  .fact b{font-size:1.3rem}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="wordmark" href="#top">Amaterrix<span>.</span></a>
+    <span class="nav-mid">Ferozepur Road · Ludhiana</span>
+    <a class="nav-cta" href="https://wa.me/919056065011?text=Hi%20Amaterrix%2C%20I%20saw%20the%20page%20and%20want%20to%20book%20a%20free%20trial." target="_blank" rel="noopener">
+      Free trial <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</header>
+
+<main id="top">
+  <figure class="hero-figure">
+    <img src="img/hero.jpg" alt="Training floor at Amaterrix Gym, Ferozepur Road, Ludhiana" width="1400" height="933">
+  </figure>
+
+  <div class="hero-body">
+    <div class="wrap">
+      <div class="hero-top">
+        <span class="kicker">PAU Gate 2 &amp; 3 · Ferozepur Rd · Ludhiana</span>
+        <span class="tag"><i></i>Independent concept</span>
+      </div>
+      <h1 class="display">Six zones.<br>One <em>floor.</em></h1>
+      <p class="hero-sub">An MMA cage, a HYROX turf, heavy strength, reformer Pilates, a snooker lounge and a recovery bar — all under one roof on Ferozepur Road. Pick a zone, walk in, train.</p>
+      <div class="hero-ctas">
+        <a class="btn btn--a" href="https://wa.me/919056065011?text=Hi%20Amaterrix%2C%20I%20saw%20the%20page%20and%20want%20to%20book%20a%20free%20trial." target="_blank" rel="noopener">Book a free trial <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h13M12 5l7 7-7 7"/></svg></a>
+        <a class="btn btn--g" href="#zones">See the zones</a>
+      </div>
+      <div class="facts">
+        <div class="fact"><b>6</b><span>Training zones</span></div>
+        <div class="fact"><b>3.5K+</b><span>Active members</span></div>
+        <div class="fact"><b>1</b><span>Roof, Ferozepur Rd</span></div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head rv">
+        <div>
+          <span class="kicker">The floor</span>
+          <h2 class="display" style="margin-top:10px">Built for every goal</h2>
+        </div>
+        <p>Combat, conditioning, strength, mobility, and somewhere to sit after. Three of the rooms you will spend the most time in.</p>
+      </div>
+      <div class="cards">
+        <article class="card rv">
+          <figure><img src="img/gloves.jpg" alt="Boxing gloves hanging at the cage" loading="lazy" width="1100" height="861"></figure>
+          <div class="card-body">
+            <h3>01 · The cage</h3>
+            <p>Official octagon, heavy bags and Jiu-Jitsu mats, with coaches on the floor through the week.</p>
+          </div>
+        </article>
+        <article class="card rv">
+          <figure><img src="img/floor.jpg" alt="Strength and conditioning area" loading="lazy" width="1200" height="900"></figure>
+          <div class="card-body">
+            <h3>02 · The strength floor</h3>
+            <p>Power racks, Olympic platforms, heavy dumbbells and a full Matrix machine line.</p>
+          </div>
+        </article>
+        <article class="card rv">
+          <figure><img src="img/hero.jpg" alt="Wide view of the training floor" loading="lazy" width="1400" height="933"></figure>
+          <div class="card-body">
+            <h3>03 · Turf &amp; conditioning</h3>
+            <p>Sleds, kettlebells, rowers and assault bikes on turf built for HYROX prep.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="zones" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <div>
+          <span class="kicker">Everything on the pass</span>
+          <h2 class="display" style="margin-top:10px">Six zones, one membership</h2>
+        </div>
+      </div>
+      <div class="zones">
+        <div class="zone rv"><b>01</b><h3>MMA &amp; boxing octagon</h3><p>Official cage, boxing bags, kickboxing strips and grappling mats.</p></div>
+        <div class="zone rv"><b>02</b><h3>HYROX functional turf</h3><p>Prowler sleds, kettlebells, rowers and assault bikes for race-day conditioning.</p></div>
+        <div class="zone rv"><b>03</b><h3>Heavy strength &amp; machines</h3><p>Matrix isolation machines, power cages, Olympic platforms and free weights.</p></div>
+        <div class="zone rv"><b>04</b><h3>Reformer Pilates studio</h3><p>A quieter room for reformer work, core alignment, posture and mobility.</p></div>
+        <div class="zone rv"><b>05</b><h3>Snooker &amp; table tennis</h3><p>Somewhere to unwind after the session, with seating to sit and talk.</p></div>
+        <div class="zone rv"><b>06</b><h3>Matcha &amp; recovery bar</h3><p>Protein shakes, matcha and hydration to take away after training.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="cta-band rv">
+        <div>
+          <span class="kicker" style="color:#7A7A75">One visit is enough to decide</span>
+          <h2 class="display" style="margin-top:10px">Walk in for a trial</h2>
+          <p>Message the gym on WhatsApp and ask for a trial slot. Rates, timings and personal training are confirmed on the same chat.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn--a" href="https://wa.me/919056065011?text=Hi%20Amaterrix%2C%20I%20saw%20the%20page%20and%20want%20to%20book%20a%20free%20trial." target="_blank" rel="noopener">WhatsApp the gym <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h13M12 5l7 7-7 7"/></svg></a>
+          <a class="btn btn--g" href="tel:+919056065011">Call +91 90560 65011</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>Amaterrix Gym · PAU Gate 2 &amp; 3, Ferozepur Rd, Ludhiana</span>
+    <span class="tag"><i></i>Independent concept · not the official site</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{rootMargin:'0px 0px -8% 0px',threshold:.08});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+})();
+</script>
+</body>
+</html>
