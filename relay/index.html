@@ -43,17 +43,9 @@ p{margin:0}
 .loader__cap{font-family:var(--mono);font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted)}
 body.is-loading{overflow:hidden}
 
-/* ---------- light stream ---------- */
-.stream{position:fixed;left:50%;top:0;bottom:0;width:1px;z-index:1;pointer-events:none;
-  background:linear-gradient(to bottom,rgba(207,255,82,.02),rgba(207,255,82,.16) 12%,rgba(207,255,82,.16) 88%,rgba(207,255,82,.02))}
-.stream__rail{position:absolute;inset:0;width:1px;background:linear-gradient(to bottom,transparent,rgba(207,255,82,.5),transparent);
-  opacity:.5}
-.stream__head{position:absolute;left:-1.5px;top:0;width:4px;height:30vh;
-  background:linear-gradient(to bottom,rgba(207,255,82,0),rgba(207,255,82,.9) 45%,#F2FFD2 50%,rgba(207,255,82,.9) 55%,rgba(207,255,82,0));
-  filter:blur(1.2px);opacity:.85;will-change:transform}
-.stream__head::after{content:"";position:absolute;left:50%;top:50%;width:180px;height:180px;transform:translate(-50%,-50%);
-  background:radial-gradient(closest-side,rgba(207,255,82,.20),rgba(207,255,82,.05) 55%,transparent 75%);pointer-events:none}
-@media(max-width:900px){.stream{left:14px}.stream__head{height:20vh;opacity:.6}.stream__head::after{width:110px;height:110px}}
+/* ---------- electric light field ---------- */
+.gl{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;
+  mix-blend-mode:screen;opacity:.95;transform:translateZ(0)}
 
 /* ---------- nav ---------- */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .4s ease,border-color .4s ease}
@@ -438,7 +430,7 @@ body.is-loading{overflow:hidden}
 </div>
 
 <!-- LIGHT STREAM -->
-<div class="stream" aria-hidden="true"><span class="stream__rail"></span><span class="stream__head" id="streamHead"></span></div>
+<canvas id="gl" class="gl" aria-hidden="true"></canvas>
 
 <!-- NAV -->
 <header class="nav" id="nav">
@@ -966,17 +958,6 @@ body.is-loading{overflow:hidden}
   burger.addEventListener('click',function(){ menu.hidden = !menu.hidden; });
   menu.addEventListener('click',function(e){ if(e.target.tagName==='A') menu.hidden=true; });
 
-  /* ---------- light stream ---------- */
-  var head = document.getElementById('streamHead');
-  function stream(){
-    var h = window.innerHeight, max = document.documentElement.scrollHeight - h;
-    var p = max>0 ? Math.min(1, window.scrollY/max) : 0;
-    head.style.transform = 'translateY(' + (p*(h - head.offsetHeight)) + 'px)';
-  }
-  window.addEventListener('scroll',stream,{passive:true});
-  window.addEventListener('resize',stream);
-  stream();
-
   /* ---------- reveals ---------- */
   var auto = ['.apps','.lbl','.h2','.sec__body','.canvas','.slack','.chart','.card','.dash',
               '.stat','.quote','.calc','.plan','.final__l','.final__form'];
@@ -1083,6 +1064,93 @@ body.is-loading{overflow:hidden}
     var v = document.getElementById('email').value.trim();
     fnote.textContent = v ? 'check your inbox · trial link sent' : 'add a work email first';
   });
+})();
+</script>
+
+<script>
+/* electric lime light-field: flowing ribbons converging on a green hotspot */
+(function(){
+  var cv = document.getElementById('gl');
+  if(!cv) return;
+  var gl = cv.getContext('webgl',{antialias:false,alpha:true,premultipliedAlpha:false});
+  if(!gl){ cv.style.display='none'; return; }
+  var vs = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.0,1.0);}';
+  var fs = [
+'precision highp float;',
+'uniform vec2 u_res; uniform float u_t; uniform float u_scroll; uniform float u_ratio;',
+'float fbm(vec2 p){return 0.5+0.5*sin(p.x*1.7+p.y*1.3);}',
+'void main(){',
+'  vec2 uv=(gl_FragCoord.xy-0.5*u_res)/u_res.y;',
+'  vec2 p=uv; p.y+=0.04;',
+'  float t=u_t*0.28;',
+'  float v=0.0;',
+'  for(int i=0;i<7;i++){',
+'    float fi=float(i);',
+'    float off=(fi-3.0)*0.075;',
+'    float path=sin(p.x*1.9+fi*0.55+t*0.42)*0.155',
+'              +sin(p.x*4.1-fi*0.85-t*0.26)*0.052',
+'              +sin(p.x*8.3+fi*1.7+t*0.5)*0.012 + off;',
+'    float pull=exp(-abs(p.x)*1.9);',
+'    path=mix(path, off*0.32, pull*0.62);',
+'    float d=abs(p.y-path);',
+'    float w=0.0022+fi*0.00016;',
+'    float line=smoothstep(w*2.2,0.0,d);',
+'    float glow=smoothstep(0.050,0.0,d)*0.24;',
+'    v+=(line+glow)*(0.92-fi*0.055);',
+'  }',
+'  float hot=exp(-length(vec2((p.x-0.17)*1.5,p.y*2.4))*3.0);',
+'  v*=0.62+hot*2.7;',
+'  float asp=u_res.x/u_res.y;',
+'  v*=mix(0.34,1.0,clamp((asp-0.42)/1.25,0.0,1.0));',
+'  v*=2.05;',
+'  v*=mix(1.0,0.34,clamp(u_scroll*0.55,0.0,1.0));',
+'  v*=smoothstep(0.0,0.16,0.5-abs(uv.y));',
+'  v*=mix(0.62,1.0,smoothstep(-0.62,-0.05,p.x));',
+'  vec3 lime=vec3(0.812,1.0,0.322);',
+'  vec3 core=vec3(0.97,1.0,0.88);',
+'  vec3 col=mix(lime,core,clamp(v*1.5-0.45,0.0,1.0))*v;',
+'  col+=lime*hot*0.16;',
+'  gl_FragColor=vec4(col,1.0);',
+'}'].join('\n');
+  function sh(t,src){var s=gl.createShader(t);gl.shaderSource(s,src);gl.compileShader(s);
+    if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)){console.warn(gl.getShaderInfoLog(s));return null;}return s;}
+  var vsx=sh(gl.VERTEX_SHADER,vs), fsx=sh(gl.FRAGMENT_SHADER,fs);
+  if(!vsx||!fsx){cv.style.display='none';return;}
+  var pr=gl.createProgram();gl.attachShader(pr,vsx);gl.attachShader(pr,fsx);gl.linkProgram(pr);
+  if(!gl.getProgramParameter(pr,gl.LINK_STATUS)){cv.style.display='none';return;}
+  gl.useProgram(pr);
+  var buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+  var loc=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+  var uRes=gl.getUniformLocation(pr,'u_res'),uT=gl.getUniformLocation(pr,'u_t'),uS=gl.getUniformLocation(pr,'u_scroll');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var dpr=Math.min(window.devicePixelRatio||1,1.5), mobile=window.innerWidth<700;
+  function size(){
+    var w=Math.floor(window.innerWidth*(mobile?0.6:0.72)), h=Math.floor(window.innerHeight*(mobile?0.6:0.72));
+    cv.width=w;cv.height=h;cv.style.width='100%';cv.style.height='100%';
+    gl.viewport(0,0,w,h);gl.uniform2f(uRes,w,h);
+  }
+  size();window.addEventListener('resize',size);
+  var t0=performance.now(), scroll=0;
+  function onScroll(){
+    var max=document.documentElement.scrollHeight-window.innerHeight;
+    scroll=max>0?Math.min(1,window.scrollY/max):0;
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  var visible=true;
+  document.addEventListener('visibilitychange',function(){visible=!document.hidden;if(visible)loop();});
+  function frame(){
+    gl.uniform1f(uT,(performance.now()-t0)/1000);
+    gl.uniform1f(uS,scroll);
+    gl.drawArrays(gl.TRIANGLES,0,3);
+  }
+  var raf;
+  function loop(){
+    cancelAnimationFrame(raf);
+    (function tick(){ if(!visible) return; frame(); raf=requestAnimationFrame(tick); })();
+  }
+  if(reduce){ frame(); } else { loop(); }
 })();
 </script>
 
