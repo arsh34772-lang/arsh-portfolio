@@ -331,10 +331,22 @@ h1 .serif{color:var(--ink);letter-spacing:-.02em}
   .rv{opacity:1;transform:none}.hline>span{transform:none}
 }
 
+.brand{display:flex;flex-direction:column;gap:5px;line-height:1;min-width:0}
 .brand__t{font-size:15px;font-weight:600;letter-spacing:-.02em}
+.brand__s{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);white-space:nowrap;font-weight:500}
 .brand__dot{color:var(--acc)}
 .nav__in{gap:18px}
-@media(max-width:760px){ .nav__links{display:none} .brand__t{font-size:14px} }
+@media(max-width:760px){
+  .nav__links{display:none}
+  .brand__t{font-size:14px}
+  .nav__in{height:64px;flex-wrap:nowrap;gap:10px;align-items:center}
+  .nav__right{margin-left:auto;display:flex;flex-wrap:nowrap;align-items:center;gap:0}
+  .burger{display:none!important}
+  .nav__right .btn{padding:9px 13px;font-size:11px;letter-spacing:.05em;gap:6px;white-space:nowrap}
+  .nav__right .btn svg{width:12px;height:12px}
+  .brand__s{font-size:8px;letter-spacing:.14em}
+}
+@media(max-width:360px){ .brand__s{display:none} }
 </style>
 </head>
 <body>
@@ -347,6 +359,7 @@ h1 .serif{color:var(--ink);letter-spacing:-.02em}
   <div class="wrap nav__in">
     <a class="brand" href="#top" aria-label="arsh.visuals, home">
       <span class="brand__t">arsh<span class="brand__dot">.</span>visuals</span>
+      <span class="brand__s">Pages for local shops · Ludhiana</span>
     </a>
     <nav class="nav__links" aria-label="Sections">
       <a href="#work">Work</a>
