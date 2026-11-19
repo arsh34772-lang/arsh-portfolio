@@ -416,19 +416,38 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
 </style>
 <style id="snake">
 .hero{position:relative}
-.snake{position:absolute;left:0;right:0;top:-6vh;height:min(820px,96vh);z-index:1;pointer-events:none;overflow:hidden}
-.snake svg{width:100%;height:100%}
-.snk{fill:none;stroke:url(#snkG);stroke-linecap:round;stroke-width:1.35}
-.snk--b{stroke-width:3.2;opacity:.18;filter:blur(10px)}
-.snk--1{opacity:.9}
-.snk--2{opacity:.5}
-.snk--3{opacity:.28}
-.snk--run{stroke:#CFE8FF;stroke-width:2.1;stroke-dasharray:95 2500;filter:drop-shadow(0 0 8px #4AA8FF);animation:snkRun 10s linear infinite}
-@keyframes snkRun{0%{stroke-dashoffset:2595}100%{stroke-dashoffset:0}}
-.snk--run2{stroke:#9B7CFF;stroke-width:1.6;stroke-dasharray:40 2500;animation:snkRun2 13s linear infinite}
-@keyframes snkRun2{0%{stroke-dashoffset:0}100%{stroke-dashoffset:2540}}
-@media(max-width:760px){.snake{height:min(560px,72vh);top:-2vh;opacity:.9}}
-@media (prefers-reduced-motion:reduce){.snk--run,.snk--run2{animation:none}}
+.streaks{position:absolute;left:-2%;right:-2%;top:-8vh;height:min(900px,104vh);z-index:1;pointer-events:none;overflow:hidden}
+.streaks svg{width:100%;height:100%;animation:stkDrift 26s ease-in-out infinite alternate}
+.stk{fill:none;stroke:url(#stkG);stroke-linecap:round}
+.stk-glow .stk{opacity:.16;filter:blur(11px)}
+.stk-mid .stk{opacity:.55}
+.stk-fine .stk{opacity:.26}
+.stk-run{fill:none;stroke:#DFF3FF;stroke-width:2;stroke-linecap:round;stroke-dasharray:110 2600;
+  filter:drop-shadow(0 0 9px #5FD7FF);animation:stkRun 9s linear infinite}
+.stk-run2{fill:none;stroke:#9B8CFF;stroke-width:1.6;stroke-linecap:round;stroke-dasharray:50 2600;
+  animation:stkRun2 14s linear infinite}
+@keyframes stkRun{0%{stroke-dashoffset:2710}100%{stroke-dashoffset:0}}
+@keyframes stkRun2{0%{stroke-dashoffset:0}100%{stroke-dashoffset:2650}}
+@keyframes stkDrift{from{transform:translate3d(-10px,6px,0)}to{transform:translate3d(10px,-8px,0)}}
+
+.hero__card{backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  background:linear-gradient(165deg,rgba(16,24,44,.72),rgba(8,12,22,.62))!important;
+  border:1px solid rgba(122,168,255,.20)!important;
+  box-shadow:0 30px 80px -40px rgba(45,123,255,.55),inset 0 1px 0 rgba(255,255,255,.06)}
+
+.hero__stats{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;
+  margin-top:clamp(26px,4vw,44px);border-top:1px solid var(--line)}
+.hero__stats div{padding:16px 0 0;display:flex;flex-direction:column;gap:5px}
+.hero__stats b{font-size:clamp(16px,1.5vw,20px);font-weight:500;letter-spacing:-.02em;color:var(--ink)}
+.hero__stats span{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);line-height:1.4}
+
+@media(max-width:760px){
+  .streaks{height:min(620px,80vh);top:-2vh;left:-6%;right:-6%}
+  .stk-mid .stk{opacity:.42}
+  .hero__stats{grid-template-columns:1fr 1fr;gap:16px 14px}
+  .hero__stats div{padding:14px 0 0}
+}
+@media (prefers-reduced-motion:reduce){.streaks svg,.stk-run,.stk-run2{animation:none}}
 </style>
 </head>
 <body>
@@ -473,25 +492,27 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
 <main id="top">
 
   <section class="hero">
-    <div class="snake" aria-hidden="true">
+    <div class="streaks" aria-hidden="true">
       <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
         <defs>
-          <linearGradient id="snkG" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#2D7BFF"/>
-            <stop offset=".42" stop-color="#5FD7FF"/>
-            <stop offset=".72" stop-color="#2D7BFF"/>
+          <linearGradient id="stkG" x1="1" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#4DA3FF"/>
+            <stop offset=".35" stop-color="#5FD7FF"/>
+            <stop offset=".62" stop-color="#2D7BFF"/>
+            <stop offset=".85" stop-color="#7C9BFF"/>
             <stop offset="1" stop-color="#8B6BFF"/>
           </linearGradient>
+          <radialGradient id="stkGlow" cx=".82" cy=".12" r=".55">
+            <stop offset="0" stop-color="#2D7BFF" stop-opacity=".5"/>
+            <stop offset="1" stop-color="#2D7BFF" stop-opacity="0"/>
+          </radialGradient>
         </defs>
-        <g class="snk--b">
-          <path class="snk" d="M1480 -60C1200 20 1130 190 940 250C750 310 590 250 470 350C350 450 430 560 640 600C850 640 930 710 860 820C810 900 680 940 520 980"/>
-        </g>
-        <path class="snk snk--3" transform="translate(0,-9)" d="M1480 -60C1200 20 1130 190 940 250C750 310 590 250 470 350C350 450 430 560 640 600C850 640 930 710 860 820C810 900 680 940 520 980"/>
-        <path class="snk snk--2" transform="translate(0,-3)" d="M1480 -60C1200 20 1130 190 940 250C750 310 590 250 470 350C350 450 430 560 640 600C850 640 930 710 860 820C810 900 680 940 520 980"/>
-        <path class="snk snk--1" d="M1480 -60C1200 20 1130 190 940 250C750 310 590 250 470 350C350 450 430 560 640 600C850 640 930 710 860 820C810 900 680 940 520 980"/>
-        <path class="snk snk--3" transform="translate(0,6)" d="M1480 -60C1200 20 1130 190 940 250C750 310 590 250 470 350C350 450 430 560 640 600C850 640 930 710 860 820C810 900 680 940 520 980"/>
-        <path class="snk snk--run" d="M1480 -60C1200 20 1130 190 940 250C750 310 590 250 470 350C350 450 430 560 640 600C850 640 930 710 860 820C810 900 680 940 520 980"/>
-        <path class="snk snk--run2" d="M1480 -60C1200 20 1130 190 940 250C750 310 590 250 470 350C350 450 430 560 640 600C850 640 930 710 860 820C810 900 680 940 520 980"/>
+        <rect width="1440" height="900" fill="url(#stkGlow)"/>
+        <g class="stk-glow"><path class="stk" stroke-width="3.4" d="M1560 -80C1240 60 1120 180 980 300C860 400 700 430 520 520"/><path class="stk" stroke-width="3.4" d="M1500 40C1200 130 1080 230 960 330C820 450 660 470 470 560"/><path class="stk" stroke-width="3.4" d="M1520 220C1230 260 1100 330 990 380C840 450 700 560 560 660"/><path class="stk" stroke-width="3.4" d="M1480 420C1200 420 1080 450 950 520C800 600 660 660 520 760"/><path class="stk" stroke-width="3.4" d="M1460 620C1180 600 1050 620 920 690C780 760 640 800 500 860"/><path class="stk" stroke-width="3.4" d="M1440 800C1160 760 1000 780 860 840"/><path class="stk" stroke-width="3.4" d="M1560 -40C1300 200 1180 380 1060 520C940 660 820 760 700 880"/><path class="stk" stroke-width="3.4" d="M1620 120C1320 150 1150 260 1010 360C870 460 730 500 600 590"/></g>
+        <g class="stk-mid"><path class="stk" stroke-width="1.5" d="M1560 -80C1240 60 1120 180 980 300C860 400 700 430 520 520"/><path class="stk" stroke-width="1.5" d="M1500 40C1200 130 1080 230 960 330C820 450 660 470 470 560"/><path class="stk" stroke-width="1.5" d="M1520 220C1230 260 1100 330 990 380C840 450 700 560 560 660"/><path class="stk" stroke-width="1.5" d="M1480 420C1200 420 1080 450 950 520C800 600 660 660 520 760"/><path class="stk" stroke-width="1.5" d="M1460 620C1180 600 1050 620 920 690C780 760 640 800 500 860"/><path class="stk" stroke-width="1.5" d="M1440 800C1160 760 1000 780 860 840"/><path class="stk" stroke-width="1.5" d="M1560 -40C1300 200 1180 380 1060 520C940 660 820 760 700 880"/><path class="stk" stroke-width="1.5" d="M1620 120C1320 150 1150 260 1010 360C870 460 730 500 600 590"/></g>
+        <g class="stk-fine"><path class="stk" stroke-width="0.85" d="M1560 -80C1240 60 1120 180 980 300C860 400 700 430 520 520"/><path class="stk" stroke-width="0.85" d="M1500 40C1200 130 1080 230 960 330C820 450 660 470 470 560"/><path class="stk" stroke-width="0.85" d="M1520 220C1230 260 1100 330 990 380C840 450 700 560 560 660"/><path class="stk" stroke-width="0.85" d="M1480 420C1200 420 1080 450 950 520C800 600 660 660 520 760"/><path class="stk" stroke-width="0.85" d="M1460 620C1180 600 1050 620 920 690C780 760 640 800 500 860"/><path class="stk" stroke-width="0.85" d="M1440 800C1160 760 1000 780 860 840"/><path class="stk" stroke-width="0.85" d="M1560 -40C1300 200 1180 380 1060 520C940 660 820 760 700 880"/><path class="stk" stroke-width="0.85" d="M1620 120C1320 150 1150 260 1010 360C870 460 730 500 600 590"/></g>
+        <path class="stk-run" d="M1500 40C1200 130 1080 230 960 330C820 450 660 470 470 560"/>
+        <path class="stk-run2" d="M1520 220C1230 260 1100 330 990 380C840 450 700 560 560 660"/>
       </svg>
     </div>
     <div class="wrap hero__grid">
@@ -525,6 +546,13 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
         </div>
         <div class="hc__foot"><span>+91 62839 70879</span><span>9 am – 9 pm, daily</span></div>
       </aside>
+
+      <div class="hero__stats rv">
+        <div><b>&#8377;12,999</b><span>One page, flat</span></div>
+        <div><b>7 days</b><span>Design to live</span></div>
+        <div><b>4 pages</b><span>Built for local shops</span></div>
+        <div><b>&#8377;999/mo</b><span>Care plan, optional</span></div>
+      </div>
 
   </section>
 
