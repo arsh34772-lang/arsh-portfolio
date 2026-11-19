@@ -58,10 +58,10 @@ main,header,footer{position:relative;z-index:3}
 .nav{position:fixed;top:0;left:0;right:0;z-index:60;transition:background .4s,border-color .4s,backdrop-filter .4s}
 .nav.stuck{background:rgba(10,8,6,.72);backdrop-filter:blur(18px) saturate(130%);
   -webkit-backdrop-filter:blur(18px) saturate(130%);border-bottom:1px solid var(--line-soft)}
-.nav__in{display:flex;align-items:center;gap:clamp(14px,2vw,34px);height:70px}
+.nav__in{display:flex;align-items:center;justify-content:space-between;gap:14px;height:72px;position:relative}
 .logo{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:600;letter-spacing:-.01em;flex:none}
 .logo svg{width:22px;height:22px}
-.nav__links{display:flex;gap:clamp(14px,1.8vw,28px);margin-left:8px}
+.nav__links{display:flex;gap:clamp(16px,2vw,30px);position:absolute;left:50%;transform:translateX(-50%)}
 .nav__links a{font-size:13px;color:var(--muted);transition:color .2s}
 .nav__links a:hover{color:var(--ink)}
 .nav__status{display:flex;align-items:center;gap:7px;margin-left:auto;font-size:11px;letter-spacing:.06em;color:var(--muted)}
@@ -83,7 +83,6 @@ main,header,footer{position:relative;z-index:3}
 .burger span::before{top:-5px}.burger span::after{top:5px}
 @media(max-width:1080px){
   .nav__links,.nav__status{display:none}
-  .burger{display:flex}
   .nav__in{justify-content:space-between}
 }
 /* mobile sheet */
@@ -352,20 +351,26 @@ h1 .serif{color:var(--ink);letter-spacing:-.02em}
   .rv{opacity:1;transform:none}.hline>span{transform:none}
 }
 
-.brand{display:flex;flex-direction:column;gap:5px;line-height:1;min-width:0}
-.brand__t{font-size:15px;font-weight:600;letter-spacing:-.02em}
-.brand__s{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);white-space:nowrap;font-weight:500}
+.brand{display:flex;align-items:center;gap:10px;line-height:1;min-width:0}
+.brand__mark{width:30px;height:30px;border-radius:9px;overflow:hidden;flex:none;display:block;border:1px solid rgba(245,239,230,.1)}
+.brand__mark img{width:100%;height:100%;display:block;object-fit:cover}
+.brand__txt{display:flex;flex-direction:column;gap:4px;min-width:0}
+.brand__t{font-size:15px;font-weight:600;letter-spacing:-.02em;white-space:nowrap}
+.brand__s{font-size:7.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);white-space:nowrap;font-weight:500;opacity:.8}
 .brand__dot{color:var(--acc)}
 .nav__in{gap:18px}
 @media(max-width:760px){
   .nav__links{display:none}
   .brand__t{font-size:14px}
-  .nav__in{height:64px;flex-wrap:nowrap;gap:10px;align-items:center}
+  .nav__in{height:64px;flex-wrap:nowrap;gap:8px;align-items:center}
   .nav__right{margin-left:auto;display:flex;flex-wrap:nowrap;align-items:center;gap:0}
   .burger{display:none!important}
-  .nav__right .btn{padding:9px 13px;font-size:11px;letter-spacing:.05em;gap:6px;white-space:nowrap}
-  .nav__right .btn svg{width:12px;height:12px}
-  .brand__s{font-size:8px;letter-spacing:.14em}
+  .nav__right .btn{padding:9px 12px;font-size:10.5px;letter-spacing:.04em;gap:5px;white-space:nowrap}
+  .nav__right .btn svg{width:11px;height:11px}
+  .brand{gap:8px}
+  .brand__mark{width:27px;height:27px;border-radius:8px}
+  .brand__t{font-size:13.5px}
+  .brand__s{font-size:7px;letter-spacing:.13em}
 }
 @media(max-width:360px){ .brand__s{display:none} }
 /* ---- mobile rhythm (last in cascade) ---- */
@@ -397,8 +402,11 @@ h1 .serif{color:var(--ink);letter-spacing:-.02em}
 <header class="nav" id="nav">
   <div class="wrap nav__in">
     <a class="brand" href="#top" aria-label="arsh.visuals, home">
-      <span class="brand__t">arsh<span class="brand__dot">.</span>visuals</span>
-      <span class="brand__s">Pages for local shops · Ludhiana</span>
+      <span class="brand__mark"><img src="data:image/webp;base64,UklGRuQCAABXRUJQVlA4INgCAACQEQCdASpgAGAAPj0ejESiIaERXVT4IAPEtIAK4g07nw/7LZMh69+Sv4x8KT6BX5z3gjI+kR/jv+D1gz+X/9X+q+rV/peVD5+/3XuF/yj+o/63gAP2AGIj17zwDiZ4Vr16cgtg8Fwf51ArqrPGANrHixvcr43kMTqffgg1qpFhUL0Psu+ICmXhOIaRfjVeClIDp4z4AAD8Epv+2uGQyvxi+KW1K733vFaQ94N2rSg1DgaOrSQOL1Xs71//4HteifUyZ+7dJUNYU82q1x0QEikaKe9YUX1vo3mdr1Xb9gxm/erEHZ9cd18CK1rEwgZE4HBx8ny2mNl9sz2tRH8tXXoU6ufeGtMGlAdqQ1ddAQLQepvS7v1uGnPwOFEmibir76jV649Y3SrDSJchqicyd4QNnF4y+/HSfrsB+INkTGJfLsdVMPm22F9mqscGuE3HQ2yf+av/Nedf2Uxk2jIrtk3fXE4IEMxZf8THHbx5SS/b8fIkoWVn9giUqb/aeeOIn8SydCRzN6cRHRRtm+HtN91MisvPrtPs/Ec1V2hzy1JOr/EenP7Z6ECD/PVeQLb9Jg78iVaHnDIS8o//lxvzyjEMxtByTkM8i0PBfU1DSri2qWzRc2Zf/te8Co3hd6L5D3Mc13lMeS71pKl8UuADROZzF7Rop/Yt48+yDQvAVxeR5N/8DNFOw5hcoLgtrhVBiydVXHPoKBXF1sO96NanrpAZDKyxSyYxtqqgcTTjpqM632uU4SqRZtgIhcCvUhxHUbCJwW/sIlUlEHipakqTcrrQdDfwych5WjgOAkdn8Iirt42/Klq/vj7ubPTDCfr31fBDeNZmXXC+dGdYgnTtYFngV+SLMSblukRvyx4pA/b6X8hmQIADfJzjyyfPphw/8S96/M5XA/yjuEuDXGx5mUzzLnsp2wAQF+Sf5doU17gToXNer4u19HPz8rzpiaNwb/bm+UIT91gAAA==" alt="" width="30" height="30"></span>
+      <span class="brand__txt">
+        <span class="brand__t">arsh<span class="brand__dot">.</span>visuals</span>
+        <span class="brand__s">Pages for local shops</span>
+      </span>
     </a>
     <nav class="nav__links" aria-label="Sections">
       <a href="#work">Work</a>
@@ -409,7 +417,6 @@ h1 .serif{color:var(--ink);letter-spacing:-.02em}
     </nav>
     <div class="nav__right">
       <a class="btn btn--acc" href="https://wa.me/916283970879?text=Hi%20Arshdeep%2C%20I%20saw%20your%20site.%20My%20shop%20is%20___%20and%20we%20sell%20___." target="_blank" rel="noopener">Start a page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h13M12 5l7 7-7 7"/></svg></a>
-      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
     </div>
   </div>
 </header>
