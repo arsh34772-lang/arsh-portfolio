@@ -425,8 +425,8 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
 </style>
 <style id="snake">
 .hero{position:relative;overflow:visible}
-.gl{position:absolute;inset:-6% -3% auto;width:106%;height:min(860px,102vh);z-index:1;
-  pointer-events:none;opacity:1}
+.gl{position:fixed;inset:0;width:100vw;height:100vh;height:100lvh;z-index:0;pointer-events:none;
+  opacity:var(--gl-o,1);filter:blur(var(--gl-b,0px));will-change:opacity,filter;transform:translateZ(0)}
 .hero__card{backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
   background:linear-gradient(165deg,rgba(16,26,16,.72),rgba(8,12,8,.62))!important;
   border:1px solid rgba(207,255,82,.20)!important;
@@ -437,7 +437,6 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
 .hero__stats b{font-size:clamp(16px,1.5vw,20px);font-weight:500;letter-spacing:-.02em;color:var(--ink)}
 .hero__stats span{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);line-height:1.4}
 @media(max-width:760px){
-  .gl{inset:-2% -6% auto;width:112%;height:min(600px,78vh)}
   .hero__stats{grid-template-columns:1fr 1fr;gap:16px 14px}
   .hero__stats div{padding:14px 0 0}
 }
@@ -773,43 +772,46 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
   var vs='attribute vec2 p;void main(){gl_Position=vec4(p,0.0,1.0);}';
   var fs=[
 'precision highp float;',
-'uniform vec2 u_res; uniform float u_t;',
+'uniform vec2 u_res; uniform float u_t; uniform float u_s;',
 'void main(){',
 '  vec2 uv=(gl_FragCoord.xy-0.5*u_res)/u_res.y;',
 '  float asp=u_res.x/u_res.y;',
 '  float t=u_t*0.20;',
-'  vec2 K=vec2(-0.16,0.02);',
+/* knot: hero = a little right of centre; scroll drifts it left then right (video-style) */
+'  float kx=asp*0.07 + asp*0.34*sin(u_s*6.2831*0.85);',
+'  float ky=0.02 - 0.22*u_s;',
+'  vec2 K=vec2(kx,ky);',
 '  float v=0.0;',
-'  for(int i=0;i<5;i++){',
+'  for(int i=0;i<9;i++){',
 '    float fi=float(i);',
-'    float sp=(fi-2.0)/2.0;',
-'    vec2 S=vec2(asp*0.60+0.42*sp,0.58+0.40*sp);',
-'    vec2 C=vec2(asp*(0.22+0.10*sp),0.26+0.16*sp);',
-'    float best=9.0;',
-'    vec2 prev=S;',
-'    for(int j=1;j<=22;j++){',
-'      float tt=float(j)/22.0;',
-'      vec2 pt=(1.-tt)*(1.-tt)*S+2.*(1.-tt)*tt*C+tt*tt*K;',
-'      pt+=vec2(sin(t*0.7+fi*1.1)*0.0060,cos(t*0.55+fi*1.4)*0.0085)*tt*tt;',
+'    float sp=(fi-4.0)/4.0;',
+/* start: top-right edge, fanned; two control points make a real S-curve */
+'    vec2 S=vec2(asp*0.62+0.20*sp, 0.60+0.24*sp);',
+'    vec2 C1=vec2(asp*(0.30+0.05*sp)+0.10*sin(t+fi), 0.50+0.10*sp);',
+'    vec2 C2=vec2(kx+asp*(0.24+0.10*sp), ky-0.30-0.14*sp+0.02*cos(t*0.8+fi));',
+'    float best=9.0; vec2 prev=S;',
+'    for(int j=1;j<=28;j++){',
+'      float tt=float(j)/28.0; float it=1.-tt;',
+'      vec2 pt=it*it*it*S+3.*it*it*tt*C1+3.*it*tt*tt*C2+tt*tt*tt*K;',
+'      pt+=vec2(sin(t*0.7+fi*1.1)*0.004,cos(t*0.55+fi*1.4)*0.006)*tt*tt;',
 '      vec2 pa=uv-prev, ba=pt-prev;',
 '      float hh=clamp(dot(pa,ba)/max(dot(ba,ba),1e-6),0.0,1.0);',
 '      best=min(best,length(pa-ba*hh));',
 '      prev=pt;',
 '    }',
-'    float w=0.0016+0.0010*abs(sp);',
-'    float wide=0.014+0.012*abs(sin(fi*2.3));',
-'    float core=exp(-pow(best/(w*1.6),2.0));',
-'    float body=exp(-pow(best/(w*6.0+wide),2.0))*0.44;',
-'    float halo=exp(-pow(best/(0.060+wide*1.8),2.0))*0.10;',
-'    v+=(core+body+halo)*(0.98-0.34*abs(sp));',
+'    float w=0.0007+0.0004*abs(sp);',
+'    float wide=0.008+0.008*abs(sin(fi*2.3));',
+'    float core=exp(-pow(best/(w*1.5),2.0));',
+'    float body=exp(-pow(best/(w*7.0+wide),2.0))*0.34;',
+'    float halo=exp(-pow(best/(0.040+wide*1.6),2.0))*0.07;',
+'    v+=(core+body+halo)*(0.95-0.30*abs(sp));',
 '  }',
-'  float hot=exp(-length((uv-K)*vec2(1.25,2.0))*3.2);',
-'  v*=0.46+hot*0.42;',
-'  v*=smoothstep(0.0,0.12,0.5-abs(uv.y));',
+'  float hot=exp(-length((uv-K)*vec2(1.25,2.0))*3.4);',
+'  v*=(asp<0.8?0.40:0.50)+hot*(asp<0.8?0.22:0.40);',
 '  vec3 lime=vec3(0.812,1.0,0.322);',
 '  vec3 core=vec3(0.882,1.0,0.569);',
-'  vec3 col=mix(lime,core,clamp(v*1.6-0.5,0.0,1.0))*v*0.50;',
-'  col+=lime*hot*0.05;',
+'  vec3 col=mix(lime,core,clamp(v*1.6-0.5,0.0,1.0))*v*(asp<0.8?0.34:0.55);',
+'  col+=lime*hot*(asp<0.8?0.015:0.04);',
 '  gl_FragColor=vec4(col,clamp(v*1.25,0.0,1.0));',
 '}'].join('\n');
   function sh(t,src){var s=gl.createShader(t);gl.shaderSource(s,src);gl.compileShader(s);
@@ -823,7 +825,8 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
   gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
   var loc=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(loc);
   gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
-  var uRes=gl.getUniformLocation(pr,'u_res'),uT=gl.getUniformLocation(pr,'u_t');
+  var uRes=gl.getUniformLocation(pr,'u_res'),uT=gl.getUniformLocation(pr,'u_t'),uS=gl.getUniformLocation(pr,'u_s');
+  var sc=0;
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var scale=window.innerWidth<700?0.6:0.72;
   function size(){
@@ -833,7 +836,15 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
   }
   size();window.addEventListener('resize',size);
   var t0=performance.now(),vis=true,raf;
-  function frame(){gl.uniform1f(uT,(performance.now()-t0)/1000);gl.drawArrays(gl.TRIANGLES,0,3);}
+  function onScroll(){
+    var y=window.scrollY||0, H=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
+    sc=Math.min(1,y/H);
+    var f=Math.min(1,y/(window.innerHeight*0.85));            /* 0 on hero -> 1 after ~1 screen */
+    cv.style.setProperty('--gl-o',(1-0.78*f).toFixed(3));      /* dim */
+    cv.style.setProperty('--gl-b',(f*7).toFixed(2)+'px');       /* blur */
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  function frame(){gl.uniform1f(uT,(performance.now()-t0)/1000);gl.uniform1f(uS,sc);gl.drawArrays(gl.TRIANGLES,0,3);}
   function loop(){cancelAnimationFrame(raf);(function tick(){if(!vis)return;frame();raf=requestAnimationFrame(tick);})();}
   document.addEventListener('visibilitychange',function(){vis=!document.hidden;if(vis&&!reduce)loop();});
   if(reduce){frame();}else{loop();}
