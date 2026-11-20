@@ -6,110 +6,99 @@
 <meta name="robots" content="noindex,nofollow">
 <title>Light field study — arsh.visuals</title>
 <style>
-  html,body{margin:0;height:100%;background:#050706;overflow:hidden}
-  #lf{position:fixed;inset:0;width:100%;height:100%;display:block}
+  html,body{margin:0;height:100%;background:#030503;overflow:hidden}
+  .lf{position:fixed;inset:0;width:100%;height:100%;display:block}
+  .lf-mob{display:none}
+  .drift{will-change:transform}
+  .da{animation:driftA 20s ease-in-out infinite}
+  .db{animation:driftB 20s ease-in-out infinite}
+  .dc{animation:driftC 20s ease-in-out infinite}
+  .field{animation:breathe 9s ease-in-out infinite}
+  @keyframes driftA{0%{transform:translate3d(-9px,5px,0)}50%{transform:translate3d(9px,-6px,0)}100%{transform:translate3d(-9px,5px,0)}}
+  @keyframes driftB{0%{transform:translate3d(7px,-4px,0)}50%{transform:translate3d(-8px,5px,0)}100%{transform:translate3d(7px,-4px,0)}}
+  @keyframes driftC{0%{transform:translate3d(-5px,3px,0)}50%{transform:translate3d(5px,-3px,0)}100%{transform:translate3d(-5px,3px,0)}}
+  @keyframes breathe{0%,100%{opacity:.94}45%{opacity:1}}
   .tag{position:fixed;left:20px;bottom:18px;font:500 10px/1 ui-sans-serif,system-ui,sans-serif;
-    letter-spacing:.26em;text-transform:uppercase;color:rgba(207,255,82,.55)}
+    letter-spacing:.26em;text-transform:uppercase;color:rgba(207,255,82,.5)}
   .tag b{color:#CFFF52;font-weight:600}
-  @media(max-width:640px){.tag{left:14px;bottom:14px;font-size:9px}}
+  @media(max-width:700px){
+    .lf-desk{display:none} .lf-mob{display:block}
+    .tag{left:14px;bottom:14px;font-size:9px}
+  }
+  @media (prefers-reduced-motion:reduce){.da,.db,.dc,.field{animation:none}}
 </style>
 </head>
 <body>
-<canvas id="lf"></canvas>
+<svg class="lf-desk" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <path id="da0" d="M1520 -60C1300 60 1150 170 960 235C760 305 610 250 430 370C260 480 120 610 -80 690"/><path id="da1" d="M1460 20C1270 110 1130 200 955 250C780 300 640 270 470 385C300 495 160 620 -60 660"/><path id="da2" d="M1560 40C1330 140 1180 215 1000 285C810 355 690 330 520 430C350 530 220 650 40 700"/><path id="da3" d="M1500 -120C1290 20 1120 140 900 210C700 275 560 300 380 410C220 510 90 590 -70 620"/><path id="da4" d="M1610 -20C1360 90 1210 190 1030 265C850 340 720 380 560 470C400 560 260 660 120 740"/><path id="da5" d="M1440 -40C1250 80 1090 160 890 230C690 300 540 340 360 450C200 545 60 640 -90 700"/><path id="da6" d="M1580 90C1340 180 1200 260 1010 330C820 400 660 420 480 520C330 600 180 690 30 760"/><path id="da7" d="M1490 120C1290 200 1140 250 950 320C760 390 600 430 420 530C270 610 140 700 -40 740"/><path id="db0" d="M-80 300C140 320 300 360 470 400C640 440 780 470 930 430C1080 390 1180 330 1520 280"/><path id="db1" d="M-60 360C160 380 320 400 500 440C680 480 820 500 970 450C1120 400 1220 340 1540 320"/><path id="db2" d="M-100 240C120 270 280 330 450 385C620 440 760 490 910 465C1060 440 1170 370 1500 230"/><path id="db3" d="M-40 330C180 345 340 375 520 415C700 455 840 480 990 440C1140 400 1240 350 1560 300"/><path id="db4" d="M-80 410C140 420 300 440 480 470C660 500 800 520 950 480C1100 440 1200 380 1520 350"/><path id="db5" d="M-60 270C160 300 320 350 490 400C660 450 800 470 950 420C1100 370 1210 320 1540 250"/><path id="db6" d="M-90 390C130 405 290 430 470 465C650 500 790 510 940 465C1090 420 1190 370 1510 330"/><path id="dc0" d="M-60 820C120 790 300 760 470 720C640 680 780 660 930 610C1080 560 1180 520 1500 500"/><path id="dc1" d="M40 880C200 850 340 800 510 750C680 700 820 690 970 640C1120 590 1230 545 1520 530"/><path id="dc2" d="M-80 760C110 745 280 720 450 690C620 660 760 640 910 595C1060 550 1160 520 1480 470"/><path id="dc3" d="M100 900C240 860 380 810 540 765C700 720 840 700 990 655C1140 610 1250 570 1540 555"/><path id="dc4" d="M-40 860C140 830 300 790 470 745C640 700 780 680 930 630C1080 580 1190 540 1500 520"/><path id="dc5" d="M20 780C180 760 330 735 500 700C670 665 810 645 960 600C1110 555 1220 520 1530 490"/><path id="dc6" d="M-100 890C100 850 260 805 430 760C600 715 740 695 890 650C1040 605 1150 565 1470 540"/>
+    <filter id="dhaze" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="40"/></filter>
+    <filter id="douter" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="20"/></filter>
+    <filter id="dinner" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="7"/></filter>
+    <radialGradient id="dmA"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset=".40" stop-color="#fff" stop-opacity=".92"/><stop offset=".76" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="dmB"><stop offset="0" stop-color="#fff" stop-opacity=".38"/><stop offset=".45" stop-color="#fff" stop-opacity=".15"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="dmC"><stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset=".5" stop-color="#fff" stop-opacity=".2"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <mask id="dMA" maskUnits="userSpaceOnUse"><rect width="100%" height="100%" fill="url(#dmA)"/></mask>
+    <mask id="dMB" maskUnits="userSpaceOnUse"><rect width="100%" height="100%" fill="url(#dmB)"/></mask>
+    <mask id="dMC" maskUnits="userSpaceOnUse"><rect width="100%" height="100%" fill="url(#dmC)"/></mask>
+  </defs>
+  <g class="field">
+    
+    <g class="drift dc" filter="url(#haze)"><g stroke="#A8D84A" stroke-width="9.9" fill="none" opacity=".045"><use href="#dc0" opacity="0.55"/><use href="#dc1" opacity="0.42"/><use href="#dc2" opacity="0.62"/><use href="#dc3" opacity="0.38"/><use href="#dc4" opacity="0.48"/><use href="#dc5" opacity="0.58"/><use href="#dc6" opacity="0.44"/></g></g>
+    <g class="drift dc" filter="url(#outer)"><g stroke="#B8F34B" stroke-width="4.5" fill="none" opacity=".10"><use href="#dc0" opacity="0.55"/><use href="#dc1" opacity="0.42"/><use href="#dc2" opacity="0.62"/><use href="#dc3" opacity="0.38"/><use href="#dc4" opacity="0.48"/><use href="#dc5" opacity="0.58"/><use href="#dc6" opacity="0.44"/></g></g>
+    <g class="drift dc" filter="url(#inner)"><g stroke="#CFFF52" stroke-width="2.1" fill="none" opacity=".30"><use href="#dc0" opacity="0.55"/><use href="#dc1" opacity="0.42"/><use href="#dc2" opacity="0.62"/><use href="#dc3" opacity="0.38"/><use href="#dc4" opacity="0.48"/><use href="#dc5" opacity="0.58"/><use href="#dc6" opacity="0.44"/></g></g>
+    <g class="drift dc"><g stroke="#D9FF78" stroke-width="0.9" fill="none" stroke-linecap="round"><use href="#dc0" opacity="0.55"/><use href="#dc1" opacity="0.42"/><use href="#dc2" opacity="0.62"/><use href="#dc3" opacity="0.38"/><use href="#dc4" opacity="0.48"/><use href="#dc5" opacity="0.58"/><use href="#dc6" opacity="0.44"/></g></g>
+    
+    <g class="drift db" filter="url(#haze)"><g stroke="#A8D84A" stroke-width="11.6" fill="none" opacity=".045"><use href="#db0" opacity="0.78"/><use href="#db1" opacity="0.58"/><use href="#db2" opacity="0.7"/><use href="#db3" opacity="0.5"/><use href="#db4" opacity="0.74"/><use href="#db5" opacity="0.62"/><use href="#db6" opacity="0.66"/></g></g>
+    <g class="drift db" filter="url(#outer)"><g stroke="#B8F34B" stroke-width="5.2" fill="none" opacity=".10"><use href="#db0" opacity="0.78"/><use href="#db1" opacity="0.58"/><use href="#db2" opacity="0.7"/><use href="#db3" opacity="0.5"/><use href="#db4" opacity="0.74"/><use href="#db5" opacity="0.62"/><use href="#db6" opacity="0.66"/></g></g>
+    <g class="drift db" filter="url(#inner)"><g stroke="#CFFF52" stroke-width="2.4" fill="none" opacity=".30"><use href="#db0" opacity="0.78"/><use href="#db1" opacity="0.58"/><use href="#db2" opacity="0.7"/><use href="#db3" opacity="0.5"/><use href="#db4" opacity="0.74"/><use href="#db5" opacity="0.62"/><use href="#db6" opacity="0.66"/></g></g>
+    <g class="drift db"><g stroke="#D9FF78" stroke-width="1.05" fill="none" stroke-linecap="round"><use href="#db0" opacity="0.78"/><use href="#db1" opacity="0.58"/><use href="#db2" opacity="0.7"/><use href="#db3" opacity="0.5"/><use href="#db4" opacity="0.74"/><use href="#db5" opacity="0.62"/><use href="#db6" opacity="0.66"/></g></g>
+    
+    <g class="drift da" filter="url(#haze)"><g stroke="#A8D84A" stroke-width="12.6" fill="none" opacity=".045"><use href="#da0" opacity="0.98"/><use href="#da1" opacity="0.86"/><use href="#da2" opacity="0.95"/><use href="#da3" opacity="0.76"/><use href="#da4" opacity="0.92"/><use href="#da5" opacity="0.84"/><use href="#da6" opacity="0.96"/><use href="#da7" opacity="0.88"/></g></g>
+    <g class="drift da" filter="url(#outer)"><g stroke="#B8F34B" stroke-width="5.8" fill="none" opacity=".10"><use href="#da0" opacity="0.98"/><use href="#da1" opacity="0.86"/><use href="#da2" opacity="0.95"/><use href="#da3" opacity="0.76"/><use href="#da4" opacity="0.92"/><use href="#da5" opacity="0.84"/><use href="#da6" opacity="0.96"/><use href="#da7" opacity="0.88"/></g></g>
+    <g class="drift da" filter="url(#inner)"><g stroke="#CFFF52" stroke-width="2.6" fill="none" opacity=".30"><use href="#da0" opacity="0.98"/><use href="#da1" opacity="0.86"/><use href="#da2" opacity="0.95"/><use href="#da3" opacity="0.76"/><use href="#da4" opacity="0.92"/><use href="#da5" opacity="0.84"/><use href="#da6" opacity="0.96"/><use href="#da7" opacity="0.88"/></g></g>
+    <g class="drift da"><g stroke="#D9FF78" stroke-width="1.15" fill="none" stroke-linecap="round"><use href="#da0" opacity="0.98"/><use href="#da1" opacity="0.86"/><use href="#da2" opacity="0.95"/><use href="#da3" opacity="0.76"/><use href="#da4" opacity="0.92"/><use href="#da5" opacity="0.84"/><use href="#da6" opacity="0.96"/><use href="#da7" opacity="0.88"/></g></g>
+    <g mask="url(#dMA)"><g filter="url(#inner)"><g stroke="#EAFFB0" stroke-width="1.7" fill="none" opacity=".55"><use href="#da0" opacity="0.98"/><use href="#da1" opacity="0.86"/><use href="#da2" opacity="0.95"/><use href="#da3" opacity="0.76"/><use href="#da4" opacity="0.92"/><use href="#da5" opacity="0.84"/><use href="#da6" opacity="0.96"/><use href="#da7" opacity="0.88"/></g></g></g>
+    <g mask="url(#dMA)"><g stroke="#F4FFD2" stroke-width="2.8" fill="none" opacity=".72"><use href="#da0" opacity="0.98"/><use href="#da1" opacity="0.86"/><use href="#da2" opacity="0.95"/><use href="#da3" opacity="0.76"/><use href="#da4" opacity="0.92"/><use href="#da5" opacity="0.84"/><use href="#da6" opacity="0.96"/><use href="#da7" opacity="0.88"/></g></g>
+    <g mask="url(#dMB)"><g filter="url(#inner)"><g stroke="#EAFFB0" stroke-width="1.5" fill="none" opacity=".55"><use href="#db0" opacity="0.78"/><use href="#db1" opacity="0.58"/><use href="#db2" opacity="0.7"/><use href="#db3" opacity="0.5"/><use href="#db4" opacity="0.74"/><use href="#db5" opacity="0.62"/><use href="#db6" opacity="0.66"/></g></g></g>
+    <g mask="url(#dMC)"><g filter="url(#inner)"><g stroke="#EAFFB0" stroke-width="1.2" fill="none" opacity=".55"><use href="#dc0" opacity="0.55"/><use href="#dc1" opacity="0.42"/><use href="#dc2" opacity="0.62"/><use href="#dc3" opacity="0.38"/><use href="#dc4" opacity="0.48"/><use href="#dc5" opacity="0.58"/><use href="#dc6" opacity="0.44"/></g></g></g>
+  </g>
+</svg>
+<svg class="lf-mob" viewBox="0 0 390 844" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <path id="ma0" d="M430 -40C350 40 300 130 250 200C196 274 140 320 60 380C10 418 -30 470 -60 520"/><path id="ma1" d="M400 -10C330 70 280 150 232 218C182 288 128 336 48 396C-4 434 -44 486 -74 536"/><path id="ma2" d="M460 20C372 96 322 176 272 246C220 318 160 360 82 420C28 460 -12 510 -42 562"/><path id="ma3" d="M420 70C346 140 296 210 246 280C194 350 136 392 56 452C2 492 -38 542 -68 594"/><path id="ma4" d="M390 130C320 196 274 262 226 330C176 400 118 440 38 500C-16 540 -56 590 -86 642"/><path id="mb0" d="M-60 300C40 310 100 340 160 380C220 420 270 440 320 400C360 368 400 330 440 300"/><path id="mb1" d="M-60 360C44 372 104 400 164 440C224 480 274 498 324 456C364 422 404 384 444 356"/><path id="mb2" d="M-60 250C40 268 104 300 164 340C224 380 274 404 324 366C364 336 404 300 444 268"/><path id="mb3" d="M-60 410C44 420 108 444 168 482C228 520 278 538 328 498C368 466 408 428 448 402"/><path id="mb4" d="M-60 330C44 340 108 366 168 406C228 446 278 466 328 428C368 396 408 358 448 330"/><path id="mc0" d="M-40 800C60 770 130 720 190 670C250 620 300 580 350 540C380 516 410 500 440 490"/><path id="mc1" d="M20 860C110 828 170 780 228 730C286 680 330 640 378 600C404 578 428 560 452 550"/><path id="mc2" d="M-60 750C40 730 110 690 170 640C230 590 282 552 332 512C362 488 392 470 422 460"/><path id="mc3" d="M60 900C140 862 196 812 252 762C308 712 348 672 396 632C420 610 444 592 468 582"/>
+    <filter id="mhaze" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="28"/></filter>
+    <filter id="mouter" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="14"/></filter>
+    <filter id="minner" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5"/></filter>
+    <radialGradient id="mmA"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset=".40" stop-color="#fff" stop-opacity=".92"/><stop offset=".76" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="mmB"><stop offset="0" stop-color="#fff" stop-opacity=".38"/><stop offset=".45" stop-color="#fff" stop-opacity=".15"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="mmC"><stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset=".5" stop-color="#fff" stop-opacity=".2"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <mask id="mMA" maskUnits="userSpaceOnUse"><rect width="100%" height="100%" fill="url(#mmA)"/></mask>
+    <mask id="mMB" maskUnits="userSpaceOnUse"><rect width="100%" height="100%" fill="url(#mmB)"/></mask>
+    <mask id="mMC" maskUnits="userSpaceOnUse"><rect width="100%" height="100%" fill="url(#mmC)"/></mask>
+  </defs>
+  <g class="field">
+    
+    <g class="drift dc" filter="url(#haze)"><g stroke="#A8D84A" stroke-width="8.8" fill="none" opacity=".045"><use href="#mc0" opacity="0.52"/><use href="#mc1" opacity="0.4"/><use href="#mc2" opacity="0.58"/><use href="#mc3" opacity="0.44"/></g></g>
+    <g class="drift dc" filter="url(#outer)"><g stroke="#B8F34B" stroke-width="4.0" fill="none" opacity=".10"><use href="#mc0" opacity="0.52"/><use href="#mc1" opacity="0.4"/><use href="#mc2" opacity="0.58"/><use href="#mc3" opacity="0.44"/></g></g>
+    <g class="drift dc" filter="url(#inner)"><g stroke="#CFFF52" stroke-width="1.8" fill="none" opacity=".30"><use href="#mc0" opacity="0.52"/><use href="#mc1" opacity="0.4"/><use href="#mc2" opacity="0.58"/><use href="#mc3" opacity="0.44"/></g></g>
+    <g class="drift dc"><g stroke="#D9FF78" stroke-width="0.8" fill="none" stroke-linecap="round"><use href="#mc0" opacity="0.52"/><use href="#mc1" opacity="0.4"/><use href="#mc2" opacity="0.58"/><use href="#mc3" opacity="0.44"/></g></g>
+    
+    <g class="drift db" filter="url(#haze)"><g stroke="#A8D84A" stroke-width="9.9" fill="none" opacity=".045"><use href="#mb0" opacity="0.88"/><use href="#mb1" opacity="0.64"/><use href="#mb2" opacity="0.8"/><use href="#mb3" opacity="0.56"/><use href="#mb4" opacity="0.72"/></g></g>
+    <g class="drift db" filter="url(#outer)"><g stroke="#B8F34B" stroke-width="4.5" fill="none" opacity=".10"><use href="#mb0" opacity="0.88"/><use href="#mb1" opacity="0.64"/><use href="#mb2" opacity="0.8"/><use href="#mb3" opacity="0.56"/><use href="#mb4" opacity="0.72"/></g></g>
+    <g class="drift db" filter="url(#inner)"><g stroke="#CFFF52" stroke-width="2.1" fill="none" opacity=".30"><use href="#mb0" opacity="0.88"/><use href="#mb1" opacity="0.64"/><use href="#mb2" opacity="0.8"/><use href="#mb3" opacity="0.56"/><use href="#mb4" opacity="0.72"/></g></g>
+    <g class="drift db"><g stroke="#D9FF78" stroke-width="0.9" fill="none" stroke-linecap="round"><use href="#mb0" opacity="0.88"/><use href="#mb1" opacity="0.64"/><use href="#mb2" opacity="0.8"/><use href="#mb3" opacity="0.56"/><use href="#mb4" opacity="0.72"/></g></g>
+    
+    <g class="drift da" filter="url(#haze)"><g stroke="#A8D84A" stroke-width="11.0" fill="none" opacity=".045"><use href="#ma0" opacity="0.92"/><use href="#ma1" opacity="0.7"/><use href="#ma2" opacity="0.86"/><use href="#ma3" opacity="0.62"/><use href="#ma4" opacity="0.78"/></g></g>
+    <g class="drift da" filter="url(#outer)"><g stroke="#B8F34B" stroke-width="5.0" fill="none" opacity=".10"><use href="#ma0" opacity="0.92"/><use href="#ma1" opacity="0.7"/><use href="#ma2" opacity="0.86"/><use href="#ma3" opacity="0.62"/><use href="#ma4" opacity="0.78"/></g></g>
+    <g class="drift da" filter="url(#inner)"><g stroke="#CFFF52" stroke-width="2.3" fill="none" opacity=".30"><use href="#ma0" opacity="0.92"/><use href="#ma1" opacity="0.7"/><use href="#ma2" opacity="0.86"/><use href="#ma3" opacity="0.62"/><use href="#ma4" opacity="0.78"/></g></g>
+    <g class="drift da"><g stroke="#D9FF78" stroke-width="1.0" fill="none" stroke-linecap="round"><use href="#ma0" opacity="0.92"/><use href="#ma1" opacity="0.7"/><use href="#ma2" opacity="0.86"/><use href="#ma3" opacity="0.62"/><use href="#ma4" opacity="0.78"/></g></g>
+    <g mask="url(#mMA)"><g filter="url(#inner)"><g stroke="#EAFFB0" stroke-width="1.5" fill="none" opacity=".55"><use href="#ma0" opacity="0.92"/><use href="#ma1" opacity="0.7"/><use href="#ma2" opacity="0.86"/><use href="#ma3" opacity="0.62"/><use href="#ma4" opacity="0.78"/></g></g></g>
+    <g mask="url(#mMA)"><g stroke="#F4FFD2" stroke-width="2.4" fill="none" opacity=".72"><use href="#ma0" opacity="0.92"/><use href="#ma1" opacity="0.7"/><use href="#ma2" opacity="0.86"/><use href="#ma3" opacity="0.62"/><use href="#ma4" opacity="0.78"/></g></g>
+    <g mask="url(#mMB)"><g filter="url(#inner)"><g stroke="#EAFFB0" stroke-width="1.3" fill="none" opacity=".55"><use href="#mb0" opacity="0.88"/><use href="#mb1" opacity="0.64"/><use href="#mb2" opacity="0.8"/><use href="#mb3" opacity="0.56"/><use href="#mb4" opacity="0.72"/></g></g></g>
+    <g mask="url(#mMC)"><g filter="url(#inner)"><g stroke="#EAFFB0" stroke-width="1.0" fill="none" opacity=".55"><use href="#mc0" opacity="0.52"/><use href="#mc1" opacity="0.4"/><use href="#mc2" opacity="0.58"/><use href="#mc3" opacity="0.44"/></g></g></g>
+  </g>
+</svg>
 <div class="tag">light field study · <b>arsh.visuals</b></div>
-<script>
-(function(){
-  var cv=document.getElementById('lf');
-  var gl=cv.getContext('webgl',{antialias:false,alpha:false,premultipliedAlpha:false});
-  if(!gl){document.body.style.background='#050706';return;}
-  var vs='attribute vec2 p;void main(){gl_Position=vec4(p,0.0,1.0);}';
-  var fs=[
-'precision highp float;',
-'uniform vec2 u_res; uniform float u_t; uniform float u_px;',
-'float hash(float n){return fract(sin(n*127.1)*43758.5453);}',
-// one silk strand: smooth multi-sine curve in its own rotated frame
-'float strand(vec2 p,float ang,float freq,float amp,float ph,float t,float w){',
-'  float c=cos(ang), s=sin(ang);',
-'  vec2 q=vec2(p.x*c-p.y*s, p.x*s+p.y*c);',
-'  float A=q.x*freq+ph+t*0.31;',
-'  float B=q.x*freq*2.31-ph*1.7+t*0.19;',
-'  float y=sin(A)*amp+sin(B)*amp*0.40;',
-'  float dy=cos(A)*amp*freq+cos(B)*amp*0.40*freq*2.31;',
-'  float d=abs(q.y-y)/sqrt(1.0+dy*dy);',
-'  float ww=max(w,1.6*u_px);',
-'  float k=d/ww;',
-'  float core=exp(-k*k);',
-'  float g=d/(ww*7.0);',
-'  return core+exp(-g*g)*0.105;',
-'}',
-'void main(){',
-'  vec2 uv=(gl_FragCoord.xy-0.5*u_res)/u_res.y;',
-'  float asp=u_res.x/u_res.y;',
-'  float t=u_t;',
-'  vec3 acc=vec3(0.0);',
-'  float wsum=0.0;',
-// three depth layers: near (thin, bright), mid, far (wide, dim, slower)
-'  for(int i=0;i<8;i++){',
-'    float fi=float(i), h=hash(fi+1.0), h2=hash(fi+7.3), h3=hash(fi+13.7);',
-'    float ang=(h-0.5)*1.25;',
-'    float freq=0.80+h2*1.30;',
-'    float amp=0.13+h3*0.22;',
-'    float ph=h*6.2831;',
-'    float w=0.0011+0.0007*h3;',
-'    float v=strand(uv*vec2(1.0,1.0),ang,freq,amp,ph,t*0.9,w);',
-'    float b=0.50+0.50*h2;',
-'    acc+=vec3(0.812,1.0,0.322)*v*b; wsum+=v*b;',
-'  }',
-'  for(int i=0;i<4;i++){',
-'    float fi=float(i)+40.0, h=hash(fi), h2=hash(fi+3.1), h3=hash(fi+9.4);',
-'    float ang=(h-0.5)*1.75;',
-'    float freq=0.55+h2*0.75;',
-'    float amp=0.20+h3*0.26;',
-'    float ph=h*6.2831;',
-'    float w=0.0028+0.0016*h3;',
-'    float v=strand(uv,ang,freq,amp,ph,t*0.55,w);',
-'    float b=0.26+0.24*h2;',
-'    acc+=vec3(0.812,1.0,0.322)*v*b; wsum+=v*b;',
-'  }',
-'  for(int i=0;i<4;i++){',
-'    float fi=float(i)+90.0, h=hash(fi), h2=hash(fi+5.7), h3=hash(fi+11.2);',
-'    float ang=(h-0.5)*2.4;',
-'    float freq=0.32+h2*0.45;',
-'    float amp=0.28+h3*0.30;',
-'    float ph=h*6.2831;',
-'    float w=0.0075+0.004*h3;',
-'    float v=strand(uv,ang,freq,amp,ph,t*0.32,w);',
-'    float b=0.13+0.12*h2;',
-'    acc+=vec3(0.812,1.0,0.322)*v*b; wsum+=v*b;',
-'  }',
-'  vec3 lime=vec3(0.812,1.0,0.322);',
-'  vec3 hot=vec3(0.882,1.0,0.569);',
-'  vec3 col=mix(lime,hot,clamp(wsum*1.15-0.35,0.0,1.0))*wsum;',
-'  col*=1.0-smoothstep(0.58,1.02,length(uv*vec2(0.82,1.0)))*0.30;',
-'  gl_FragColor=vec4(col,1.0);',
-'}'].join('\n');
-  function sh(t,src){var s=gl.createShader(t);gl.shaderSource(s,src);gl.compileShader(s);
-    if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)){document.title='SHADER_ERROR';console.warn(gl.getShaderInfoLog(s));return null;}return s;}
-  var a=sh(gl.VERTEX_SHADER,vs), b=sh(gl.FRAGMENT_SHADER,fs);
-  if(!a||!b) return;
-  var pr=gl.createProgram();gl.attachShader(pr,a);gl.attachShader(pr,b);gl.linkProgram(pr);gl.useProgram(pr);
-  var buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
-  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
-  var loc=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
-  var uRes=gl.getUniformLocation(pr,'u_res'),uT=gl.getUniformLocation(pr,'u_t'),uPx=gl.getUniformLocation(pr,'u_px');
-  cv.addEventListener('webglcontextlost',function(e){e.preventDefault();},false);
-  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var qp=new URLSearchParams(location.search).get('q');
-  var scale=qp?Math.max(0.1,parseFloat(qp)):(window.innerWidth<700?0.70:0.80);
-  function size(){var w=Math.max(2,Math.floor(innerWidth*scale)),h=Math.max(2,Math.floor(innerHeight*scale));
-    cv.width=w;cv.height=h;gl.viewport(0,0,w,h);gl.uniform2f(uRes,w,h);gl.uniform1f(uPx,1.0/h);}
-  size();addEventListener('resize',size);
-  var t0=performance.now(),raf,vis=true;
-  function frame(){gl.uniform1f(uT,reduce?8.0:(performance.now()-t0)/1000);gl.drawArrays(gl.TRIANGLES,0,3);}
-  function loop(){cancelAnimationFrame(raf);(function tick(){if(!vis)return;frame();raf=requestAnimationFrame(tick);})();}
-  document.addEventListener('visibilitychange',function(){vis=!document.hidden;if(vis&&!reduce)loop();});
-  if(reduce){frame();}else{loop();}
-})();
-</script>
 </body>
 </html>
