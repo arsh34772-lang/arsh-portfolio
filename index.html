@@ -40,7 +40,7 @@ p{margin:0}
 
 /* ---------- signature light trails ---------- */
 body::before{content:"";position:fixed;inset:-20% -10% auto -10%;height:110vh;z-index:0;pointer-events:none;
-  background:radial-gradient(48% 42% at 68% 22%, rgba(207,255,82,.15), rgba(207,255,82,.045) 45%, transparent 72%);
+  background:radial-gradient(48% 42% at 68% 22%, rgba(207,255,82,.075), rgba(207,255,82,.02) 45%, transparent 72%);
   filter:blur(10px);animation:drift 26s ease-in-out infinite alternate}
 @keyframes drift{from{transform:translate3d(-2%,-1%,0) scale(1)}to{transform:translate3d(3%,2%,0) scale(1.08)}}
 @media (prefers-reduced-motion: reduce){body::before{animation:none}}
@@ -780,9 +780,9 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
 '  float t=u_t*0.20;',
 '  vec2 K=vec2(0.19,0.02);',
 '  float v=0.0;',
-'  for(int i=0;i<14;i++){',
+'  for(int i=0;i<5;i++){',
 '    float fi=float(i);',
-'    float sp=(fi-6.5)/6.5;',
+'    float sp=(fi-2.0)/2.0;',
 '    vec2 S=vec2(asp*0.50+0.055*sp,0.50+0.085*sp);',
 '    vec2 C=vec2(asp*(0.20+0.09*sp),0.42+0.26*sp);',
 '    float best=9.0;',
@@ -796,20 +796,20 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
 '      best=min(best,length(pa-ba*hh));',
 '      prev=pt;',
 '    }',
-'    float w=0.0012+0.0009*abs(sp);',
+'    float w=0.0010+0.0008*abs(sp);',
 '    float wide=0.014+0.012*abs(sin(fi*2.3));',
 '    float core=exp(-pow(best/(w*1.6),2.0));',
 '    float body=exp(-pow(best/(w*6.0+wide),2.0))*0.55;',
-'    float halo=exp(-pow(best/(0.050+wide*1.8),2.0))*0.16;',
+'    float halo=exp(-pow(best/(0.055+wide*1.8),2.0))*0.07;',
 '    v+=(core+body+halo)*(0.98-0.34*abs(sp));',
 '  }',
 '  float hot=exp(-length((uv-K)*vec2(1.25,2.0))*3.2);',
-'  v*=0.62+hot*2.9;',
+'  v*=0.42+hot*0.9;',
 '  v*=smoothstep(0.0,0.12,0.5-abs(uv.y));',
 '  vec3 lime=vec3(0.812,1.0,0.322);',
 '  vec3 core=vec3(0.882,1.0,0.569);',
-'  vec3 col=mix(lime,core,clamp(v*1.6-0.5,0.0,1.0))*v;',
-'  col+=lime*hot*0.20;',
+'  vec3 col=mix(lime,core,clamp(v*1.6-0.5,0.0,1.0))*v*0.44;',
+'  col+=lime*hot*0.06;',
 '  gl_FragColor=vec4(col,clamp(v*1.25,0.0,1.0));',
 '}'].join('\n');
   function sh(t,src){var s=gl.createShader(t);gl.shaderSource(s,src);gl.compileShader(s);
