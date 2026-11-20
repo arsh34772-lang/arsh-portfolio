@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Light field study — arsh.visuals</title>
+<style>
+  html,body{margin:0;height:100%;background:#050706;overflow:hidden}
+  #lf{position:fixed;inset:0;width:100%;height:100%;display:block}
+  .tag{position:fixed;left:20px;bottom:18px;font:500 10px/1 ui-sans-serif,system-ui,sans-serif;
+    letter-spacing:.26em;text-transform:uppercase;color:rgba(207,255,82,.55)}
+  .tag b{color:#CFFF52;font-weight:600}
+  @media(max-width:640px){.tag{left:14px;bottom:14px;font-size:9px}}
+</style>
+</head>
+<body>
+<canvas id="lf"></canvas>
+<div class="tag">light field study · <b>arsh.visuals</b></div>
+<script>
+(function(){
+  var cv=document.getElementById('lf');
+  var gl=cv.getContext('webgl',{antialias:false,alpha:false,premultipliedAlpha:false});
+  if(!gl){document.body.style.background='#050706';return;}
+  var vs='attribute vec2 p;void main(){gl_Position=vec4(p,0.0,1.0);}';
+  var fs=[
+'precision highp float;',
+'uniform vec2 u_res; uniform float u_t; uniform float u_px;',
+'float hash(float n){return fract(sin(n*127.1)*43758.5453);}',
+// one silk strand: smooth multi-sine curve in its own rotated frame
+'float strand(vec2 p,float ang,float freq,float amp,float ph,float t,float w){',
+'  float c=cos(ang), s=sin(ang);',
+'  vec2 q=vec2(p.x*c-p.y*s, p.x*s+p.y*c);',
+'  float A=q.x*freq+ph+t*0.31;',
+'  float B=q.x*freq*2.31-ph*1.7+t*0.19;',
+'  float y=sin(A)*amp+sin(B)*amp*0.40;',
+'  float dy=cos(A)*amp*freq+cos(B)*amp*0.40*freq*2.31;',
+'  float d=abs(q.y-y)/sqrt(1.0+dy*dy);',
+'  float ww=max(w,1.6*u_px);',
+'  float k=d/ww;',
+'  float core=exp(-k*k);',
+'  float g=d/(ww*7.0);',
+'  return core+exp(-g*g)*0.105;',
+'}',
+'void main(){',
+'  vec2 uv=(gl_FragCoord.xy-0.5*u_res)/u_res.y;',
+'  float asp=u_res.x/u_res.y;',
+'  float t=u_t;',
+'  vec3 acc=vec3(0.0);',
+'  float wsum=0.0;',
+// three depth layers: near (thin, bright), mid, far (wide, dim, slower)
+'  for(int i=0;i<8;i++){',
+'    float fi=float(i), h=hash(fi+1.0), h2=hash(fi+7.3), h3=hash(fi+13.7);',
+'    float ang=(h-0.5)*1.25;',
+'    float freq=0.80+h2*1.30;',
+'    float amp=0.13+h3*0.22;',
+'    float ph=h*6.2831;',
+'    float w=0.0011+0.0007*h3;',
+'    float v=strand(uv*vec2(1.0,1.0),ang,freq,amp,ph,t*0.9,w);',
+'    float b=0.50+0.50*h2;',
+'    acc+=vec3(0.812,1.0,0.322)*v*b; wsum+=v*b;',
+'  }',
+'  for(int i=0;i<4;i++){',
+'    float fi=float(i)+40.0, h=hash(fi), h2=hash(fi+3.1), h3=hash(fi+9.4);',
+'    float ang=(h-0.5)*1.75;',
+'    float freq=0.55+h2*0.75;',
+'    float amp=0.20+h3*0.26;',
+'    float ph=h*6.2831;',
+'    float w=0.0028+0.0016*h3;',
+'    float v=strand(uv,ang,freq,amp,ph,t*0.55,w);',
+'    float b=0.26+0.24*h2;',
+'    acc+=vec3(0.812,1.0,0.322)*v*b; wsum+=v*b;',
+'  }',
+'  for(int i=0;i<4;i++){',
+'    float fi=float(i)+90.0, h=hash(fi), h2=hash(fi+5.7), h3=hash(fi+11.2);',
+'    float ang=(h-0.5)*2.4;',
+'    float freq=0.32+h2*0.45;',
+'    float amp=0.28+h3*0.30;',
+'    float ph=h*6.2831;',
+'    float w=0.0075+0.004*h3;',
+'    float v=strand(uv,ang,freq,amp,ph,t*0.32,w);',
+'    float b=0.13+0.12*h2;',
+'    acc+=vec3(0.812,1.0,0.322)*v*b; wsum+=v*b;',
+'  }',
+'  vec3 lime=vec3(0.812,1.0,0.322);',
+'  vec3 hot=vec3(0.882,1.0,0.569);',
+'  vec3 col=mix(lime,hot,clamp(wsum*1.15-0.35,0.0,1.0))*wsum;',
+'  col*=1.0-smoothstep(0.58,1.02,length(uv*vec2(0.82,1.0)))*0.30;',
+'  gl_FragColor=vec4(col,1.0);',
+'}'].join('\n');
+  function sh(t,src){var s=gl.createShader(t);gl.shaderSource(s,src);gl.compileShader(s);
+    if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)){document.title='SHADER_ERROR';console.warn(gl.getShaderInfoLog(s));return null;}return s;}
+  var a=sh(gl.VERTEX_SHADER,vs), b=sh(gl.FRAGMENT_SHADER,fs);
+  if(!a||!b) return;
+  var pr=gl.createProgram();gl.attachShader(pr,a);gl.attachShader(pr,b);gl.linkProgram(pr);gl.useProgram(pr);
+  var buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+  var loc=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+  var uRes=gl.getUniformLocation(pr,'u_res'),uT=gl.getUniformLocation(pr,'u_t'),uPx=gl.getUniformLocation(pr,'u_px');
+  cv.addEventListener('webglcontextlost',function(e){e.preventDefault();},false);
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var qp=new URLSearchParams(location.search).get('q');
+  var scale=qp?Math.max(0.1,parseFloat(qp)):(window.innerWidth<700?0.70:0.80);
+  function size(){var w=Math.max(2,Math.floor(innerWidth*scale)),h=Math.max(2,Math.floor(innerHeight*scale));
+    cv.width=w;cv.height=h;gl.viewport(0,0,w,h);gl.uniform2f(uRes,w,h);gl.uniform1f(uPx,1.0/h);}
+  size();addEventListener('resize',size);
+  var t0=performance.now(),raf,vis=true;
+  function frame(){gl.uniform1f(uT,reduce?8.0:(performance.now()-t0)/1000);gl.drawArrays(gl.TRIANGLES,0,3);}
+  function loop(){cancelAnimationFrame(raf);(function tick(){if(!vis)return;frame();raf=requestAnimationFrame(tick);})();}
+  document.addEventListener('visibilitychange',function(){vis=!document.hidden;if(vis&&!reduce)loop();});
+  if(reduce){frame();}else{loop();}
+})();
+</script>
+</body>
+</html>
