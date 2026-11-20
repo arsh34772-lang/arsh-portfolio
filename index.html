@@ -425,8 +425,10 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
 </style>
 <style id="snake">
 .hero{position:relative;overflow:visible}
-.gl{position:fixed;inset:0;width:100vw;height:100vh;height:100lvh;z-index:0;pointer-events:none;
-  opacity:var(--gl-o,1);filter:blur(var(--gl-b,0px));will-change:opacity,filter;transform:translateZ(0)}
+.lfield{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  opacity:var(--lf-o,1);filter:blur(var(--lf-b,0px));will-change:opacity,filter}
+.lfield svg{width:100%;height:100%;display:block}
+.lgroup{transform:translate3d(var(--lf-x,0px),0,0);transition:transform .12s linear}
 .hero__card{backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
   background:linear-gradient(165deg,rgba(16,26,16,.72),rgba(8,12,8,.62))!important;
   border:1px solid rgba(207,255,82,.20)!important;
@@ -443,6 +445,54 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
 </style>
 </head>
 <body>
+<div class="lfield" id="lfield" aria-hidden="true">
+<svg viewBox="0 0 1000 1000" preserveAspectRatio="none">
+ <defs>
+  <filter id="lsoft" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="9"/></filter>
+  <filter id="lmid" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="3.4"/></filter>
+  <filter id="lpill" x="-60%" y="-160%" width="220%" height="420%"><feGaussianBlur stdDeviation="11"/></filter>
+  <linearGradient id="lgrad" x1="0" y1="0" x2="0.35" y2="1">
+   <stop offset="0" stop-color="#8CFF6A" stop-opacity=".95"/>
+   <stop offset=".55" stop-color="#CFFF52" stop-opacity=".95"/>
+   <stop offset="1" stop-color="#B9FF7A" stop-opacity=".85"/>
+  </linearGradient>
+ </defs>
+ <g id="lgroup" class="lgroup">
+  <g filter="url(#lsoft)" opacity=".28" stroke="url(#lgrad)" fill="none" stroke-width="4.5" stroke-linecap="round">
+   <path vector-effect="non-scaling-stroke" d="M320 -70 C 372 70 438 170 500 280 C 552 372 585 520 590 1090"/>
+   <path vector-effect="non-scaling-stroke" d="M375 -70 C 412 70 458 170 500 280 C 560 380 640 540 665 1090"/>
+   <path vector-effect="non-scaling-stroke" d="M428 -70 C 450 80 476 172 500 280 C 570 388 700 560 745 1090"/>
+   <path vector-effect="non-scaling-stroke" d="M500 -70 C 500 90 500 180 500 280 C 580 396 760 580 825 1090"/>
+   <path vector-effect="non-scaling-stroke" d="M572 -70 C 550 80 524 172 500 280 C 588 400 820 590 900 1090"/>
+   <path vector-effect="non-scaling-stroke" d="M625 -70 C 588 70 542 170 500 280 C 596 404 872 600 975 1090"/>
+   <path vector-effect="non-scaling-stroke" d="M680 -70 C 628 70 562 170 500 280 C 604 408 920 610 1050 1090"/>
+  </g>
+  <g filter="url(#lmid)" opacity=".38" stroke="url(#lgrad)" fill="none" stroke-width="1.6" stroke-linecap="round">
+   <path vector-effect="non-scaling-stroke" d="M320 -70 C 372 70 438 170 500 280 C 552 372 585 520 590 1090"/>
+   <path vector-effect="non-scaling-stroke" d="M375 -70 C 412 70 458 170 500 280 C 560 380 640 540 665 1090"/>
+   <path vector-effect="non-scaling-stroke" d="M428 -70 C 450 80 476 172 500 280 C 570 388 700 560 745 1090"/>
+   <path vector-effect="non-scaling-stroke" d="M500 -70 C 500 90 500 180 500 280 C 580 396 760 580 825 1090"/>
+   <path vector-effect="non-scaling-stroke" d="M572 -70 C 550 80 524 172 500 280 C 588 400 820 590 900 1090"/>
+   <path vector-effect="non-scaling-stroke" d="M625 -70 C 588 70 542 170 500 280 C 596 404 872 600 975 1090"/>
+   <path vector-effect="non-scaling-stroke" d="M680 -70 C 628 70 562 170 500 280 C 604 408 920 610 1050 1090"/>
+  </g>
+  <g opacity=".72" stroke="#D6FF7A" fill="none" stroke-width="0.9" stroke-linecap="round">
+   <path vector-effect="non-scaling-stroke" d="M320 -70 C 372 70 438 170 500 280 C 552 372 585 520 590 1090"/>
+   <path vector-effect="non-scaling-stroke" d="M375 -70 C 412 70 458 170 500 280 C 560 380 640 540 665 1090"/>
+   <path vector-effect="non-scaling-stroke" d="M428 -70 C 450 80 476 172 500 280 C 570 388 700 560 745 1090"/>
+   <path vector-effect="non-scaling-stroke" d="M500 -70 C 500 90 500 180 500 280 C 580 396 760 580 825 1090"/>
+   <path vector-effect="non-scaling-stroke" d="M572 -70 C 550 80 524 172 500 280 C 588 400 820 590 900 1090"/>
+   <path vector-effect="non-scaling-stroke" d="M625 -70 C 588 70 542 170 500 280 C 596 404 872 600 975 1090"/>
+   <path vector-effect="non-scaling-stroke" d="M680 -70 C 628 70 562 170 500 280 C 604 408 920 610 1050 1090"/>
+  </g>
+    <g class="lnode">
+   <ellipse cx="500" cy="280" rx="74" ry="10" fill="#CFFF52" opacity=".5" filter="url(#lpill)"/>
+   <ellipse cx="500" cy="280" rx="46" ry="5" fill="#EAFFC2" opacity=".95" filter="url(#lmid)"/>
+   <ellipse cx="500" cy="280" rx="22" ry="2.6" fill="#FFFFFF"/>
+  </g>
+ </g>
+</svg>
+</div>
 
 
 <div class="grain" aria-hidden="true"></div>
@@ -484,7 +534,6 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
 <main id="top">
 
   <section class="hero">
-    <canvas id="gl" class="gl" aria-hidden="true"></canvas>
     <div class="wrap hero__grid">
       <div class="hero__copy">
         <span class="badge"><i></i>Independent designer &nbsp;·&nbsp; Ludhiana</span>
@@ -764,90 +813,24 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
   if (reduce) [].forEach.call(document.querySelectorAll('.rv'), function(el){ el.classList.add('in'); });
 })();
 </script>
+
 <script>
 (function(){
-  var cv=document.getElementById('gl'); if(!cv) return;
-  var gl=cv.getContext('webgl',{antialias:false,alpha:true,premultipliedAlpha:true});
-  if(!gl){cv.style.display='none';return;}
-  var vs='attribute vec2 p;void main(){gl_Position=vec4(p,0.0,1.0);}';
-  var fs=[
-'precision highp float;',
-'uniform vec2 u_res; uniform float u_t; uniform float u_s;',
-'void main(){',
-'  vec2 uv=(gl_FragCoord.xy-0.5*u_res)/u_res.y;',
-'  float asp=u_res.x/u_res.y;',
-'  float t=u_t*0.20;',
-/* knot: hero = a little right of centre; scroll drifts it left then right (video-style) */
-'  float kx=asp*0.07 + asp*0.34*sin(u_s*6.2831*0.85);',
-'  float ky=0.02 - 0.22*u_s;',
-'  vec2 K=vec2(kx,ky);',
-'  float v=0.0;',
-'  for(int i=0;i<9;i++){',
-'    float fi=float(i);',
-'    float sp=(fi-4.0)/4.0;',
-/* start: top-right edge, fanned; two control points make a real S-curve */
-'    vec2 S=vec2(asp*0.62+0.20*sp, 0.60+0.24*sp);',
-'    vec2 C1=vec2(asp*(0.30+0.05*sp)+0.10*sin(t+fi), 0.50+0.10*sp);',
-'    vec2 C2=vec2(kx+asp*(0.24+0.10*sp), ky-0.30-0.14*sp+0.02*cos(t*0.8+fi));',
-'    float best=9.0; vec2 prev=S;',
-'    for(int j=1;j<=28;j++){',
-'      float tt=float(j)/28.0; float it=1.-tt;',
-'      vec2 pt=it*it*it*S+3.*it*it*tt*C1+3.*it*tt*tt*C2+tt*tt*tt*K;',
-'      pt+=vec2(sin(t*0.7+fi*1.1)*0.004,cos(t*0.55+fi*1.4)*0.006)*tt*tt;',
-'      vec2 pa=uv-prev, ba=pt-prev;',
-'      float hh=clamp(dot(pa,ba)/max(dot(ba,ba),1e-6),0.0,1.0);',
-'      best=min(best,length(pa-ba*hh));',
-'      prev=pt;',
-'    }',
-'    float w=0.0007+0.0004*abs(sp);',
-'    float wide=0.008+0.008*abs(sin(fi*2.3));',
-'    float core=exp(-pow(best/(w*1.5),2.0));',
-'    float body=exp(-pow(best/(w*7.0+wide),2.0))*0.34;',
-'    float halo=exp(-pow(best/(0.040+wide*1.6),2.0))*0.07;',
-'    v+=(core+body+halo)*(0.95-0.30*abs(sp));',
-'  }',
-'  float hot=exp(-length((uv-K)*vec2(1.25,2.0))*3.4);',
-'  v*=(asp<0.8?0.40:0.50)+hot*(asp<0.8?0.22:0.40);',
-'  vec3 lime=vec3(0.812,1.0,0.322);',
-'  vec3 core=vec3(0.882,1.0,0.569);',
-'  vec3 col=mix(lime,core,clamp(v*1.6-0.5,0.0,1.0))*v*(asp<0.8?0.34:0.55);',
-'  col+=lime*hot*(asp<0.8?0.015:0.04);',
-'  gl_FragColor=vec4(col,clamp(v*1.25,0.0,1.0));',
-'}'].join('\n');
-  function sh(t,src){var s=gl.createShader(t);gl.shaderSource(s,src);gl.compileShader(s);
-    if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)){console.warn(gl.getShaderInfoLog(s));return null;}return s;}
-  var a=sh(gl.VERTEX_SHADER,vs),b=sh(gl.FRAGMENT_SHADER,fs);
-  if(!a||!b){cv.style.display='none';return;}
-  var pr=gl.createProgram();gl.attachShader(pr,a);gl.attachShader(pr,b);gl.linkProgram(pr);
-  if(!gl.getProgramParameter(pr,gl.LINK_STATUS)){cv.style.display='none';return;}
-  gl.useProgram(pr);
-  var buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
-  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
-  var loc=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(loc);
-  gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
-  var uRes=gl.getUniformLocation(pr,'u_res'),uT=gl.getUniformLocation(pr,'u_t'),uS=gl.getUniformLocation(pr,'u_s');
-  var sc=0;
-  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var scale=window.innerWidth<700?0.6:0.72;
-  function size(){
-    var r=cv.getBoundingClientRect();
-    var w=Math.max(2,Math.floor(r.width*scale)), h=Math.max(2,Math.floor(r.height*scale));
-    cv.width=w;cv.height=h;gl.viewport(0,0,w,h);gl.uniform2f(uRes,w,h);
+  var f=document.getElementById('lfield'), g=document.getElementById('lgroup');
+  if(!f||!g) return;
+  var raf=0;
+  function upd(){
+    var y=window.scrollY||0, vh=window.innerHeight||1;
+    var H=Math.max(1,document.documentElement.scrollHeight-vh);
+    var p=Math.min(1,y/H), q=Math.min(1,y/(vh*0.85));
+    var dx=Math.sin(p*Math.PI*2)*window.innerWidth*0.07;
+    g.style.transform='translate3d('+dx.toFixed(1)+'px,0,0)';
+    f.style.setProperty('--lf-o',(1-0.70*q).toFixed(3));
+    f.style.setProperty('--lf-b',(q*6).toFixed(2)+'px');
+    raf=0;
   }
-  size();window.addEventListener('resize',size);
-  var t0=performance.now(),vis=true,raf;
-  function onScroll(){
-    var y=window.scrollY||0, H=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
-    sc=Math.min(1,y/H);
-    var f=Math.min(1,y/(window.innerHeight*0.85));            /* 0 on hero -> 1 after ~1 screen */
-    cv.style.setProperty('--gl-o',(1-0.78*f).toFixed(3));      /* dim */
-    cv.style.setProperty('--gl-b',(f*7).toFixed(2)+'px');       /* blur */
-  }
-  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
-  function frame(){gl.uniform1f(uT,(performance.now()-t0)/1000);gl.uniform1f(uS,sc);gl.drawArrays(gl.TRIANGLES,0,3);}
-  function loop(){cancelAnimationFrame(raf);(function tick(){if(!vis)return;frame();raf=requestAnimationFrame(tick);})();}
-  document.addEventListener('visibilitychange',function(){vis=!document.hidden;if(vis&&!reduce)loop();});
-  if(reduce){frame();}else{loop();}
+  window.addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(upd);},{passive:true});
+  window.addEventListener('resize',upd);upd();
 })();
 </script>
 </body>
