@@ -415,39 +415,23 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
 }
 </style>
 <style id="snake">
-.hero{position:relative}
-.streaks{position:absolute;left:-2%;right:-2%;top:-8vh;height:min(900px,104vh);z-index:1;pointer-events:none;overflow:hidden}
-.streaks svg{width:100%;height:100%;animation:stkDrift 26s ease-in-out infinite alternate}
-.stk{fill:none;stroke:url(#stkG);stroke-linecap:round}
-.stk-glow .stk{opacity:.16;filter:blur(11px)}
-.stk-mid .stk{opacity:.55}
-.stk-fine .stk{opacity:.26}
-.stk-run{fill:none;stroke:#EAFFD6;stroke-width:2;stroke-linecap:round;stroke-dasharray:110 2600;
-  filter:drop-shadow(0 0 9px #C6FF8A);animation:stkRun 9s linear infinite}
-.stk-run2{fill:none;stroke:#7FFFD8;stroke-width:1.6;stroke-linecap:round;stroke-dasharray:50 2600;
-  animation:stkRun2 14s linear infinite}
-@keyframes stkRun{0%{stroke-dashoffset:2710}100%{stroke-dashoffset:0}}
-@keyframes stkRun2{0%{stroke-dashoffset:0}100%{stroke-dashoffset:2650}}
-@keyframes stkDrift{from{transform:translate3d(-10px,6px,0)}to{transform:translate3d(10px,-8px,0)}}
-
+.hero{position:relative;overflow:visible}
+.gl{position:absolute;inset:-6% -3% auto;width:106%;height:min(860px,102vh);z-index:1;
+  pointer-events:none;mix-blend-mode:screen;opacity:.95}
 .hero__card{backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  background:linear-gradient(165deg,rgba(16,24,44,.72),rgba(8,12,22,.62))!important;
+  background:linear-gradient(165deg,rgba(16,26,16,.72),rgba(8,12,8,.62))!important;
   border:1px solid rgba(160,255,110,.20)!important;
-  box-shadow:0 30px 80px -40px rgba(155,255,60,.55),inset 0 1px 0 rgba(255,255,255,.06)}
-
+  box-shadow:0 30px 80px -40px rgba(155,255,60,.5),inset 0 1px 0 rgba(255,255,255,.06)}
 .hero__stats{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;
   margin-top:clamp(26px,4vw,44px);border-top:1px solid var(--line)}
 .hero__stats div{padding:16px 0 0;display:flex;flex-direction:column;gap:5px}
 .hero__stats b{font-size:clamp(16px,1.5vw,20px);font-weight:500;letter-spacing:-.02em;color:var(--ink)}
 .hero__stats span{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);line-height:1.4}
-
 @media(max-width:760px){
-  .streaks{height:min(620px,80vh);top:-2vh;left:-6%;right:-6%}
-  .stk-mid .stk{opacity:.42}
+  .gl{inset:-2% -6% auto;width:112%;height:min(600px,78vh)}
   .hero__stats{grid-template-columns:1fr 1fr;gap:16px 14px}
   .hero__stats div{padding:14px 0 0}
 }
-@media (prefers-reduced-motion:reduce){.streaks svg,.stk-run,.stk-run2{animation:none}}
 </style>
 </head>
 <body>
@@ -492,29 +476,7 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
 <main id="top">
 
   <section class="hero">
-    <div class="streaks" aria-hidden="true">
-      <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
-        <defs>
-          <linearGradient id="stkG" x1="1" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#9BFF3C"/>
-            <stop offset=".35" stop-color="#C6FF8A"/>
-            <stop offset=".62" stop-color="#7BF04A"/>
-            <stop offset=".85" stop-color="#4DFFC4"/>
-            <stop offset="1" stop-color="#6EE7FF"/>
-          </linearGradient>
-          <radialGradient id="stkGlow" cx=".82" cy=".12" r=".55">
-            <stop offset="0" stop-color="#7BF04A" stop-opacity=".5"/>
-            <stop offset="1" stop-color="#7BF04A" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-        <rect width="1440" height="900" fill="url(#stkGlow)"/>
-        <g class="stk-glow"><path class="stk" stroke-width="3.4" d="M1560 -80C1240 60 1120 180 980 300C860 400 700 430 520 520"/><path class="stk" stroke-width="3.4" d="M1500 40C1200 130 1080 230 960 330C820 450 660 470 470 560"/><path class="stk" stroke-width="3.4" d="M1520 220C1230 260 1100 330 990 380C840 450 700 560 560 660"/><path class="stk" stroke-width="3.4" d="M1480 420C1200 420 1080 450 950 520C800 600 660 660 520 760"/><path class="stk" stroke-width="3.4" d="M1460 620C1180 600 1050 620 920 690C780 760 640 800 500 860"/><path class="stk" stroke-width="3.4" d="M1440 800C1160 760 1000 780 860 840"/><path class="stk" stroke-width="3.4" d="M1560 -40C1300 200 1180 380 1060 520C940 660 820 760 700 880"/><path class="stk" stroke-width="3.4" d="M1620 120C1320 150 1150 260 1010 360C870 460 730 500 600 590"/></g>
-        <g class="stk-mid"><path class="stk" stroke-width="1.5" d="M1560 -80C1240 60 1120 180 980 300C860 400 700 430 520 520"/><path class="stk" stroke-width="1.5" d="M1500 40C1200 130 1080 230 960 330C820 450 660 470 470 560"/><path class="stk" stroke-width="1.5" d="M1520 220C1230 260 1100 330 990 380C840 450 700 560 560 660"/><path class="stk" stroke-width="1.5" d="M1480 420C1200 420 1080 450 950 520C800 600 660 660 520 760"/><path class="stk" stroke-width="1.5" d="M1460 620C1180 600 1050 620 920 690C780 760 640 800 500 860"/><path class="stk" stroke-width="1.5" d="M1440 800C1160 760 1000 780 860 840"/><path class="stk" stroke-width="1.5" d="M1560 -40C1300 200 1180 380 1060 520C940 660 820 760 700 880"/><path class="stk" stroke-width="1.5" d="M1620 120C1320 150 1150 260 1010 360C870 460 730 500 600 590"/></g>
-        <g class="stk-fine"><path class="stk" stroke-width="0.85" d="M1560 -80C1240 60 1120 180 980 300C860 400 700 430 520 520"/><path class="stk" stroke-width="0.85" d="M1500 40C1200 130 1080 230 960 330C820 450 660 470 470 560"/><path class="stk" stroke-width="0.85" d="M1520 220C1230 260 1100 330 990 380C840 450 700 560 560 660"/><path class="stk" stroke-width="0.85" d="M1480 420C1200 420 1080 450 950 520C800 600 660 660 520 760"/><path class="stk" stroke-width="0.85" d="M1460 620C1180 600 1050 620 920 690C780 760 640 800 500 860"/><path class="stk" stroke-width="0.85" d="M1440 800C1160 760 1000 780 860 840"/><path class="stk" stroke-width="0.85" d="M1560 -40C1300 200 1180 380 1060 520C940 660 820 760 700 880"/><path class="stk" stroke-width="0.85" d="M1620 120C1320 150 1150 260 1010 360C870 460 730 500 600 590"/></g>
-        <path class="stk-run" d="M1500 40C1200 130 1080 230 960 330C820 450 660 470 470 560"/>
-        <path class="stk-run2" d="M1520 220C1230 260 1100 330 990 380C840 450 700 560 560 660"/>
-      </svg>
-    </div>
+    <canvas id="gl" class="gl" aria-hidden="true"></canvas>
     <div class="wrap hero__grid">
       <div class="hero__copy">
         <span class="badge"><i></i>Independent designer &nbsp;·&nbsp; Ludhiana</span>
@@ -804,6 +766,80 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     [].forEach.call(document.querySelectorAll('.rv'), function(el){ el.classList.add('in'); });
   }
   if (reduce) [].forEach.call(document.querySelectorAll('.rv'), function(el){ el.classList.add('in'); });
+})();
+</script>
+<script>
+(function(){
+  var cv=document.getElementById('gl'); if(!cv) return;
+  var gl=cv.getContext('webgl',{antialias:false,alpha:true,premultipliedAlpha:false});
+  if(!gl){cv.style.display='none';return;}
+  var vs='attribute vec2 p;void main(){gl_Position=vec4(p,0.0,1.0);}';
+  var fs=[
+'precision highp float;',
+'uniform vec2 u_res; uniform float u_t;',
+'void main(){',
+'  vec2 uv=(gl_FragCoord.xy-0.5*u_res)/u_res.y;',
+'  float asp=u_res.x/u_res.y;',
+'  float t=u_t*0.20;',
+'  vec2 K=vec2(0.19,0.02);',
+'  float v=0.0;',
+'  for(int i=0;i<14;i++){',
+'    float fi=float(i);',
+'    float sp=(fi-6.5)/6.5;',
+'    vec2 S=vec2(asp*0.50+0.055*sp,0.50+0.085*sp);',
+'    vec2 C=vec2(asp*(0.20+0.09*sp),0.42+0.26*sp);',
+'    float best=9.0;',
+'    vec2 prev=S;',
+'    for(int j=1;j<=22;j++){',
+'      float tt=float(j)/22.0;',
+'      vec2 pt=(1.-tt)*(1.-tt)*S+2.*(1.-tt)*tt*C+tt*tt*K;',
+'      pt+=vec2(sin(t+fi)*0.0035,cos(t*0.9+fi*1.3)*0.0055)*tt;',
+'      vec2 pa=uv-prev, ba=pt-prev;',
+'      float hh=clamp(dot(pa,ba)/max(dot(ba,ba),1e-6),0.0,1.0);',
+'      best=min(best,length(pa-ba*hh));',
+'      prev=pt;',
+'    }',
+'    float w=0.0018+0.0011*abs(sp);',
+'    float wide=0.010+0.009*abs(sin(fi*2.3));',
+'    float core=exp(-pow(best/(w*1.6),2.0));',
+'    float body=exp(-pow(best/(w*6.0+wide),2.0))*0.55;',
+'    float halo=exp(-pow(best/(0.035+wide*1.6),2.0))*0.13;',
+'    v+=(core+body+halo)*(0.98-0.34*abs(sp));',
+'  }',
+'  float hot=exp(-length((uv-K)*vec2(1.25,2.0))*3.2);',
+'  v*=0.62+hot*2.9;',
+'  v*=smoothstep(0.0,0.12,0.5-abs(uv.y));',
+'  vec3 lime=vec3(0.608,1.0,0.235);',
+'  vec3 core=vec3(0.95,1.0,0.85);',
+'  vec3 col=mix(lime,core,clamp(v*1.6-0.5,0.0,1.0))*v;',
+'  col+=lime*hot*0.20;',
+'  gl_FragColor=vec4(col,1.0);',
+'}'].join('\n');
+  function sh(t,src){var s=gl.createShader(t);gl.shaderSource(s,src);gl.compileShader(s);
+    if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)){console.warn(gl.getShaderInfoLog(s));return null;}return s;}
+  var a=sh(gl.VERTEX_SHADER,vs),b=sh(gl.FRAGMENT_SHADER,fs);
+  if(!a||!b){cv.style.display='none';return;}
+  var pr=gl.createProgram();gl.attachShader(pr,a);gl.attachShader(pr,b);gl.linkProgram(pr);
+  if(!gl.getProgramParameter(pr,gl.LINK_STATUS)){cv.style.display='none';return;}
+  gl.useProgram(pr);
+  var buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+  var loc=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+  var uRes=gl.getUniformLocation(pr,'u_res'),uT=gl.getUniformLocation(pr,'u_t');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var scale=window.innerWidth<700?0.6:0.72;
+  function size(){
+    var r=cv.getBoundingClientRect();
+    var w=Math.max(2,Math.floor(r.width*scale)), h=Math.max(2,Math.floor(r.height*scale));
+    cv.width=w;cv.height=h;gl.viewport(0,0,w,h);gl.uniform2f(uRes,w,h);
+  }
+  size();window.addEventListener('resize',size);
+  var t0=performance.now(),vis=true,raf;
+  function frame(){gl.uniform1f(uT,(performance.now()-t0)/1000);gl.drawArrays(gl.TRIANGLES,0,3);}
+  function loop(){cancelAnimationFrame(raf);(function tick(){if(!vis)return;frame();raf=requestAnimationFrame(tick);})();}
+  document.addEventListener('visibilitychange',function(){vis=!document.hidden;if(vis&&!reduce)loop();});
+  if(reduce){frame();}else{loop();}
 })();
 </script>
 </body>
