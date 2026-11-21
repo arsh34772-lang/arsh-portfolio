@@ -458,9 +458,9 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
    <stop offset=".28" stop-color="#C8FF2E" stop-opacity=".30"/>
    <stop offset=".62" stop-color="#059669" stop-opacity=".16"/>
    <stop offset="1" stop-color="#059669" stop-opacity="0"/></radialGradient>
-  <filter id="fSoft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="9"/></filter>
-  <filter id="fMid" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3"/></filter>
-  <filter id="fFlare" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="7"/></filter>
+  <filter id="fSoft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="6"/></filter>
+  <filter id="fMid" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="1.6"/></filter>
+  <filter id="fFlare" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="3.5"/></filter>
  </defs>
  <g id="lgroup"></g>
 </svg>
@@ -808,9 +808,9 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
       [W*1.06, -90],
       [W*0.86, top+hh*0.10],
       [W*0.60, top+hh*0.30],
-      [W*0.30, bendY],            /* outer bend of the C */
-      [W*0.26, bendY+hh*0.10],
-      [W*0.48, cB-hh*0.16],       /* returns behind the card */
+      [W*0.385, bendY],           /* outer bend of the C */
+      [W*0.345, bendY+hh*0.10],
+      [W*0.55, cB-hh*0.16],       /* returns behind the card */
       [W*0.78, cB-hh*0.02],
       [W*0.92, cB+hh*0.20],
       [W*0.70, docH*0.30],
@@ -842,10 +842,10 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     }
     var paths=ds.map(function(d){return '<path vector-effect="non-scaling-stroke" d="'+d+'"/>';}).join('');
 
-    var bendX=W*0.30;
+    var bendX=W*0.385;
     g.innerHTML =
       '<defs><mask id="bm"><ellipse cx="'+bendX+'" cy="'+bendY+'" rx="'+(W*0.16)+'" ry="'+(hh*0.20)+'" fill="url(#bendMask)"/></mask></defs>'+
-      '<ellipse cx="'+bendX+'" cy="'+bendY+'" rx="'+(W*0.20)+'" ry="'+(hh*0.22)+'" fill="url(#bend)"/>'+
+      '<ellipse cx="'+bendX+'" cy="'+bendY+'" rx="'+(W*0.115)+'" ry="'+(hh*0.115)+'" fill="url(#bend)" opacity=".72"/>'+
       '<g filter="url(#fSoft)" stroke="url(#rg)" fill="none" stroke-width="2.4" stroke-linecap="round" opacity=".15">'+paths+'</g>'+
       '<g filter="url(#fMid)" stroke="url(#rg)" fill="none" stroke-width=".8" stroke-linecap="round" opacity=".24">'+paths+'</g>'+
       '<g fill="none" stroke-linecap="round" stroke="#C8FF2E">'+
