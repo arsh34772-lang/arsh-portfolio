@@ -845,8 +845,13 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     var paths=ds.map(function(d){return '<path vector-effect="non-scaling-stroke" d="'+d+'"/>';}).join('');
 
     var bendX=nodeX, bendY=nodeY;
+    var fadeEnd=top+hh*1.55;
     g.innerHTML =
-      '<defs><mask id="bm"><ellipse cx="'+bendX+'" cy="'+bendY+'" rx="'+(W*0.16)+'" ry="'+(hh*0.20)+'" fill="url(#bendMask)"/></mask></defs>'+
+      '<defs><linearGradient id="fadeG" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="'+fadeEnd+'">'+
+        '<stop offset="0" stop-color="#fff"/><stop offset=".45" stop-color="#fff"/>'+
+        '<stop offset=".78" stop-color="#fff" stop-opacity=".30"/><stop offset="1" stop-color="#fff" stop-opacity=".12"/></linearGradient>'+
+        '<mask id="fade"><rect x="0" y="0" width="'+W+'" height="'+docH+'" fill="url(#fadeG)"/></mask>'+
+        '<mask id="bm"><ellipse cx="'+bendX+'" cy="'+bendY+'" rx="'+(W*0.16)+'" ry="'+(hh*0.20)+'" fill="url(#bendMask)"/></mask></defs><g mask="url(#fade)">'+
       '<ellipse cx="'+bendX+'" cy="'+bendY+'" rx="'+(W*0.115)+'" ry="'+(hh*0.115)+'" fill="url(#bend)" opacity=".72"/>'+
       '<g filter="url(#fSoft)" stroke="url(#rg)" fill="none" stroke-width="2.4" stroke-linecap="round" opacity=".15">'+paths+'</g>'+
       '<g filter="url(#fMid)" stroke="url(#rg)" fill="none" stroke-width=".8" stroke-linecap="round" opacity=".24">'+paths+'</g>'+
@@ -856,7 +861,7 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
       '</g>'+
       '<g mask="url(#bm)" filter="url(#fFlare)" fill="none" stroke="#F7FEE7" stroke-width="1.2" stroke-linecap="round" opacity=".8">'+paths+'</g>'+
       (reduce?'':'<g fill="none" stroke="#F7FEE7" stroke-width=".8" stroke-linecap="round" opacity=".5">'+
-        ds.map(function(d){return '<path class="pulse" vector-effect="non-scaling-stroke" d="'+d+'"/>';}).join('')+'</g>');
+        ds.map(function(d){return '<path class="pulse" vector-effect="non-scaling-stroke" d="'+d+'"/>';}).join('')+'</g></g>');
   }
 
   build();
