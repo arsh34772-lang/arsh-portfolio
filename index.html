@@ -803,21 +803,24 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     svg.setAttribute('viewBox','0 0 '+W+' '+docH);
     svg.setAttribute('width',W); svg.setAttribute('height',docH);
 
-    var bendY=top+hh*0.52;
+    var nodeY=top+hh*0.52;
+    var nodeX=W*0.50;
     var base=[
-      [W*1.06, -90],
-      [W*0.86, top+hh*0.10],
-      [W*0.60, top+hh*0.30],
-      [W*0.385, bendY],           /* outer bend of the C */
-      [W*0.345, bendY+hh*0.10],
-      [W*0.55, cB-hh*0.16],       /* returns behind the card */
-      [W*0.78, cB-hh*0.02],
-      [W*0.92, cB+hh*0.20],
-      [W*0.70, docH*0.30],
-      [W*0.48, docH*0.45],
-      [W*0.72, docH*0.62],
-      [W*0.50, docH*0.80],
-      [W*0.64, docH+40]
+      [W*0.10, -70],
+      [W*0.28, top+hh*0.20],
+      [nodeX,  nodeY],
+      [W*0.74, top+hh*0.74],
+      [W*0.92, top+hh*1.02],
+      [W*0.62, top+hh*1.30],
+      [W*0.14, docH*0.32],
+      [W*0.32, docH*0.42],
+      [W*0.50, docH*0.50],
+      [W*0.74, docH*0.60],
+      [W*0.90, docH*0.68],
+      [W*0.56, docH*0.78],
+      [W*0.16, docH*0.86],
+      [W*0.40, docH*0.94],
+      [W*0.52, docH+50]
     ];
     function cat(pts){
       var p=[pts[0]].concat(pts,[pts[pts.length-1]]), d='M'+pts[0][0].toFixed(1)+' '+pts[0][1].toFixed(1);
@@ -832,17 +835,17 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     var N=11, ds=[];
     for(var k=0;k<N;k++){
       var t=(k-(N-1)/2)/((N-1)/2);
-      var off=t*W*0.075;                      /* fan width */
+      var off=t*W*0.090;
       var pts=base.map(function(p,idx){
-        var pack=1-0.52*Math.exp(-Math.pow((idx-3.6)/1.35,2));   /* pack gently at the bend */
-        var wob=Math.sin(idx*1.25+k*0.8)*W*0.019;
-        return [p[0]+off*pack+wob, p[1]+off*0.30*pack+Math.cos(idx*1.15+k*0.7)*hh*0.013];
+        var pack=(idx%2===0)?0.10:1.0;
+        var wob=Math.sin(idx*1.1+k*0.8)*W*0.012*pack;
+        return [p[0]+off*pack+wob, p[1]+off*0.26*pack];
       });
       ds.push(cat(pts));
     }
     var paths=ds.map(function(d){return '<path vector-effect="non-scaling-stroke" d="'+d+'"/>';}).join('');
 
-    var bendX=W*0.385;
+    var bendX=nodeX, bendY=nodeY;
     g.innerHTML =
       '<defs><mask id="bm"><ellipse cx="'+bendX+'" cy="'+bendY+'" rx="'+(W*0.16)+'" ry="'+(hh*0.20)+'" fill="url(#bendMask)"/></mask></defs>'+
       '<ellipse cx="'+bendX+'" cy="'+bendY+'" rx="'+(W*0.115)+'" ry="'+(hh*0.115)+'" fill="url(#bend)" opacity=".72"/>'+
