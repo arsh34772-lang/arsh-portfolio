@@ -451,7 +451,7 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
   <linearGradient id="rg" x1="1" y1="0" x2="0" y2="1">
    <stop offset="0" stop-color="#C8FF2E" stop-opacity=".95"/>
    <stop offset=".45" stop-color="#C8FF2E" stop-opacity=".75"/>
-   <stop offset="1" stop-color="#8FE04A" stop-opacity=".62"/>
+   <stop offset="1" stop-color="#8FE04A" stop-opacity=".72"/>
   </linearGradient>
   <radialGradient id="bendMask"><stop offset="0" stop-color="#fff"/><stop offset=".55" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
   <radialGradient id="bend"><stop offset="0" stop-color="#F7FEE7" stop-opacity=".55"/>
@@ -803,15 +803,15 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     svg.setAttribute('viewBox','0 0 '+W+' '+docH);
     svg.setAttribute('width',W); svg.setAttribute('height',docH);
 
-    var nodeY=top+hh*0.62;
+    var nodeY=top+Math.min(hh*0.62, window.innerHeight*0.52);
     var nodeX=W*0.40;
     var base=[
       [W*0.99, -80],
       [W*0.86, top+hh*0.13],
       [W*0.62, top+hh*0.34],
       [nodeX,  nodeY],
-      [W*0.53, top+hh*0.86],
-      [W*0.71, top+hh*1.05],
+      [W*0.52, top+hh*0.90],
+      [W*0.74, top+hh*1.22],
       [W*0.40, docH*0.30],
       [W*0.63, docH*0.40],
       [W*0.87, docH*0.50],
@@ -836,7 +836,7 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
       var t=(k-(N-1)/2)/((N-1)/2);
       var off=t*W*0.105;
       var pts=base.map(function(p,idx){
-        var pack=(idx%2===1)?0.10:1.0;
+        var pack=(idx===3||idx===9||idx===13)?0.10:1.0;
         var wob=Math.sin(idx*1.1+k*0.8)*W*0.012*pack;
         return [p[0]+off*pack+wob, p[1]+off*0.26*pack];
       });
