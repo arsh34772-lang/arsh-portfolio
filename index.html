@@ -424,7 +424,7 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
 }
 </style>
 <style id="snake">
-.hero__card,.step,.price__card,.wrow{background:rgba(15,18,15,.65)!important;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.08)!important}
+.hero__card,.step,.price__card,.wrow{background:linear-gradient(160deg,rgba(28,36,28,.42),rgba(10,14,10,.34))!important;backdrop-filter:blur(18px) saturate(1.25);-webkit-backdrop-filter:blur(18px) saturate(1.25);border:1px solid rgba(255,255,255,.14)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 24px 60px -30px rgba(0,0,0,.9)}
 
 .hero{position:relative;overflow:visible}
 .lfield{position:absolute;inset:0;width:100%;z-index:0;pointer-events:none;overflow:hidden}
@@ -806,8 +806,8 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     var nodeY=top+Math.min(hh*0.34, window.innerHeight*0.34);
     var nodeX=W*0.40;
     var base=[
-      [W*0.06, -70],
-      [W*0.21, top+hh*0.14],
+      [W*0.97, -80],
+      [W*0.84, top+hh*0.14],
       [nodeX,  nodeY],
       [W*0.63, top+hh*0.64],
       [W*0.84, top+hh*0.94],
@@ -846,13 +846,7 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
 
     var bendX=nodeX, bendY=nodeY;
     var fadeEnd=top+hh*1.55;
-    g.innerHTML =
-      '<defs><linearGradient id="fadeG" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="'+fadeEnd+'">'+
-        '<stop offset="0" stop-color="#fff"/><stop offset=".45" stop-color="#fff"/>'+
-        '<stop offset=".78" stop-color="#fff" stop-opacity=".30"/><stop offset="1" stop-color="#fff" stop-opacity=".12"/></linearGradient>'+
-        '<mask id="fade"><rect x="0" y="0" width="'+W+'" height="'+docH+'" fill="url(#fadeG)"/></mask>'+
-        '<mask id="bm"><ellipse cx="'+bendX+'" cy="'+bendY+'" rx="'+(W*0.16)+'" ry="'+(hh*0.20)+'" fill="url(#bendMask)"/></mask></defs><g mask="url(#fade)">'+
-      '<ellipse cx="'+bendX+'" cy="'+bendY+'" rx="'+(W*0.115)+'" ry="'+(hh*0.115)+'" fill="url(#bend)" opacity=".72"/>'+
+    var layers =
       '<g filter="url(#fSoft)" stroke="url(#rg)" fill="none" stroke-width="2.4" stroke-linecap="round" opacity=".15">'+paths+'</g>'+
       '<g filter="url(#fMid)" stroke="url(#rg)" fill="none" stroke-width=".8" stroke-linecap="round" opacity=".24">'+paths+'</g>'+
       '<g fill="none" stroke-linecap="round" stroke="#C8FF2E">'+
@@ -860,8 +854,24 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
           return '<path vector-effect="non-scaling-stroke" stroke-width=".55" opacity="'+o+'" d="'+d+'"/>';}).join('')+
       '</g>'+
       '<g mask="url(#bm)" filter="url(#fFlare)" fill="none" stroke="#F7FEE7" stroke-width="1.2" stroke-linecap="round" opacity=".8">'+paths+'</g>'+
-      (reduce?'':'<g fill="none" stroke="#F7FEE7" stroke-width=".8" stroke-linecap="round" opacity=".5">'+
-        ds.map(function(d){return '<path class="pulse" vector-effect="non-scaling-stroke" d="'+d+'"/>';}).join('')+'</g></g>');
+      (reduce?'':'<g fill="none" stroke="#F7FEE7" stroke-width=".8" stroke-linecap="round" opacity=".55">'+
+        ds.map(function(d){return '<path class="pulse" vector-effect="non-scaling-stroke" d="'+d+'"/>';}).join('')+'</g>');
+    var hEnd=top+hh;
+    g.innerHTML =
+      '<defs>'+
+        '<linearGradient id="fadeTop" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="'+(hEnd*1.12)+'">'+
+          '<stop offset="0" stop-color="#fff"/><stop offset=".86" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>'+
+        '<linearGradient id="fadeLow" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="'+(hEnd*1.18)+'">'+
+          '<stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".90" stop-color="#fff" stop-opacity=".0"/>'+
+          '<stop offset="1" stop-color="#fff" stop-opacity=".55"/></linearGradient>'+
+        '<mask id="mTop"><rect x="0" y="0" width="'+W+'" height="'+docH+'" fill="url(#fadeTop)"/></mask>'+
+        '<mask id="mLow"><rect x="0" y="0" width="'+W+'" height="'+docH+'" fill="url(#fadeLow)"/></mask>'+
+        '<mask id="bm"><ellipse cx="'+bendX+'" cy="'+bendY+'" rx="'+(W*0.16)+'" ry="'+(hh*0.20)+'" fill="url(#bendMask)"/></mask>'+
+        '<filter id="p2blur" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="6"/></filter>'+
+      '</defs>'+
+      '<ellipse cx="'+bendX+'" cy="'+bendY+'" rx="'+(W*0.115)+'" ry="'+(hh*0.115)+'" fill="url(#bend)" opacity=".72"/>'+
+      '<g mask="url(#mTop)">'+layers+'</g>'+
+      '<g mask="url(#mLow)" filter="url(#p2blur)" opacity=".55">'+layers+'</g>';
   }
 
   build();
