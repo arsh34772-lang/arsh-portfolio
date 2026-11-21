@@ -862,7 +862,8 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
           return '<path vector-effect="non-scaling-stroke" stroke-width=".50" opacity="'+o+'" d="'+d+'"/>';}).join('')+
       '</g>'+
       '<g fill="none" stroke="#EAFBFF" stroke-width=".9" stroke-linecap="round" opacity=".9">'+
-        ds.map(function(d,i){return '<path class="glint'+(i%2?' g2':'')+'" vector-effect="non-scaling-stroke" d="'+d+'"/>';}).join('')+
+        ds.map(function(d,i){var sx=(i%2?2.6:-2.6), sy=(i%2?-1.8:1.8);
+          return '<path class="glint'+(i%2?' g2':'')+'" transform="translate('+sx+','+sy+')" vector-effect="non-scaling-stroke" d="'+d+'"/>';}).join('')+
       '</g>'+
       '<g mask="url(#bm)" filter="url(#fFlare)" fill="none" stroke="#F7FEE7" stroke-width="1.2" stroke-linecap="round" opacity=".8">'+paths+'</g>'+
       (reduce?'':'<g fill="none" stroke="#F7FEE7" stroke-width=".8" stroke-linecap="round" opacity=".55">'+
