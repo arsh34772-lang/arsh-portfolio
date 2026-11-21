@@ -832,11 +832,11 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     var N=11, ds=[];
     for(var k=0;k<N;k++){
       var t=(k-(N-1)/2)/((N-1)/2);
-      var off=t*W*0.042;                      /* fan width */
+      var off=t*W*0.075;                      /* fan width */
       var pts=base.map(function(p,idx){
-        var pack=1-0.82*Math.exp(-Math.pow((idx-3.6)/1.25,2));   /* pack tight at the bend */
-        var wob=Math.sin(idx*0.9+k*0.8)*W*0.004;
-        return [p[0]+off*pack+wob, p[1]+off*0.22*pack];
+        var pack=1-0.52*Math.exp(-Math.pow((idx-3.6)/1.35,2));   /* pack gently at the bend */
+        var wob=Math.sin(idx*1.25+k*0.8)*W*0.019;
+        return [p[0]+off*pack+wob, p[1]+off*0.30*pack+Math.cos(idx*1.15+k*0.7)*hh*0.013];
       });
       ds.push(cat(pts));
     }
@@ -846,14 +846,14 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     g.innerHTML =
       '<defs><mask id="bm"><ellipse cx="'+bendX+'" cy="'+bendY+'" rx="'+(W*0.16)+'" ry="'+(hh*0.20)+'" fill="url(#bendMask)"/></mask></defs>'+
       '<ellipse cx="'+bendX+'" cy="'+bendY+'" rx="'+(W*0.20)+'" ry="'+(hh*0.22)+'" fill="url(#bend)"/>'+
-      '<g filter="url(#fSoft)" stroke="url(#rg)" fill="none" stroke-width="3.2" stroke-linecap="round" opacity=".16">'+paths+'</g>'+
-      '<g filter="url(#fMid)" stroke="url(#rg)" fill="none" stroke-width="1.1" stroke-linecap="round" opacity=".26">'+paths+'</g>'+
+      '<g filter="url(#fSoft)" stroke="url(#rg)" fill="none" stroke-width="2.4" stroke-linecap="round" opacity=".15">'+paths+'</g>'+
+      '<g filter="url(#fMid)" stroke="url(#rg)" fill="none" stroke-width=".8" stroke-linecap="round" opacity=".24">'+paths+'</g>'+
       '<g fill="none" stroke-linecap="round" stroke="#C8FF2E">'+
         ds.map(function(d,i){var o=(0.20+0.50*Math.abs(Math.sin(i*1.7))).toFixed(2);
-          return '<path vector-effect="non-scaling-stroke" stroke-width=".8" opacity="'+o+'" d="'+d+'"/>';}).join('')+
+          return '<path vector-effect="non-scaling-stroke" stroke-width=".55" opacity="'+o+'" d="'+d+'"/>';}).join('')+
       '</g>'+
-      '<g mask="url(#bm)" filter="url(#fFlare)" fill="none" stroke="#F7FEE7" stroke-width="1.6" stroke-linecap="round" opacity=".8">'+paths+'</g>'+
-      (reduce?'':'<g fill="none" stroke="#F7FEE7" stroke-width="1" stroke-linecap="round" opacity=".55">'+
+      '<g mask="url(#bm)" filter="url(#fFlare)" fill="none" stroke="#F7FEE7" stroke-width="1.2" stroke-linecap="round" opacity=".8">'+paths+'</g>'+
+      (reduce?'':'<g fill="none" stroke="#F7FEE7" stroke-width=".8" stroke-linecap="round" opacity=".5">'+
         ds.map(function(d){return '<path class="pulse" vector-effect="non-scaling-stroke" d="'+d+'"/>';}).join('')+'</g>');
   }
 
