@@ -803,24 +803,23 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     svg.setAttribute('viewBox','0 0 '+W+' '+docH);
     svg.setAttribute('width',W); svg.setAttribute('height',docH);
 
-    var nodeY=top+hh*0.52;
-    var nodeX=W*0.50;
+    var nodeY=top+hh*0.62;
+    var nodeX=W*0.40;
     var base=[
-      [W*0.10, -70],
-      [W*0.28, top+hh*0.20],
+      [W*0.99, -80],
+      [W*0.86, top+hh*0.13],
+      [W*0.62, top+hh*0.34],
       [nodeX,  nodeY],
-      [W*0.74, top+hh*0.74],
-      [W*0.92, top+hh*1.02],
-      [W*0.62, top+hh*1.30],
-      [W*0.14, docH*0.32],
-      [W*0.32, docH*0.42],
-      [W*0.50, docH*0.50],
-      [W*0.74, docH*0.60],
-      [W*0.90, docH*0.68],
-      [W*0.56, docH*0.78],
-      [W*0.16, docH*0.86],
-      [W*0.40, docH*0.94],
-      [W*0.52, docH+50]
+      [W*0.53, top+hh*0.86],
+      [W*0.71, top+hh*1.05],
+      [W*0.40, docH*0.30],
+      [W*0.63, docH*0.40],
+      [W*0.87, docH*0.50],
+      [W*0.50, docH*0.62],
+      [W*0.21, docH*0.72],
+      [W*0.45, docH*0.84],
+      [W*0.72, docH*0.94],
+      [W*0.50, docH+50]
     ];
     function cat(pts){
       var p=[pts[0]].concat(pts,[pts[pts.length-1]]), d='M'+pts[0][0].toFixed(1)+' '+pts[0][1].toFixed(1);
@@ -835,9 +834,9 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     var N=11, ds=[];
     for(var k=0;k<N;k++){
       var t=(k-(N-1)/2)/((N-1)/2);
-      var off=t*W*0.090;
+      var off=t*W*0.105;
       var pts=base.map(function(p,idx){
-        var pack=(idx%2===0)?0.10:1.0;
+        var pack=(idx%2===1)?0.10:1.0;
         var wob=Math.sin(idx*1.1+k*0.8)*W*0.012*pack;
         return [p[0]+off*pack+wob, p[1]+off*0.26*pack];
       });
