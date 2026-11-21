@@ -449,7 +449,8 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
 .spark{offset-rotate:0deg;animation-name:sparkrun;animation-timing-function:linear;animation-iteration-count:infinite}
 @keyframes sparkrun{from{offset-distance:0%}to{offset-distance:100%}}
 @media (prefers-reduced-motion:reduce){.spark{animation:none}}
-.glowA{filter:blur(6px)}.glowB{filter:blur(2.5px)}
+.glowA{filter:blur(4px)}.glowB{filter:blur(1.6px)}
+@media(max-width:700px){.glowA{filter:blur(3.5px)}.glowB{filter:blur(1.5px)}}
 </style>
 </head>
 <body>
@@ -811,8 +812,10 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     var card=document.querySelector('.hero__card');
     var cB=card?card.offsetTop+card.offsetHeight:top+hh;
 
-    svg.setAttribute('viewBox','0 0 '+W+' '+docH);
-    svg.setAttribute('width',W); svg.setAttribute('height',docH);
+    var H2=Math.min(docH, top+hh*2.0);
+    svg.setAttribute('viewBox','0 0 '+W+' '+H2);
+    svg.setAttribute('width',W); svg.setAttribute('height',H2);
+    svg.style.height=H2+'px';
 
     var nodeY=top+Math.min(hh*0.34, window.innerHeight*0.34);
     var nodeX=W*0.40;
@@ -842,7 +845,8 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
       }
       return d;
     }
-    var N=18, ds=[];
+    var MOB=window.innerWidth<700;
+    var N=MOB?12:15, ds=[];
     for(var k=0;k<N;k++){
       var t=(k-(N-1)/2)/((N-1)/2);
       var off=t*W*0.105;
@@ -859,6 +863,7 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     var bendX=nodeX, bendY=nodeY;
     var fadeEnd=top+hh*1.55;
     var sparks = ds.map(function(d,i){
+      if(MOB && i%2) return '';
       var dur=(12+i*0.8).toFixed(1), del=(-(i*1.1)).toFixed(1);
       return '<circle class="spark" r="'+(i%2?1.5:1.1)+'" fill="'+(i%2?'#FFFFFF':'#E6FFC9')+
              '" style="offset-path:path(\''+d+'\');animation-duration:'+dur+'s;animation-delay:'+del+'s"/>';
@@ -870,11 +875,11 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     }).join('');
 
     var layers =
-      '<g class="glowA" fill="none" stroke="url(#rg)" stroke-linecap="round" opacity=".11" stroke-width="13">'+paths+'</g>'+
-      '<g class="glowB" fill="none" stroke="url(#rg)" stroke-linecap="round" opacity=".18" stroke-width="6">'+paths+'</g>'+
+      '<g class="glowA" fill="none" stroke="url(#rg)" stroke-linecap="round" opacity=".11" stroke-width="'+(MOB?9:13)+'">'+paths+'</g>'+
+      '<g class="glowB" fill="none" stroke="url(#rg)" stroke-linecap="round" opacity=".18" stroke-width="'+(MOB?4.5:6)+'">'+paths+'</g>'+
       '<g fill="none" stroke-linecap="round" stroke="#C8FF2E">'+core+'</g>'+
       '<g>'+sparks+'</g>'+
-      '<g mask="url(#bm)" fill="none" stroke="#F7FEE7" stroke-width="2" stroke-linecap="round" opacity=".8">'+paths+'</g>';
+      '<g mask="url(#bm)" fill="none" stroke="#F7FEE7" stroke-width="2.4" stroke-linecap="round" opacity=".85">'+core+'</g>';
 
     var low = ds.filter(function(d,i){return i%3===0;}).map(function(d){
       return '<path vector-effect="non-scaling-stroke" d="'+d+'"/>';}).join('');
@@ -887,8 +892,8 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
         '<linearGradient id="fadeLow" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="'+(hEnd*1.18)+'">'+
           '<stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".90" stop-color="#fff" stop-opacity="0"/>'+
           '<stop offset="1" stop-color="#fff" stop-opacity=".5"/></linearGradient>'+
-        '<mask id="mTop"><rect x="0" y="0" width="'+W+'" height="'+docH+'" fill="url(#fadeTop)"/></mask>'+
-        '<mask id="mLow"><rect x="0" y="0" width="'+W+'" height="'+docH+'" fill="url(#fadeLow)"/></mask>'+
+        '<mask id="mTop"><rect x="0" y="0" width="'+W+'" height="'+H2+'" fill="url(#fadeTop)"/></mask>'+
+        '<mask id="mLow"><rect x="0" y="0" width="'+W+'" height="'+H2+'" fill="url(#fadeLow)"/></mask>'+
         '<mask id="bm"><ellipse cx="'+bendX+'" cy="'+bendY+'" rx="'+(W*0.16)+'" ry="'+(hh*0.20)+'" fill="url(#bendMask)"/></mask>'+
       '</defs>'+
       '<ellipse cx="'+bendX+'" cy="'+bendY+'" rx="'+(W*0.115)+'" ry="'+(hh*0.115)+'" fill="url(#bend)" opacity=".72"/>'+
