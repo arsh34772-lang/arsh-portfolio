@@ -465,8 +465,8 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
    <stop offset=".58" stop-color="#059669" stop-opacity=".16"/>
    <stop offset=".82" stop-color="#3FB6FF" stop-opacity=".10"/>
    <stop offset="1" stop-color="#059669" stop-opacity="0"/></radialGradient>
-  <filter id="fSoft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="6"/></filter>
-  <filter id="fMid" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="1.6"/></filter>
+  <filter id="fSoft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="10"/></filter>
+  <filter id="fMid" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3.2"/></filter>
   <filter id="fFlare" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="3.5"/></filter>
  </defs>
  <g id="lgroup"></g>
@@ -838,7 +838,7 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
       }
       return d;
     }
-    var N=11, ds=[];
+    var N=14, ds=[];
     for(var k=0;k<N;k++){
       var t=(k-(N-1)/2)/((N-1)/2);
       var off=t*W*0.105;
@@ -855,11 +855,11 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     var bendX=nodeX, bendY=nodeY;
     var fadeEnd=top+hh*1.55;
     var layers =
-      '<g filter="url(#fSoft)" stroke="url(#rg)" fill="none" stroke-width="2.4" stroke-linecap="round" opacity=".15">'+paths+'</g>'+
-      '<g filter="url(#fMid)" stroke="url(#rg)" fill="none" stroke-width=".8" stroke-linecap="round" opacity=".24">'+paths+'</g>'+
+      '<g filter="url(#fSoft)" stroke="url(#rg)" fill="none" stroke-width="3.4" stroke-linecap="round" opacity=".30">'+paths+'</g>'+
+      '<g filter="url(#fMid)" stroke="url(#rg)" fill="none" stroke-width="1.4" stroke-linecap="round" opacity=".34">'+paths+'</g>'+
       '<g fill="none" stroke-linecap="round" stroke="#C8FF2E">'+
-        ds.map(function(d,i){var o=(0.20+0.50*Math.abs(Math.sin(i*1.7))).toFixed(2);
-          return '<path vector-effect="non-scaling-stroke" stroke-width=".55" opacity="'+o+'" d="'+d+'"/>';}).join('')+
+        ds.map(function(d,i){var o=(0.26+0.42*Math.abs(Math.sin(i*1.7))).toFixed(2);
+          return '<path vector-effect="non-scaling-stroke" stroke-width=".50" opacity="'+o+'" d="'+d+'"/>';}).join('')+
       '</g>'+
       '<g fill="none" stroke="#EAFBFF" stroke-width=".9" stroke-linecap="round" opacity=".9">'+
         ds.map(function(d,i){return '<path class="glint'+(i%2?' g2':'')+'" vector-effect="non-scaling-stroke" d="'+d+'"/>';}).join('')+
@@ -878,7 +878,7 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
         '<mask id="mTop"><rect x="0" y="0" width="'+W+'" height="'+docH+'" fill="url(#fadeTop)"/></mask>'+
         '<mask id="mLow"><rect x="0" y="0" width="'+W+'" height="'+docH+'" fill="url(#fadeLow)"/></mask>'+
         '<mask id="bm"><ellipse cx="'+bendX+'" cy="'+bendY+'" rx="'+(W*0.16)+'" ry="'+(hh*0.20)+'" fill="url(#bendMask)"/></mask>'+
-        '<filter id="p2blur" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="6"/></filter>'+
+        '<filter id="p2blur" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="10"/></filter>'+
       '</defs>'+
       '<ellipse cx="'+bendX+'" cy="'+bendY+'" rx="'+(W*0.115)+'" ry="'+(hh*0.115)+'" fill="url(#bend)" opacity=".72"/>'+
       '<g mask="url(#mTop)">'+layers+'</g>'+
