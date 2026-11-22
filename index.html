@@ -869,20 +869,19 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     var bendX=nodeX, bendY=nodeY;
     var fadeEnd=top+hh*1.55;
     var sparks = ds.map(function(d,i){
-      if(i%2) return '';
       var out='';
-      for(var k=0;k<3;k++){
-        var dur=(6+i*0.45+k*2.1).toFixed(1), del=(-(i*0.7+k*2.2)).toFixed(1);
-        var rr=(k===0?0.5:(k===1?0.36:0.62));
-        var cf=(i%7===0?'#BFE9FF':'#FFFFFF');
-        out+='<circle class="spark" r="'+rr+'" fill="'+cf+'" opacity="'+(k?0.85:1)+
+      for(var k=0;k<5;k++){
+        var dur=(9+i*0.55+k*2.7).toFixed(1), del=(-(i*0.75+k*2.1)).toFixed(1);
+        var rr=[0.30,0.42,0.34,0.50,0.38][k];
+        var op=[0.95,0.70,0.85,0.60,0.75][k];
+        out+='<circle class="spark" r="'+rr+'" fill="#FFFFFF" opacity="'+op+
              '" style="offset-path:path(\''+d+'\');animation-duration:'+dur+'s;animation-delay:'+del+'s"/>';
       }
       return out;
     }).join('');
 
     var core = ds.map(function(d,i){
-      var o=(0.34+0.30*Math.abs(Math.sin(i*1.7))).toFixed(2);
+      var o=(0.20+0.20*Math.abs(Math.sin(i*1.7))).toFixed(2);
       var col = (i===2?'#5BC8FF':(i===9?'#7FE3FF':'#C8FF2E'));
       return '<path vector-effect="non-scaling-stroke" stroke="'+col+'" stroke-width="1.3" opacity="'+o+'" d="'+d+'"/>';
     }).join('');
@@ -890,10 +889,10 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     var midPath = ds[Math.floor(ds.length/2)];
     var band =
       '<g class="ribbonGlow" fill="none" stroke="url(#rg)" stroke-linecap="round">'+
-        '<path d="'+midPath+'" stroke-width="142" opacity=".05"/>'+
-        '<path d="'+midPath+'" stroke-width="98" opacity=".07"/>'+
-        '<path d="'+midPath+'" stroke-width="58" opacity=".095"/>'+
-        '<path d="'+midPath+'" stroke-width="30" opacity=".125"/>'+
+        '<path d="'+midPath+'" stroke-width="142" opacity=".040"/>'+
+        '<path d="'+midPath+'" stroke-width="98" opacity=".055"/>'+
+        '<path d="'+midPath+'" stroke-width="58" opacity=".075"/>'+
+        '<path d="'+midPath+'" stroke-width="30" opacity=".100"/>'+
       '</g>'+
       '<path d="'+midPath+'" fill="none" stroke="#E8FFB0" stroke-width="6" stroke-linecap="round" opacity=".20"/>';
 
