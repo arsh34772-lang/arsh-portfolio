@@ -451,7 +451,7 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
 @media (prefers-reduced-motion:reduce){.spark{animation:none}}
 .glowA{filter:blur(4px)}.glowB{filter:blur(1.6px)}
 @media(max-width:700px){.glowA{filter:blur(3.5px)}.glowB{filter:blur(1.5px)}}
-.lowblur{filter:blur(8px)}
+.lowblur{filter:blur(10px)}
 .ribbonGlow{filter:blur(4px)}
 @media(max-width:700px){.ribbonGlow{filter:blur(4px)}}
 </style>
@@ -815,7 +815,7 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     var card=document.querySelector('.hero__card');
     var cB=card?card.offsetTop+card.offsetHeight:top+hh;
 
-    var H2=Math.min(docH, top+hh*2.0);
+    var H2=docH;
     svg.setAttribute('viewBox','0 0 '+W+' '+H2);
     svg.setAttribute('width',W); svg.setAttribute('height',H2);
     svg.style.height=H2+'px';
@@ -904,7 +904,7 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
       '<g>'+sparks+'</g>'+
       '<g mask="url(#bm)" fill="none" stroke="#F7FEE7" stroke-width="2.4" stroke-linecap="round" opacity=".85">'+core+'</g>';
 
-    var low = ds.filter(function(d,i){return i%3===0;}).map(function(d){
+    var low = ds.filter(function(d,i){return i%2===0;}).map(function(d){
       return '<path vector-effect="non-scaling-stroke" d="'+d+'"/>';}).join('');
 
     var hEnd=top+hh;
@@ -921,7 +921,7 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
       '</defs>'+
       '<ellipse cx="'+bendX+'" cy="'+bendY+'" rx="'+(W*0.115)+'" ry="'+(hh*0.115)+'" fill="url(#bend)" opacity=".72"/>'+
       '<g mask="url(#mTop)">'+layers+'</g>'+
-      '<g class="lowblur" mask="url(#mLow)" opacity=".40" fill="none" stroke="#9BE9B0" stroke-width="2.4" stroke-linecap="round">'+low+'</g>';
+      '<g class="lowblur" mask="url(#mLow)" opacity=".55" fill="none" stroke="#C8FF2E" stroke-width="4.2" stroke-linecap="round">'+low+'</g>';
   }
 
   build();
