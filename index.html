@@ -904,8 +904,11 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
       '<g>'+sparks+'</g>'+
       '<g mask="url(#bm)" fill="none" stroke="#F7FEE7" stroke-width="2.4" stroke-linecap="round" opacity=".85">'+core+'</g>';
 
-    var low = ds.filter(function(d,i){return i%2===0;}).map(function(d){
-      return '<path vector-effect="non-scaling-stroke" d="'+d+'"/>';}).join('');
+    var lowD = cat([[W*0.70, top+vh*0.92],[W*0.66, docH*0.22],[W*0.60, docH*0.42],
+      [W*0.67, docH*0.62],[W*0.61, docH*0.82],[W*0.65, docH+40]]);
+    var low = [0,-14,14,-28,28].map(function(dx){
+      return '<path transform="translate('+dx+',0)" d="'+lowD+'"/>';
+    }).join('');
 
     var hEnd=top+hh;
     g.innerHTML =
