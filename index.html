@@ -870,10 +870,10 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     var fadeEnd=top+hh*1.55;
     var sparks = ds.map(function(d,i){
       var out='';
-      for(var k=0;k<5;k++){
-        var dur=(9+i*0.55+k*2.7).toFixed(1), del=(-(i*0.75+k*2.1)).toFixed(1);
-        var rr=[0.30,0.42,0.34,0.50,0.38][k];
-        var op=[0.95,0.70,0.85,0.60,0.75][k];
+      for(var k=0;k<8;k++){
+        var dur=(8+i*0.5+k*1.9).toFixed(1), del=(-(i*0.7+k*1.6)).toFixed(1);
+        var rr=[1.4,0.9,1.1,1.6,1.0,1.3,0.85,1.2][k];
+        var op=[1,0.9,0.95,0.8,1,0.85,0.9,0.95][k];
         out+='<circle class="spark" r="'+rr+'" fill="#FFFFFF" opacity="'+op+
              '" style="offset-path:path(\''+d+'\');animation-duration:'+dur+'s;animation-delay:'+del+'s"/>';
       }
