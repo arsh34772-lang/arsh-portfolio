@@ -819,17 +819,24 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     svg.style.height=H2+'px';
 
     var vh=window.innerHeight;
-    var vh=window.innerHeight;
-    var nodeX=W*0.50;
-    var nodeY=top+vh*0.46;
+    var nodeY=top+vh*0.54;
+    var nodeX=W*0.58;
     var base=[
-      [W*0.99, -80],
-      [W*0.88, top+vh*0.11],
-      [W*0.70, top+vh*0.28],
-      [W*0.58, top+vh*0.40],
+      [W*0.30, top+vh*0.07],
+      [W*0.58, top+vh*0.09],
+      [W*0.80, top+vh*0.21],
+      [W*0.885, top+vh*0.375],
+      [W*0.76, top+vh*0.505],
       [nodeX,  nodeY],
-      [W*0.545, top+vh*0.52],
-      [W*0.525, top+vh*0.56]
+      [W*0.40, top+vh*0.80],
+      [W*0.30, docH*0.26],
+      [W*0.55, docH*0.34],
+      [W*0.82, docH*0.42],
+      [W*0.50, docH*0.52],
+      [W*0.24, docH*0.62],
+      [W*0.48, docH*0.74],
+      [W*0.74, docH*0.86],
+      [W*0.52, docH+50]
     ];
     function cat(pts){
       var p=[pts[0]].concat(pts,[pts[pts.length-1]]), d='M'+pts[0][0].toFixed(1)+' '+pts[0][1].toFixed(1);
@@ -847,7 +854,7 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
       var t=(k-(N-1)/2)/((N-1)/2);
       var off=t*W*0.105;
       var pts=base.map(function(p,idx){
-        var PACK=[0.10,0.55,0.80,0.35,0.04,0.55,0.85];
+        var PACK=[0.35,1.0,1.0,0.55,0.18,0.06,0.75,0.30,1.0,0.85,0.30,0.85,0.35,0.85,0.85];
         var pack=(PACK[idx]===undefined?1:PACK[idx]);
         var wob=Math.sin(idx*1.1+k*0.8)*W*0.012*pack;
         return [p[0]+off*pack+wob, p[1]+off*0.26*pack];
@@ -862,8 +869,8 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
       if(MOB && i%3) return '';
       var out='';
       for(var k=0;k<3;k++){
-        var dur=(6+i*0.45+k*2.1).toFixed(1), del=(-(i*0.7+k*2.2)).toFixed(1);
-        var rr=(k===0?0.55:(k===1?0.4:0.72));
+        var dur=(7+i*0.5+k*2.4).toFixed(1), del=(-(i*0.7+k*2.2)).toFixed(1);
+        var rr=(k===0?0.85:(k===1?0.6:1.05));
         var cf=(i%7===0?'#BFE9FF':'#FFFFFF');
         out+='<circle class="spark" r="'+rr+'" fill="'+cf+'" opacity="'+(k?0.75:0.95)+
              '" style="offset-path:path(\''+d+'\');animation-duration:'+dur+'s;animation-delay:'+del+'s"/>';
@@ -874,12 +881,12 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     var core = ds.map(function(d,i){
       var o=(0.55+0.40*Math.abs(Math.sin(i*1.7))).toFixed(2);
       var col = (i===2?'#5BC8FF':(i===9?'#7FE3FF':'#C8FF2E'));
-      return '<path vector-effect="non-scaling-stroke" stroke="'+col+'" stroke-width="2.2" opacity="'+o+'" d="'+d+'"/>';
+      return '<path vector-effect="non-scaling-stroke" stroke="'+col+'" stroke-width="1.3" opacity="'+o+'" d="'+d+'"/>';
     }).join('');
 
     var layers =
-      '<g class="glowA" fill="none" stroke="url(#rg)" stroke-linecap="round" opacity=".12" stroke-width="'+(MOB?14:20)+'">'+paths+'</g>'+
-      '<g class="glowB" fill="none" stroke="url(#rg)" stroke-linecap="round" opacity=".20" stroke-width="'+(MOB?7:9)+'">'+paths+'</g>'+
+      '<g class="glowA" fill="none" stroke="url(#rg)" stroke-linecap="round" opacity=".11" stroke-width="'+(MOB?9:13)+'">'+paths+'</g>'+
+      '<g class="glowB" fill="none" stroke="url(#rg)" stroke-linecap="round" opacity=".18" stroke-width="'+(MOB?4.5:6)+'">'+paths+'</g>'+
       '<g fill="none" stroke-linecap="round">'+core+'</g>'+
       '<g>'+sparks+'</g>'+
       '<g mask="url(#bm)" fill="none" stroke="#F7FEE7" stroke-width="2.4" stroke-linecap="round" opacity=".85">'+core+'</g>';
@@ -901,7 +908,7 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
       '</defs>'+
       '<ellipse cx="'+bendX+'" cy="'+bendY+'" rx="'+(W*0.115)+'" ry="'+(hh*0.115)+'" fill="url(#bend)" opacity=".72"/>'+
       '<g mask="url(#mTop)">'+layers+'</g>'+
-'';
+      '<g class="lowblur" mask="url(#mLow)" opacity=".40" fill="none" stroke="#9BE9B0" stroke-width="2.4" stroke-linecap="round">'+low+'</g>';
   }
 
   build();
