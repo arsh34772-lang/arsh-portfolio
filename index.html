@@ -424,7 +424,7 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
 }
 </style>
 <style id="snake">
-.hero__card,.step,.price__card,.wrow{background:linear-gradient(160deg,rgba(28,36,28,.42),rgba(10,14,10,.34))!important;backdrop-filter:blur(18px) saturate(1.25);-webkit-backdrop-filter:blur(18px) saturate(1.25);border:1px solid rgba(255,255,255,.14)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 24px 60px -30px rgba(0,0,0,.9)}
+.hero__card,.step,.price__card,.wrow{background:linear-gradient(160deg,rgba(28,36,28,.42),rgba(10,14,10,.34))!important;backdrop-filter:blur(10px) saturate(1.15);-webkit-backdrop-filter:blur(10px) saturate(1.15);border:1px solid rgba(255,255,255,.14)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 24px 60px -30px rgba(0,0,0,.9)}
 
 .hero{position:relative;overflow:visible}
 .lfield{position:absolute;inset:0;width:100%;z-index:0;pointer-events:none;overflow:hidden}
@@ -452,7 +452,7 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
 .glowA{filter:blur(4px)}.glowB{filter:blur(1.6px)}
 @media(max-width:700px){.glowA{filter:blur(3.5px)}.glowB{filter:blur(1.5px)}}
 .lowblur{filter:blur(8px)}
-.ribbonGlow{filter:blur(6px)}
+.ribbonGlow{filter:blur(4px)}
 @media(max-width:700px){.ribbonGlow{filter:blur(4px)}}
 </style>
 </head>
@@ -852,7 +852,7 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
       return d;
     }
     var MOB=window.innerWidth<700;
-    var N=MOB?12:15, ds=[];
+    var N=MOB?12:12, ds=[];
     for(var k=0;k<N;k++){
       var t=(k-(N-1)/2)/((N-1)/2);
       var off=t*W*0.105;
@@ -869,7 +869,7 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     var bendX=nodeX, bendY=nodeY;
     var fadeEnd=top+hh*1.55;
     var sparks = ds.map(function(d,i){
-      if(MOB && i%3) return '';
+      if(i%2) return '';
       var out='';
       for(var k=0;k<3;k++){
         var dur=(6+i*0.45+k*2.1).toFixed(1), del=(-(i*0.7+k*2.2)).toFixed(1);
@@ -890,9 +890,9 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     var midPath = ds[Math.floor(ds.length/2)];
     var band =
       '<g class="ribbonGlow" fill="none" stroke="url(#rg)" stroke-linecap="round">'+
-        '<path d="'+midPath+'" stroke-width="120" opacity=".07"/>'+
-        '<path d="'+midPath+'" stroke-width="62" opacity=".11"/>'+
-        '<path d="'+midPath+'" stroke-width="26" opacity=".16"/>'+
+        '<path d="'+midPath+'" stroke-width="88" opacity=".08"/>'+
+        '<path d="'+midPath+'" stroke-width="46" opacity=".12"/>'+
+        '<path d="'+midPath+'" stroke-width="22" opacity=".17"/>'+
       '</g>'+
       '<path d="'+midPath+'" fill="none" stroke="#E8FFB0" stroke-width="7" stroke-linecap="round" opacity=".22"/>';
 
