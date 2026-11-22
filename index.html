@@ -889,13 +889,13 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
 
     var midPath = ds[Math.floor(ds.length/2)];
     var band =
-      '<g fill="none" stroke="url(#rg)" stroke-linecap="round">'+
-        '<path d="'+midPath+'" stroke-width="92" opacity=".05"/>'+
-        '<path d="'+midPath+'" stroke-width="66" opacity=".07"/>'+
-        '<path d="'+midPath+'" stroke-width="44" opacity=".10"/>'+
-        '<path d="'+midPath+'" stroke-width="24" opacity=".15"/>'+
+      '<g class="ribbonGlow" fill="none" stroke="url(#rg)" stroke-linecap="round">'+
+        '<path d="'+midPath+'" stroke-width="120" opacity=".06"/>'+
+        '<path d="'+midPath+'" stroke-width="82" opacity=".09"/>'+
+        '<path d="'+midPath+'" stroke-width="50" opacity=".13"/>'+
+        '<path d="'+midPath+'" stroke-width="26" opacity=".18"/>'+
       '</g>'+
-      '<path d="'+midPath+'" fill="none" stroke="#E8FFB0" stroke-width="7" stroke-linecap="round" opacity=".22"/>';
+      '<path d="'+midPath+'" fill="none" stroke="#E8FFB0" stroke-width="6" stroke-linecap="round" opacity=".20"/>';
 
     var layers =
       band+
