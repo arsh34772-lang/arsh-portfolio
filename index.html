@@ -885,7 +885,14 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
       return '<path vector-effect="non-scaling-stroke" stroke="'+col+'" stroke-width="1.3" opacity="'+o+'" d="'+d+'"/>';
     }).join('');
 
+    var midPath = ds[Math.floor(ds.length/2)];
+    var band =
+      '<path d="'+midPath+'" fill="none" stroke="url(#rg)" stroke-width="56" stroke-linecap="round" opacity=".10"/>'+
+      '<path d="'+midPath+'" fill="none" stroke="url(#rg)" stroke-width="26" stroke-linecap="round" opacity=".16"/>'+
+      '<path d="'+midPath+'" fill="none" stroke="#DFFFA0" stroke-width="9" stroke-linecap="round" opacity=".20"/>';
+
     var layers =
+      band+
       '<g class="glowA" fill="none" stroke="url(#rg)" stroke-linecap="round" opacity=".11" stroke-width="'+(MOB?9:13)+'">'+paths+'</g>'+
       '<g class="glowB" fill="none" stroke="url(#rg)" stroke-linecap="round" opacity=".18" stroke-width="'+(MOB?4.5:6)+'">'+paths+'</g>'+
       '<g fill="none" stroke-linecap="round">'+core+'</g>'+
