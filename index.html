@@ -451,6 +451,7 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
 @media (prefers-reduced-motion:reduce){.spark{animation:none}}
 .glowA{filter:blur(4px)}.glowB{filter:blur(1.6px)}
 @media(max-width:700px){.glowA{filter:blur(3.5px)}.glowB{filter:blur(1.5px)}}
+.lowblur{filter:blur(8px)}
 </style>
 </head>
 <body>
@@ -907,7 +908,7 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
       '</defs>'+
       '<ellipse cx="'+bendX+'" cy="'+bendY+'" rx="'+(W*0.115)+'" ry="'+(hh*0.115)+'" fill="url(#bend)" opacity=".72"/>'+
       '<g mask="url(#mTop)">'+layers+'</g>'+
-      '<g mask="url(#mLow)" opacity=".35" fill="none" stroke="#8FE9A8" stroke-width="1.1" stroke-linecap="round">'+low+'</g>';
+      '<g class="lowblur" mask="url(#mLow)" opacity=".40" fill="none" stroke="#9BE9B0" stroke-width="2.4" stroke-linecap="round">'+low+'</g>';
   }
 
   build();
