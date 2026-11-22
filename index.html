@@ -452,6 +452,8 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
 .glowA{filter:blur(4px)}.glowB{filter:blur(1.6px)}
 @media(max-width:700px){.glowA{filter:blur(3.5px)}.glowB{filter:blur(1.5px)}}
 .lowblur{filter:blur(8px)}
+.ribbonGlow{filter:blur(6px)}
+@media(max-width:700px){.ribbonGlow{filter:blur(4px)}}
 </style>
 </head>
 <body>
@@ -887,9 +889,12 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
 
     var midPath = ds[Math.floor(ds.length/2)];
     var band =
-      '<path d="'+midPath+'" fill="none" stroke="url(#rg)" stroke-width="56" stroke-linecap="round" opacity=".10"/>'+
-      '<path d="'+midPath+'" fill="none" stroke="url(#rg)" stroke-width="26" stroke-linecap="round" opacity=".16"/>'+
-      '<path d="'+midPath+'" fill="none" stroke="#DFFFA0" stroke-width="9" stroke-linecap="round" opacity=".20"/>';
+      '<g class="ribbonGlow" fill="none" stroke="url(#rg)" stroke-linecap="round">'+
+        '<path d="'+midPath+'" stroke-width="120" opacity=".07"/>'+
+        '<path d="'+midPath+'" stroke-width="62" opacity=".11"/>'+
+        '<path d="'+midPath+'" stroke-width="26" opacity=".16"/>'+
+      '</g>'+
+      '<path d="'+midPath+'" fill="none" stroke="#E8FFB0" stroke-width="7" stroke-linecap="round" opacity=".22"/>';
 
     var layers =
       band+
