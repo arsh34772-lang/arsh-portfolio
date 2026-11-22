@@ -825,21 +825,13 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     var nodeX=W*0.50;
     var nodeY=top+vh*0.46;
     var base=[
-      [W*0.99, -80],
-      [W*0.87, top+vh*0.12],
-      [W*0.67, top+vh*0.30],
-      [nodeX,  nodeY],
-      [W*0.68, top+vh*0.72],
-      [W*0.91, top+vh*1.06],
-      [W*0.62, top+vh*1.34],
-      [W*0.34, docH*0.30],
-      [W*0.62, docH*0.40],
-      [W*0.86, docH*0.50],
-      [W*0.50, docH*0.62],
-      [W*0.24, docH*0.72],
-      [W*0.48, docH*0.84],
-      [W*0.74, docH*0.94],
-      [W*0.52, docH+50]
+      [W*1.02, top-vh*0.06],
+      [W*0.92, top+vh*0.10],
+      [W*0.84, top+vh*0.28],
+      [W*0.72, top+vh*0.46],
+      [W*0.56, top+vh*0.62],
+      [W*0.40, top+vh*0.78],
+      [W*0.26, top+vh*0.94]
     ];
     function cat(pts){
       var p=[pts[0]].concat(pts,[pts[pts.length-1]]), d='M'+pts[0][0].toFixed(1)+' '+pts[0][1].toFixed(1);
@@ -918,10 +910,13 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
           '<stop offset="1" stop-color="#fff" stop-opacity=".5"/></linearGradient>'+
         '<mask id="mTop"><rect x="0" y="0" width="'+W+'" height="'+H2+'" fill="url(#fadeTop)"/></mask>'+
         '<mask id="mLow"><rect x="0" y="0" width="'+W+'" height="'+H2+'" fill="url(#fadeLow)"/></mask>'+
+        '<radialGradient id="guardG"><stop offset="0" stop-color="#000"/><stop offset=".55" stop-color="#000"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>'+
+        '<mask id="mGuard"><rect x="0" y="0" width="'+W+'" height="'+H2+'" fill="#fff"/>'+
+          '<ellipse cx="'+(MOB?W*0.46:W*0.30)+'" cy="'+(top+(MOB?vh*0.30:vh*0.34))+'" rx="'+(MOB?W*0.60:W*0.34)+'" ry="'+(MOB?vh*0.26:vh*0.30)+'" fill="url(#guardG)"/></mask>'+
         '<mask id="bm"><ellipse cx="'+bendX+'" cy="'+bendY+'" rx="'+(W*0.16)+'" ry="'+(hh*0.20)+'" fill="url(#bendMask)"/></mask>'+
       '</defs>'+
       '<ellipse cx="'+bendX+'" cy="'+bendY+'" rx="'+(W*0.115)+'" ry="'+(hh*0.115)+'" fill="url(#bend)" opacity=".72"/>'+
-      '<g mask="url(#mTop)">'+layers+'</g>'+
+      '<g mask="url(#mTop)"><g mask="url(#mGuard)">'+layers+'</g></g>'+
       '<g class="lowblur" mask="url(#mLow)" opacity=".40" fill="none" stroke="#9BE9B0" stroke-width="2.4" stroke-linecap="round">'+low+'</g>';
   }
 
