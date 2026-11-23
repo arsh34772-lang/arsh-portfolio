@@ -411,6 +411,14 @@ h1 .serif{color:var(--ink);letter-spacing:-.02em}
   .sec__p{margin-top:12px}
   .works,.steps3,.caps,.plans,.faq,.stats{margin-top:24px}
 }
+
+.flora{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.flora svg{width:100%;height:100%;display:block}
+.flora g.sway{transform-box:fill-box;transform-origin:50% 100%;animation:sway 18s ease-in-out infinite alternate}
+.flora g.sway:nth-of-type(2){animation-duration:24s;animation-delay:-6s}
+.flora g.sway:nth-of-type(3){animation-duration:30s;animation-delay:-12s}
+@keyframes sway{from{transform:rotate(-1.6deg)}to{transform:rotate(1.6deg)}}
+@media (prefers-reduced-motion:reduce){.flora g.sway{animation:none}}
 </style>
 <style id="type-fix">
 h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
@@ -937,6 +945,35 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
   build();
   var rt;
   window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(build,180);});
+})();
+</script>
+
+<div class="flora" id="flora" aria-hidden="true"></div>
+<script>
+(function(){
+  var host=document.getElementById('flora'); if(!host) return;
+  function sprig(x,y,sc,rot,color,op){
+    var g='<g class="sway" transform="translate('+x+','+y+') rotate('+rot+') scale('+sc+')" fill="none" stroke="'+color+'" stroke-width="1" stroke-linecap="round" opacity="'+op+'">';
+    g+='<path d="M0,0 C7,-62 -9,-112 3,-176"/>';
+    for(var i=1;i<=4;i++){
+      var ly=-i*34, side=(i%2)?1:-1, ox=3*(i/4);
+      g+='<path d="M'+ox+','+ly+' C'+(side*27)+','+(ly-9)+' '+(side*31)+','+(ly+11)+' '+(side*5)+','+(ly+15)+'"/>';
+      g+='<path d="M'+ox+','+ly+' C'+(side*12)+','+(ly-6)+' '+(side*14)+','+(ly+9)+' '+(side*5)+','+(ly+15)+'"/>';
+    }
+    var hy=-180;
+    for(var p=0;p<5;p++){
+      g+='<ellipse cx="0" cy="-13" rx="8.5" ry="15" transform="translate(3,'+hy+') rotate('+(p*72)+')"/>';
+    }
+    g+='<circle cx="3" cy="'+hy+'" r="3.4"/>';
+    return g+'</g>';
+  }
+  var W=window.innerWidth, H=window.innerHeight, big=Math.max(W,H)/900;
+  var svg='<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="xMidYMid slice">';
+  svg+=sprig(W*0.06, H*1.02, big*0.95, 6, '#CFFF52', 0.16);
+  svg+=sprig(W*0.93, H*0.34, big*0.72, -12, '#FFB45C', 0.13);
+  svg+=sprig(W*0.78, H*1.0, big*0.55, 14, '#CFFF52', 0.10);
+  svg+='</svg>';
+  host.innerHTML=svg;
 })();
 </script>
 </body>
