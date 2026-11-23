@@ -24,7 +24,7 @@
 *{box-sizing:border-box}
 html{background:var(--bg);scroll-behavior:smooth;overflow-x:hidden}
 html,body{position:relative;margin:0;padding:0}
-body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;
+body{background:var(--bg);background-image:radial-gradient(circle, rgba(207,255,82,.085) 1px, transparent 1px);background-size:26px 26px;background-attachment:fixed;color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;
   font-weight:400;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 ::selection{background:var(--acc);color:#050805}
 a{color:inherit;text-decoration:none}
@@ -881,7 +881,7 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     }).join('');
 
     var core = ds.map(function(d,i){
-      var o=(0.20+0.20*Math.abs(Math.sin(i*1.7))).toFixed(2);
+      var o=(0.62+0.30*Math.abs(Math.sin(i*1.7))).toFixed(2);
       var col = (i===2?'#5BC8FF':(i===9?'#7FE3FF':'#C8FF2E'));
       return '<path vector-effect="non-scaling-stroke" stroke="'+col+'" stroke-width="1.3" opacity="'+o+'" d="'+d+'"/>';
     }).join('');
@@ -889,10 +889,10 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     var midPath = ds[Math.floor(ds.length/2)];
     var band =
       '<g class="ribbonGlow" fill="none" stroke="url(#rg)" stroke-linecap="round">'+
-        '<path d="'+midPath+'" stroke-width="142" opacity=".040"/>'+
-        '<path d="'+midPath+'" stroke-width="98" opacity=".055"/>'+
-        '<path d="'+midPath+'" stroke-width="58" opacity=".075"/>'+
-        '<path d="'+midPath+'" stroke-width="30" opacity=".100"/>'+
+        '<path d="'+midPath+'" stroke-width="142" opacity=".022"/>'+
+        '<path d="'+midPath+'" stroke-width="98" opacity=".030"/>'+
+        '<path d="'+midPath+'" stroke-width="58" opacity=".040"/>'+
+        '<path d="'+midPath+'" stroke-width="30" opacity=".055"/>'+
       '</g>'+
       '<path d="'+midPath+'" fill="none" stroke="#E8FFB0" stroke-width="6" stroke-linecap="round" opacity=".20"/>';
 
