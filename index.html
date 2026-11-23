@@ -24,7 +24,7 @@
 *{box-sizing:border-box}
 html{background:var(--bg);scroll-behavior:smooth;overflow-x:hidden}
 html,body{position:relative;margin:0;padding:0}
-body{background:var(--bg);background-image:radial-gradient(circle, rgba(207,255,82,.085) 1px, transparent 1px);background-size:26px 26px;background-attachment:fixed;color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;
   font-weight:400;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 ::selection{background:var(--acc);color:#050805}
 a{color:inherit;text-decoration:none}
@@ -451,7 +451,7 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
 @media (prefers-reduced-motion:reduce){.spark{animation:none}}
 .glowA{filter:blur(4px)}.glowB{filter:blur(1.6px)}
 @media(max-width:700px){.glowA{filter:blur(3.5px)}.glowB{filter:blur(1.5px)}}
-.lowblur{filter:blur(10px)}
+.lowblur{}
 .ribbonGlow{filter:blur(4px)}
 @media(max-width:700px){.ribbonGlow{filter:blur(4px)}}
 </style>
@@ -870,10 +870,10 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     var fadeEnd=top+hh*1.55;
     var sparks = ds.map(function(d,i){
       var out='';
-      for(var k=0;k<8;k++){
+      for(var k=0;k<6;k++){
         var dur=(8+i*0.5+k*1.9).toFixed(1), del=(-(i*0.7+k*1.6)).toFixed(1);
-        var rr=[1.4,0.9,1.1,1.6,1.0,1.3,0.85,1.2][k];
-        var op=[1,0.9,0.95,0.8,1,0.85,0.9,0.95][k];
+        var rr=[0.75,0.95,0.85,1.1,0.8,1.0][k];
+        var op=[1,0.85,0.95,0.8,1,0.9][k];
         out+='<circle class="spark" r="'+rr+'" fill="#FFFFFF" opacity="'+op+
              '" style="offset-path:path(\''+d+'\');animation-duration:'+dur+'s;animation-delay:'+del+'s"/>';
       }
@@ -881,20 +881,22 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     }).join('');
 
     var core = ds.map(function(d,i){
-      var o=(0.62+0.30*Math.abs(Math.sin(i*1.7))).toFixed(2);
+      var o=(0.74+0.24*Math.abs(Math.sin(i*1.7))).toFixed(2);
       var col = (i===2?'#5BC8FF':(i===9?'#7FE3FF':'#C8FF2E'));
       return '<path vector-effect="non-scaling-stroke" stroke="'+col+'" stroke-width="1.3" opacity="'+o+'" d="'+d+'"/>';
     }).join('');
 
     var midPath = ds[Math.floor(ds.length/2)];
+    var bandPaths='';
+    for(var bi=0;bi<9;bi++){
+      var bw=5+bi*7.6, bo=0.006+bi*0.0026;
+      bandPaths+='<path d="'+midPath+'" stroke-width="'+bw.toFixed(1)+'" opacity="'+bo.toFixed(4)+'"/>';
+    }
+    var hotR=MOB?95:150;
     var band =
-      '<g class="ribbonGlow" fill="none" stroke="url(#rg)" stroke-linecap="round">'+
-        '<path d="'+midPath+'" stroke-width="142" opacity=".022"/>'+
-        '<path d="'+midPath+'" stroke-width="98" opacity=".030"/>'+
-        '<path d="'+midPath+'" stroke-width="58" opacity=".040"/>'+
-        '<path d="'+midPath+'" stroke-width="30" opacity=".055"/>'+
-      '</g>'+
-      '<path d="'+midPath+'" fill="none" stroke="#E8FFB0" stroke-width="6" stroke-linecap="round" opacity=".20"/>';
+      '<g fill="none" stroke="url(#rg)" stroke-linecap="round">'+bandPaths+'</g>'+
+      '<circle cx="'+nodeX+'" cy="'+nodeY+'" r="'+hotR+'" fill="url(#hot)" opacity=".95"/>'+
+      '<circle cx="'+nodeX+'" cy="'+nodeY+'" r="'+(hotR*0.22)+'" fill="url(#hotCore)"/>';
 
     var layers =
       band+
@@ -907,7 +909,11 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
     var lowD = cat([[W*0.70, top+vh*0.92],[W*0.66, docH*0.22],[W*0.60, docH*0.42],
       [W*0.67, docH*0.62],[W*0.61, docH*0.82],[W*0.65, docH+40]]);
     var low = [0,-14,14,-28,28].map(function(dx){
-      return '<path transform="translate('+dx+',0)" d="'+lowD+'"/>';
+      var g='';
+      [[26,.05],[16,.08],[9,.12],[4.2,.20]].forEach(function(w){
+        g+='<path transform="translate('+dx+',0)" stroke-width="'+w[0]+'" opacity="'+w[1]+'" d="'+lowD+'"/>';
+      });
+      return g;
     }).join('');
 
     var hEnd=top+hh;
