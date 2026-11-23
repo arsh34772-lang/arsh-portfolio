@@ -1,0 +1,16 @@
+<!doctype html><meta charset="utf-8"><title>Responsive QA</title><div id="results">Running responsive checks…</div><div id="frames" style="position:absolute;left:-10000px;top:0"></div><script>
+const pages=['concepts-coaching-demo.html','crest-institute-demo.html'];
+const widths=[320,360,390,430,768];
+const results=[];let done=0;
+for(const page of pages)for(const width of widths){
+ const f=document.createElement('iframe'); f.title=page+' '+width;f.width=width;f.height=1000;f.style.border='0';
+ f.src=page;document.getElementById('frames').appendChild(f);
+ f.onload=async()=>{try{await f.contentDocument.fonts.ready;setTimeout(()=>{
+ const d=f.contentDocument,w=f.contentWindow,root=d.documentElement,body=d.body;
+ let maxRight=0;for(const el of d.querySelectorAll('body *')){const r=el.getBoundingClientRect();if(r.width)maxRight=Math.max(maxRight,r.right)}
+ results.push({page,width,inner:w.innerWidth,doc:root.scrollWidth,body:body.scrollWidth,maxRight:Math.round(maxRight*10)/10,pass:root.scrollWidth<=width&&body.scrollWidth<=width&&maxRight<=width+1});
+ document.getElementById('results').textContent=JSON.stringify(results.sort((a,b)=>a.page.localeCompare(b.page)||a.width-b.width));
+ if(++done===pages.length*widths.length)document.title='QA done';
+ },350)}catch(e){results.push({page,width,error:String(e)});document.getElementById('results').textContent=JSON.stringify(results)}};
+}
+</script>
