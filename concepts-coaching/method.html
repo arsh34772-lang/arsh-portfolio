@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Method | Concepts Coaching Institute — concept</title>
+<meta name="description" content="How classes run: explain, test, close the gap. What parents see each week.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F4F7F2;--ink:#10231A;--muted:#4C6157;--line:#D8E3D9;--accent:#1F6B4A;--soft:#8FCBA8;--card:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;font-size:16px;line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1080px,92vw);margin:0 auto}
+.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.02em;line-height:1.08}
+h1{font-size:clamp(34px,7vw,58px)}
+h2{font-size:clamp(24px,4.2vw,36px)}
+p{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:14px 22px;border-radius:999px;font-size:14px;font-weight:600;white-space:nowrap;transition:transform .18s,box-shadow .18s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.16)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700}
+.mark{width:30px;height:30px;border-radius:9px;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:'Fraunces',serif;font-size:15px}
+.menu{display:flex;gap:18px;font-size:14px}
+.menu a{color:var(--muted);padding:4px 0;border-bottom:2px solid transparent}
+.menu a.on,.menu a:hover{color:var(--ink);border-color:var(--accent)}
+.nav .btn{padding:10px 16px;font-size:13px}
+.hero{padding:20px 0 0}
+.shot{border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--card)}
+.shot img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.copy{padding:26px 0 4px;max-width:740px}
+.copy h1{margin:10px 0 14px}
+.copy p{font-size:17px;max-width:56ch}
+.acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:24px}
+.trust div{background:var(--card);padding:16px 14px}
+.trust b{display:block;font-family:'Fraunces',serif;font-size:19px}
+.trust span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+section{padding:52px 0}
+.head{max-width:640px;margin-bottom:24px}
+.head h2{margin:8px 0 10px}
+.grid{display:grid;gap:14px}
+.cards{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.08)}
+.card h3{font-size:20px;margin-bottom:8px}
+.tag{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.card p{font-size:14.5px}
+.card ul{list-style:none;margin-top:12px;display:grid;gap:7px}
+.card li{font-size:14px;color:var(--muted);padding-left:18px;position:relative}
+.card li:before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;background:var(--soft)}
+.gallery{grid-template-columns:repeat(3,1fr)}
+.gallery figure{border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+.gallery img{aspect-ratio:1/1;object-fit:cover;width:100%}
+.dark{background:#10231A;color:#EDF5EE}
+.dark h2,.dark .eyebrow,.dark p{color:#EDF5EE}
+.dark p{opacity:.82}
+.dark .card{background:transparent;border-color:#2C4638;color:#EDF5EE}
+.dark .card p,.dark .card li{color:#EDF5EE;opacity:.82}
+.dark .tag{color:#9BE3B8}
+table{width:100%;border-collapse:collapse;font-size:14.5px;margin-top:8px}
+th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line)}
+th{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.split{display:grid;gap:26px;grid-template-columns:1.05fr .95fr;align-items:start}
+.form{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+.field{margin-bottom:12px}
+label{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+input,select,textarea{width:100%;font:inherit;font-size:15px;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--soft);outline-offset:1px}
+.note{font-size:12px;color:var(--muted);margin-top:10px}
+.steps{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.step{border-top:2px solid var(--accent);padding-top:14px}
+.step b{display:block;font-family:'Fraunces',serif;font-size:18px;margin-bottom:6px}
+.pager{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;border-top:1px solid var(--line);padding-top:18px;font-size:14px}
+footer{border-top:1px solid var(--line);padding:26px 0 40px;font-size:13px;color:var(--muted)}
+.foot{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between}
+.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+@media(max-width:820px){.split{grid-template-columns:1fr}.gallery{grid-template-columns:1fr 1fr}.gallery figure:last-child{display:none}.trust{grid-template-columns:1fr 1fr}.trust div:last-child{display:none}.menu{display:none}}
+@media(max-width:430px){section{padding:40px 0}.nav .btn span{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="index.html"><span class="mark">C</span>Concepts Coaching</a>
+  <nav class="menu"><a href="index.html">Home</a><a href="programmes.html">Programmes</a><a href="method.html" class="on">Method</a><a href="contact.html">Contact</a></nav>
+  <a class="btn" href="contact.html">Ask a question <span>&rarr;</span></a>
+</div></header>
+<main>
+<div class="wrap hero">
+  <div class="shot"><img src="room-2.jpg" alt="Study hall" width="1200" height="750"></div>
+  <div class="copy" style="padding-top:26px">
+    <p class="eyebrow">Method</p>
+    <h1>Taught once, tested twice.</h1>
+    <p>A chapter is explained in class, tested the same week, and explained again in the doubt slot if the test shows a gap. Parents get the test result, not a general remark.</p>
+  </div>
+</div>
+<section>
+  <div class="wrap grid cards">
+    <article class="card"><span class="tag">01</span><h3>Explain</h3><p>The chapter is taught from the base, on the school's order of topics, with board work for every step.</p></article>
+    <article class="card"><span class="tag">02</span><h3>Test</h3><p>A short chapter test every week, on the pattern the school uses, marked before the next class.</p></article>
+    <article class="card"><span class="tag">03</span><h3>Close the gap</h3><p>Whoever loses marks in the test sits in the doubt slot the day before the next one.</p></article>
+  </div>
+</section>
+<section class="dark">
+  <div class="wrap">
+    <div class="head"><p class="eyebrow">For parents</p><h2>What you get to see</h2><p>No parent-teacher meeting to find out how the term is going. The test result and the notebook reach home.</p></div>
+    <div class="grid cards">
+      <article class="card"><span class="tag">Weekly</span><h3>Test result</h3><p>Marks and the chapters covered, sent the same week.</p></article>
+      <article class="card"><span class="tag">Fortnightly</span><h3>Notebook check</h3><p>Written work checked for method, not just the final answer.</p></article>
+      <article class="card"><span class="tag">Anytime</span><h3>Direct message</h3><p>One WhatsApp number for a question about a batch or a student.</p></article>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <div class="head"><p class="eyebrow">Next</p><h2>Sit in one class first</h2><p>A parent and a student can visit, see the room and sit through one class before paying anything.</p></div>
+    <div class="acts"><a class="btn" href="contact.html">Fix a visit &rarr;</a><a class="btn ghost" href="programmes.html">See programmes</a></div>
+  </div>
+</section>
+</main>
+<footer><div class="wrap foot">
+  <div><span class="badge">Independent concept</span>
+    <p style="margin-top:10px;max-width:46ch">A design concept prepared for Concepts Coaching Institute. Not the official website and not affiliated with the business. Details shown are from public listings and are confirmed by the centre.</p></div>
+  <div style="text-align:right"><p>503/1, Prince Hostel Road, opposite Sahara Hospital, Civil Lines, Ludhiana 141001</p><p style="margin-top:6px">+91 98724 91915</p></div>
+</div></footer>
+</body></html>
