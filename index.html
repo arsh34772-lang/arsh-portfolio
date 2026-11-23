@@ -906,11 +906,11 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
       '<g>'+sparks+'</g>'+
       '<g mask="url(#bm)" fill="none" stroke="#F7FEE7" stroke-width="2.4" stroke-linecap="round" opacity=".85">'+core+'</g>';
 
-    var lowD = cat([[W*0.70, top+vh*0.92],[W*0.66, docH*0.22],[W*0.60, docH*0.42],
-      [W*0.67, docH*0.62],[W*0.61, docH*0.82],[W*0.65, docH+40]]);
-    var low = [0,-14,14,-28,28].map(function(dx){
+    var lowD = cat([[W*0.96, top+vh*0.90],[W*0.93, docH*0.20],[W*0.90, docH*0.38],
+      [W*0.95, docH*0.56],[W*0.91, docH*0.74],[W*0.94, docH*0.90],[W*0.92, docH+40]]);
+    var low = [0,-8,8,-16,16].map(function(dx){
       var g='';
-      [[26,.05],[16,.08],[9,.12],[4.2,.20]].forEach(function(w){
+      [[22,.035],[13,.055],[7,.085],[3.4,.14]].forEach(function(w){
         g+='<path transform="translate('+dx+',0)" stroke-width="'+w[0]+'" opacity="'+w[1]+'" d="'+lowD+'"/>';
       });
       return g;
@@ -930,7 +930,7 @@ h1,h2,h3,h4{line-height:1.08;padding-bottom:.07em;overflow:visible}
       '</defs>'+
       '<ellipse cx="'+bendX+'" cy="'+bendY+'" rx="'+(W*0.115)+'" ry="'+(hh*0.115)+'" fill="url(#bend)" opacity=".72"/>'+
       '<g mask="url(#mTop)">'+layers+'</g>'+
-      '<g class="lowblur" opacity=".30" fill="none" stroke="#C8FF2E" stroke-width="4.2" stroke-linecap="round">'+low+'</g>';
+      '<g class="lowblur" opacity=".22" fill="none" stroke="#C8FF2E" stroke-width="4.2" stroke-linecap="round">'+low+'</g>';
   }
 
   build();
