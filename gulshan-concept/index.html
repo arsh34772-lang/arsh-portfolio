@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Shree Gulshan Bath Concept — Tile Calculator Concept</title>
+<meta name="description" content="Independent concept preview: a tile and wall calculator for Shree Gulshan Bath Concept, Sector 33, Ludhiana." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#141416; --bg-2:#1c1c1f; --panel:#1f1f23; --bone:#f5f2ec;
+  --copper:#b8723c; --copper-l:#e0a86f; --sage:#8d9b8a;
+  --line:rgba(245,242,236,.13); --txt:#f5f2ec; --dim:rgba(245,242,236,.62);
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Manrope',system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--txt);font-family:var(--sans);font-size:16px;line-height:1.55;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+:focus-visible{outline:2px solid var(--copper-l);outline-offset:3px;border-radius:4px}
+.wrap{width:100%;max-width:1140px;margin:0 auto;padding:0 20px}
+h1,h2{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-height:1.02}
+h1{font-size:clamp(2.4rem,10.5vw,4.6rem)}
+h2{font-size:clamp(1.6rem,6vw,2.5rem)}
+.eyebrow{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--copper-l);font-weight:600}
+
+/* header */
+.hd{position:sticky;top:0;z-index:40;background:rgba(20,20,22,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.hd-in{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand svg{flex:none}
+.brand b{font-family:var(--serif);font-size:1.08rem;font-weight:400;display:block;line-height:1.15;letter-spacing:.01em}
+.brand span{font-size:.65rem;color:var(--dim);letter-spacing:.09em;text-transform:uppercase}
+.call{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:9px 15px;font-size:.78rem;font-weight:600;white-space:nowrap;background:rgba(245,242,236,.05)}
+.call:active{transform:scale(.97)}
+
+/* hero */
+.hero{padding:46px 0 36px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:auto -30% 20% -30%;height:280px;background:radial-gradient(50% 60% at 50% 50%,rgba(184,114,60,.20),transparent 70%);pointer-events:none}
+.hero .wrap{position:relative}
+h1 em{font-style:italic;color:var(--copper-l)}
+.lede{margin-top:16px;color:var(--dim);max-width:44ch;font-size:.96rem}
+.rating{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:22px;font-size:.82rem;color:var(--dim)}
+.rating b{color:var(--txt);font-size:1.05rem}
+.stars{color:var(--copper-l);letter-spacing:.12em;font-size:.9rem}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+.chips span{border:1px solid var(--line);border-radius:999px;padding:6px 11px;font-size:.72rem;color:var(--dim)}
+
+/* calculator */
+.calc{padding:6px 0 54px}
+.ccard{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:20px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.field{margin-top:14px}
+.field:first-child{margin-top:0}
+label{display:block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:7px;font-weight:600}
+input,select{width:100%;border:1px solid var(--line);background:#17171a;color:var(--txt);border-radius:11px;padding:12px 13px;font:inherit;font-size:.9rem;appearance:none}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23e0a86f' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center}
+input:focus,select:focus{outline:none;border-color:var(--copper)}
+.err{color:#e8896f;font-size:.72rem;margin-top:5px;display:none}
+.err.on{display:block}
+.out{margin-top:20px;border-top:1px solid var(--line);padding-top:18px}
+.readout{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ro{background:#17171a;border:1px solid var(--line);border-radius:14px;padding:13px}
+.ro b{display:block;font-family:var(--serif);font-size:1.5rem;line-height:1.1}
+.ro span{font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.hint{font-size:.72rem;color:var(--dim);margin-top:12px}
+.build{margin-top:16px;display:flex;flex-wrap:wrap;gap:9px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:13px 20px;font-size:.84rem;font-weight:700;transition:transform .16s}
+.btn:active{transform:scale(.98)}
+.btn-solid{background:var(--copper);color:#1a1208}
+.btn-line{border:1px solid var(--line);background:rgba(245,242,236,.04)}
+.builder{display:none;margin-top:16px;border:1px solid var(--line);border-radius:16px;padding:16px;background:#17171a}
+.builder.on{display:block}
+textarea{width:100%;min-height:120px;border:1px solid var(--line);border-radius:11px;background:#111113;color:var(--txt);padding:12px;font:inherit;font-size:.8rem;line-height:1.55;margin-top:12px;resize:vertical}
+.sent{font-size:.74rem;color:var(--copper-l);margin-top:9px;display:none}
+.sent.on{display:block}
+
+/* ranges */
+.ranges{padding:0 0 52px}
+.rows{border-top:1px solid var(--line);margin-top:18px}
+.row{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:15px 0;border-bottom:1px solid var(--line)}
+.row h3{font-family:var(--serif);font-size:1.2rem;font-weight:400}
+.row p{font-size:.76rem;color:var(--dim);max-width:34ch;text-align:right}
+
+/* visit */
+.visit{padding:0 0 54px}
+.vcard{border:1px solid var(--line);border-radius:22px;padding:22px;background:linear-gradient(160deg,rgba(184,114,60,.10),rgba(255,255,255,0) 60%)}
+.vrow{display:grid;gap:16px;margin-top:18px}
+.k{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--copper-l);font-weight:600}
+.v{font-size:.88rem;margin-top:5px;color:rgba(245,242,236,.9)}
+a.v{text-decoration:underline;text-underline-offset:3px}
+.hours{display:grid;grid-template-columns:1fr auto;gap:5px 12px;font-size:.83rem;margin-top:5px;color:rgba(245,242,236,.9)}
+.hours span:nth-child(even){color:var(--dim);font-variant-numeric:tabular-nums}
+
+footer{border-top:1px solid var(--line);padding:20px 0 40px;font-size:.72rem;color:var(--dim);line-height:1.65}
+footer b{color:var(--txt)}
+
+@media (min-width:640px){
+  .ccard{padding:26px}
+  .readout{grid-template-columns:repeat(3,1fr)}
+  .row p{max-width:40ch}
+}
+@media (min-width:900px){
+  .hero{padding:70px 0 46px}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:end}
+  .calc .wrap{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+  .ccard{padding:30px}
+  .vrow{grid-template-columns:1.4fr 1fr 1fr;gap:26px}
+  .vcard{padding:30px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<header class="hd">
+  <div class="wrap hd-in">
+    <a class="brand" href="#top" aria-label="Shree Gulshan Bath Concept, top of page">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="1" y="1" width="26" height="26" rx="7" stroke="#b8723c" stroke-width="1.3"/><path d="M8 19V9l12 10V9" stroke="#f5f2ec" stroke-width="1.4" stroke-linejoin="round"/></svg>
+      <span><b>Shree Gulshan Bath Concept</b><span>Sector 33 · Ludhiana</span></span>
+    </a>
+    <a class="call" href="tel:+919815545922">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 3h3l2 5-2.5 1.5a12 12 0 0 0 6 6L16 13l5 2v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4 5.2 2 2 0 0 1 6 3Z"/></svg>
+      +91 98155 45922
+    </a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Bath fittings · Sanitaryware · Tiles</p>
+        <h1>Measure the wall.<br><em>Know the tiles.</em></h1>
+        <p class="lede">A calculator built for the Sector 33 counter: enter your wall, pick a tile size, and get the tile and box count before you walk in.</p>
+        <div class="rating">
+          <span class="stars" aria-hidden="true">★★★★★</span>
+          <b>5.0</b><span>· 35 Google reviews</span>
+        </div>
+        <div class="chips">
+          <span>Jaquar authorised dealer</span><span>Bath fittings</span><span>Tiles</span><span>Plumbing supply</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="calc" aria-labelledby="calc-h">
+    <div class="wrap">
+      <div class="ccard">
+        <div>
+          <p class="eyebrow" id="calc-h">Tile calculator</p>
+          <div class="grid2" style="margin-top:14px">
+            <div class="field">
+              <label for="w">Wall width (ft)</label>
+              <input id="w" type="number" inputmode="decimal" min="1" max="60" step="0.5" value="8" />
+            </div>
+            <div class="field">
+              <label for="h">Wall height (ft)</label>
+              <input id="h" type="number" inputmode="decimal" min="1" max="20" step="0.5" value="7" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="t">Tile size</label>
+            <select id="t">
+              <option value="600x600">600 × 600 mm</option>
+              <option value="600x1200" selected>600 × 1200 mm</option>
+              <option value="300x600">300 × 600 mm</option>
+              <option value="300x300">300 × 300 mm</option>
+              <option value="800x800">800 × 800 mm</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="waste">Cutting wastage</label>
+            <select id="waste">
+              <option value="5">5% — straight layout</option>
+              <option value="8" selected>8% — one niche or window</option>
+              <option value="12">12% — diagonal or many cuts</option>
+            </select>
+          </div>
+          <p class="err" id="calcErr">Enter a width and height between 1 and 60 ft.</p>
+        </div>
+
+        <div class="out">
+          <div class="readout">
+            <div class="ro"><b id="area">—</b><span>Sq ft wall</span></div>
+            <div class="ro"><b id="tiles">—</b><span>Tiles needed</span></div>
+            <div class="ro"><b id="boxes">—</b><span>Boxes (approx)</span></div>
+          </div>
+          <p class="hint" id="hint">Box counts use typical packing per tile size. Packing and shade lots are confirmed at the showroom.</p>
+          <div class="build">
+            <button class="btn btn-solid" id="buildBtn">Build WhatsApp message</button>
+            <button class="btn btn-line" id="addBtn">Add a second wall</button>
+          </div>
+
+          <div class="builder" id="builder">
+            <div class="grid2">
+              <div class="field">
+                <label for="nm">Your name</label>
+                <input id="nm" type="text" autocomplete="name" placeholder="Full name" />
+                <p class="err" id="nmErr">Please add your name.</p>
+              </div>
+              <div class="field">
+                <label for="ph">Phone</label>
+                <input id="ph" type="tel" inputmode="tel" autocomplete="tel" placeholder="10-digit mobile" />
+                <p class="err" id="phErr">Enter a valid 10-digit Indian mobile number.</p>
+              </div>
+            </div>
+            <textarea id="msg" readonly aria-label="WhatsApp message preview"></textarea>
+            <div class="build">
+              <a class="btn btn-solid" id="waLink" href="#" target="_blank" rel="noopener">Open in WhatsApp</a>
+              <button class="btn btn-line" id="copyBtn">Copy text</button>
+            </div>
+            <p class="sent" id="copied">Copied. Paste it into any chat.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ranges">
+    <div class="wrap">
+      <div class="eyebrow">At the showroom</div>
+      <h2 style="margin-top:8px">Four floors of decisions, one counter.</h2>
+      <div class="rows">
+        <div class="row"><h3>Bath fittings</h3><p>Mixers, showers, health faucets and accessories across value and premium ranges.</p></div>
+        <div class="row"><h3>Sanitaryware</h3><p>Water closets, basins and cisterns, with concealed options for compact rooms.</p></div>
+        <div class="row"><h3>Tiles</h3><p>Floor, wall and bathroom tiles in the sizes above, plus matching borders.</p></div>
+        <div class="row"><h3>Plumbing supply</h3><p>Pipe and fittings to finish the run behind the wall.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="visit">
+    <div class="wrap">
+      <div class="vcard">
+        <p class="eyebrow">Visit</p>
+        <h2 style="margin-top:8px">Shop No. 3, opposite Sector 33</h2>
+        <div class="vrow">
+          <div>
+            <p class="k">Address</p>
+            <p class="v">Shop No. 3, opp. 33 sec, near New Onkar Vihar Road, Police Colony, Sector 33, Ludhiana, Punjab 141003</p>
+          </div>
+          <div>
+            <p class="k">Phone</p>
+            <p class="v"><a href="tel:+919815545922">+91 98155 45922</a></p>
+            <p class="k" style="margin-top:13px">Website</p>
+            <p class="v">None found on the Google listing</p>
+          </div>
+          <div>
+            <p class="k">Hours</p>
+            <div class="hours">
+              <span>Mon – Sat</span><span>9:30 am – 8:00 pm</span>
+              <span>Sunday</span><span>10:30 am – 2:00 pm</span>
+            </div>
+          </div>
+        </div>
+        <div class="build" style="margin-top:18px">
+          <a class="btn btn-line" href="https://www.google.com/maps/search/?api=1&query=Shree+Gulshan+Bath+Concept+Sector+33+Ludhiana" target="_blank" rel="noopener">Get directions</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>Independent concept.</b> This page is a design preview prepared for Shree Gulshan Bath Concept. It is not the official website of the business and is not run by them. Rating, review count, address, phone and hours come from the business's public Google listing. Tile and box numbers are arithmetic estimates from the measurements you enter, not a stock or price commitment.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var pack={'600x600':4,'600x1200':2,'300x600':6,'300x300':10,'800x800':3};
+  var areas={'600x600':(0.6*0.6),'600x1200':(0.6*1.2),'300x600':(0.3*0.6),'300x300':(0.3*0.3),'800x800':(0.8*0.8)};
+  var extraWalls=[];
+  var $=function(id){return document.getElementById(id);};
+
+  function read(){
+    var w=parseFloat($('w').value), h=parseFloat($('h').value);
+    if(!(w>=1&&w<=60&&h>=1&&h<=20)) return null;
+    return {w:w,h:h,size:$('t').value,waste:parseFloat($('waste').value)};
+  }
+
+  function calcAll(){
+    var cur=read(); if(!cur) return null;
+    var sqft=cur.w*cur.h;
+    var tileM2=areas[cur.size];
+    var withWaste=sqft*0.092903*(1+cur.waste/100);
+    var tiles=Math.ceil(withWaste/tileM2);
+    var boxes=Math.ceil(tiles/pack[cur.size]);
+    var totalSqft=sqft, totalTiles=tiles, totalBoxes=boxes;
+    extraWalls.forEach(function(e){
+      var s=e.w*e.h; var ww=s*0.092903*(1+e.waste/100);
+      var t=Math.ceil(ww/areas[e.size]);
+      totalSqft+=s; totalTiles+=t; totalBoxes+=Math.ceil(t/pack[e.size]);
+    });
+    return {cur:cur,sqft:sqft,tiles:tiles,boxes:boxes,totalSqft:totalSqft,totalTiles:totalTiles,totalBoxes:totalBoxes};
+  }
+
+  function paint(){
+    var r=calcAll();
+    var err=$('calcErr');
+    if(!r){
+      err.classList.add('on');
+      $('area').textContent='—';$('tiles').textContent='—';$('boxes').textContent='—';
+      return null;
+    }
+    err.classList.remove('on');
+    $('area').textContent=r.totalSqft.toFixed(1);
+    $('tiles').textContent=r.totalTiles;
+    $('boxes').textContent=r.totalBoxes;
+    $('hint').textContent=(extraWalls.length? (extraWalls.length+1)+' walls combined. ':'')+'Box counts use typical packing per tile size. Packing and shade lots are confirmed at the showroom.';
+    return r;
+  }
+
+  function buildText(validate){
+    var nm=$('nm').value.trim(), ph=$('ph').value.replace(/[^0-9]/g,'');
+    var okNm=nm.length>1, okPh=/^[6-9][0-9]{9}$/.test(ph);
+    $('nmErr').classList.toggle('on', validate&&!okNm);
+    $('phErr').classList.toggle('on', validate&&!okPh);
+    var r=calcAll();
+    var text='Hi Shree Gulshan Bath Concept, I used the tile calculator and would like a price and availability check.';
+    if(r){
+      text+=' Wall: '+r.cur.w+' ft × '+r.cur.h+' ft, tile '+r.cur.size.replace('x',' × ')+' mm, '+r.cur.waste+'% wastage.';
+      text+=' Estimate: '+r.totalSqft.toFixed(1)+' sq ft, '+r.totalTiles+' tiles, about '+r.totalBoxes+' boxes.';
+      if(extraWalls.length) text+=' ('+extraWalls.length+' more wall'+(extraWalls.length>1?'s':'')+' included.)';
+    }
+    if(okNm) text+=' My name is '+nm+'.';
+    if(okPh) text+=' My number is '+ph+'.';
+    text+=' Please tell me what is in stock.';
+    $('msg').value=text;
+    $('waLink').href='https://wa.me/919815545922?text='+encodeURIComponent(text);
+    return {okNm:okNm,okPh:okPh};
+  }
+
+  ['w','h','t','waste'].forEach(function(id){
+    $(id).addEventListener('input',function(){paint(); if($('builder').classList.contains('on')) buildText(false);});
+    $(id).addEventListener('change',function(){paint(); if($('builder').classList.contains('on')) buildText(false);});
+  });
+  $('nm').addEventListener('input',function(){buildText(false);});
+  $('ph').addEventListener('input',function(){buildText(false);});
+
+  $('buildBtn').addEventListener('click',function(){
+    $('builder').classList.add('on'); buildText(false);
+    $('builder').scrollIntoView({behavior:'smooth',block:'nearest'});
+  });
+
+  $('addBtn').addEventListener('click',function(){
+    var r=read(); if(!r){$('calcErr').classList.add('on');return;}
+    if(extraWalls.length>=2){$('addBtn').textContent='Two extra walls added';$('addBtn').disabled=true;return;}
+    extraWalls.push(r); paint(); buildText(false);
+    $('addBtn').textContent='Add a second wall ('+extraWalls.length+')';
+  });
+
+  $('waLink').addEventListener('click',function(e){
+    var v=buildText(true);
+    if(!v.okNm||!v.okPh){e.preventDefault();}
+  });
+
+  $('copyBtn').addEventListener('click',function(){
+    var ta=$('msg'), done=$('copied');
+    ta.removeAttribute('readonly'); ta.select(); ta.setSelectionRange(0,99999);
+    var ok=false; try{ok=document.execCommand('copy');}catch(err){ok=false;}
+    ta.setAttribute('readonly','readonly');
+    if(!ok&&navigator.clipboard){navigator.clipboard.writeText(ta.value).catch(function(){});}
+    done.classList.add('on'); setTimeout(function(){done.classList.remove('on');},2200);
+  });
+
+  paint();
+})();
+</script>
+</body>
+</html>
