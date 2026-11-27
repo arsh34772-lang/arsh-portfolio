@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Creative Energy Gym, Mundian Kalan Ludhiana — Concept Page</title>
+<meta name="description" content="Independent concept page for Creative Energy Gym, Mundian Kalan, Ludhiana. 4.7 stars from 34 Google reviews.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f6f4ec;
+    --paper-2:#eeeadf;
+    --teal:#0c3b34;
+    --teal-soft:#17554b;
+    --lime:#c8f169;
+    --ink:#132521;
+    --muted:#5c6b66;
+    --line:#d9d4c5;
+    --display:'Space Grotesk', system-ui, sans-serif;
+    --body:'Inter', system-ui, -apple-system, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:16px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;height:auto;display:block}
+  .concept-bar{
+    background:var(--teal);color:#dfe9e4;
+    font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+    text-align:center;padding:7px 16px;font-weight:500;
+  }
+  .wrap{width:100%;max-width:1080px;margin:0 auto;padding:0 18px}
+  header.site{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 0}
+  .brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);min-width:0}
+  .dot{width:11px;height:11px;background:var(--lime);border:2px solid var(--teal);flex:0 0 auto;border-radius:50%}
+  .brand-txt{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-.01em;line-height:1.15}
+  .brand-txt small{display:block;font-family:var(--body);font-weight:500;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .nav-links{display:none;gap:20px;font-size:13.5px}
+  .nav-links a{text-decoration:none;color:var(--muted)}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{
+    background:var(--teal);color:var(--paper);text-decoration:none;
+    font-size:12.5px;font-weight:600;padding:9px 14px;white-space:nowrap;
+  }
+
+  .hero{padding:38px 0 34px}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--lime);color:var(--teal);
+    font-size:12px;font-weight:600;padding:6px 11px;margin-bottom:18px;
+  }
+  h1{
+    font-family:var(--display);font-weight:700;
+    font-size:clamp(34px,9vw,68px);line-height:1.02;letter-spacing:-.02em;
+    margin:0 0 16px;text-wrap:balance;
+  }
+  h1 mark{background:none;color:var(--teal-soft);border-bottom:5px solid var(--lime);padding-bottom:2px}
+  .lede{font-size:clamp(15px,3.8vw,18px);color:var(--muted);max-width:50ch;margin:0 0 22px}
+  .hero-line{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+  .hero-line b{color:var(--ink)}
+
+  section{padding:46px 0;border-top:1px solid var(--line)}
+  .label{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-soft);font-weight:600;margin:0 0 8px}
+  h2{font-family:var(--display);font-weight:700;font-size:clamp(26px,6.5vw,40px);line-height:1.06;letter-spacing:-.02em;margin:0 0 12px}
+  .intro{color:var(--muted);font-size:15px;max-width:54ch;margin:0 0 26px}
+
+  /* calculator */
+  .calc{background:#fff;border:1px solid var(--line);display:grid;grid-template-columns:1fr}
+  .calc-form{padding:20px 16px}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .field{margin-bottom:16px}
+  .field:last-child{margin-bottom:0}
+  label.lab{display:block;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:7px}
+  input[type=number],input[type=text]{
+    width:100%;background:var(--paper);border:1px solid var(--line);color:var(--ink);
+    font-family:var(--body);font-size:16px;padding:11px 12px;border-radius:0;
+    -webkit-appearance:none;appearance:none;
+  }
+  input:focus{outline:2px solid var(--teal);outline-offset:-1px}
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chip{
+    appearance:none;border:1px solid var(--line);background:var(--paper);color:var(--ink);
+    font-family:var(--body);font-size:13px;font-weight:500;padding:8px 11px;cursor:pointer;line-height:1.2;
+    transition:.15s;
+  }
+  .chip:hover{border-color:var(--teal-soft)}
+  .chip[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#fff}
+  .btn{
+    width:100%;background:var(--teal);color:#fff;border:0;
+    font-family:var(--body);font-size:14px;font-weight:600;padding:15px 16px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;gap:8px;
+  }
+  .btn:hover{background:var(--teal-soft)}
+  .err{display:none;color:#b3341c;font-size:12.5px;margin:10px 0 0}
+  .err.show{display:block}
+  .calc-out{
+    background:var(--teal);color:#eef5f1;padding:22px 18px;
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  .calc-out .label{color:var(--lime)}
+  .big{font-family:var(--display);font-weight:700;font-size:clamp(38px,11vw,56px);line-height:1;color:#fff}
+  .big span{font-size:14px;font-family:var(--body);font-weight:500;color:#b9cec7;letter-spacing:.02em}
+  .big-sub{font-size:13px;color:#b9cec7;margin:6px 0 18px}
+  .prot{border-top:1px solid rgba(255,255,255,.18);padding-top:14px;margin-top:2px}
+  .prot .v{font-family:var(--display);font-weight:700;font-size:26px;color:var(--lime)}
+  .prot .t{font-size:12.5px;color:#b9cec7}
+  .disclaimer{font-size:11.5px;color:#9db3ac;margin-top:16px;line-height:1.5}
+
+  .cards{display:grid;grid-template-columns:1fr;gap:12px}
+  .card{background:#fff;border:1px solid var(--line);padding:18px 16px}
+  .card .k{font-family:var(--display);font-weight:700;font-size:26px;line-height:1;color:var(--teal)}
+  .card .t{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+  .card p{font-size:14px;color:var(--muted);margin:10px 0 0}
+
+  .hours{width:100%;border-collapse:collapse;font-size:14.5px;background:#fff;border:1px solid var(--line)}
+  .hours th,.hours td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line)}
+  .hours th{font-weight:500;color:var(--muted)}
+  .hours td{text-align:right;font-weight:600}
+  .hours tr:last-child th,.hours tr:last-child td{border-bottom:0}
+
+  .visit{display:grid;grid-template-columns:1fr;gap:16px}
+  .visit .card h3{font-family:var(--display);font-weight:700;font-size:15px;margin:0 0 6px}
+  .visit .card p{margin:0;font-size:14.5px;color:var(--ink)}
+  .visit .card p + p{margin-top:5px;color:var(--muted);font-size:13.5px}
+  .visit a{color:var(--teal);text-decoration:none;border-bottom:2px solid var(--lime);font-weight:600}
+
+  footer{border-top:1px solid var(--line);padding:30px 0 42px}
+  .foot-note{font-size:12.5px;line-height:1.65;color:var(--muted);max-width:64ch;border-left:3px solid var(--lime);padding-left:13px}
+  .foot-note b{color:var(--ink)}
+  .foot-meta{margin-top:20px;font-size:11.5px;color:#8b968f;letter-spacing:.05em}
+
+  @media (min-width:620px){
+    .cards{grid-template-columns:repeat(3,1fr)}
+    .visit{grid-template-columns:repeat(3,1fr)}
+    .calc{grid-template-columns:1.1fr .9fr}
+    .calc-form{padding:26px 24px}
+    .calc-out{padding:26px 24px}
+  }
+  @media (min-width:880px){
+    .nav-links{display:flex}
+    .hero{padding:56px 0 46px}
+    section{padding:62px 0}
+  }
+</style>
+</head>
+<body>
+
+<div class="concept-bar">Independent concept page · not an official website</div>
+
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="brand-txt">Creative Energy Gym<small>Mundian Kalan, Ludhiana</small></span>
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#targets">Daily targets</a>
+      <a href="#floor">The floor</a>
+      <a href="#hours">Hours</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <a class="nav-cta" href="tel:+917717453717">Call</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <div class="wrap hero">
+    <span class="badge">★ 4.7 · 34 Google reviews</span>
+    <h1>A quieter floor, <mark>better habits</mark>, numbers you can track.</h1>
+    <p class="lede">A neighbourhood gym on 33 Feet Road in Mundian Kalan, open from 5 AM for people who train before the day starts. Certified trainers, working equipment, and a plan you can measure.</p>
+    <div class="hero-line">
+      <span>Mon–Sat <b>5 AM – 10 PM</b></span>
+      <span>Sunday <b>Closed</b></span>
+      <span>Sai Enclave, 33 Feet Rd</span>
+    </div>
+  </div>
+
+  <section id="targets">
+    <div class="wrap">
+      <p class="label">Start with a number</p>
+      <h2>Your daily targets</h2>
+      <p class="intro">Most people quit because they never know what to aim for. Put in four numbers and get a calorie and protein target to bring to your first session.</p>
+
+      <div class="calc">
+        <div class="calc-form">
+          <div class="row2">
+            <div class="field">
+              <label class="lab" for="kg">Weight (kg)</label>
+              <input id="kg" type="number" inputmode="decimal" min="30" max="200" step="0.5" placeholder="72">
+            </div>
+            <div class="field">
+              <label class="lab" for="cm">Height (cm)</label>
+              <input id="cm" type="number" inputmode="numeric" min="120" max="220" step="1" placeholder="172">
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="lab" for="age">Age</label>
+            <input id="age" type="number" inputmode="numeric" min="14" max="80" step="1" placeholder="28">
+          </div>
+
+          <div class="field">
+            <label class="lab" id="lbl-sex">Sex (for the formula)</label>
+            <div class="chips" role="group" aria-labelledby="lbl-sex" id="sex">
+              <button class="chip" type="button" data-sex="m" aria-pressed="true">Male</button>
+              <button class="chip" type="button" data-sex="f" aria-pressed="false">Female</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="lab" id="lbl-act">Activity outside the gym</label>
+            <div class="chips" role="group" aria-labelledby="lbl-act" id="act">
+              <button class="chip" type="button" data-act="1.35" aria-pressed="true">Desk job</button>
+              <button class="chip" type="button" data-act="1.55" aria-pressed="false">On my feet</button>
+              <button class="chip" type="button" data-act="1.75" aria-pressed="false">Very active</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="lab" id="lbl-goal">Goal</label>
+            <div class="chips" role="group" aria-labelledby="lbl-goal" id="goal">
+              <button class="chip" type="button" data-goal="lose" aria-pressed="false">Lose fat</button>
+              <button class="chip" type="button" data-goal="maintain" aria-pressed="true">Maintain</button>
+              <button class="chip" type="button" data-goal="gain" aria-pressed="false">Build muscle</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="lab" for="name">Your name</label>
+            <input id="name" type="text" autocomplete="name" placeholder="e.g. Simran" maxlength="40">
+          </div>
+
+          <button class="btn" id="send" type="button">Send my targets on WhatsApp</button>
+          <p class="err" id="err" role="alert">Add your weight, height and age first.</p>
+        </div>
+
+        <div class="calc-out" aria-live="polite">
+          <p class="label">Estimated daily intake</p>
+          <p class="big" id="kcal">—<span> kcal</span></p>
+          <p class="big-sub" id="kcalsub">Fill the four fields to see your number</p>
+          <div class="prot">
+            <div class="v" id="prot">— g</div>
+            <div class="t">protein per day</div>
+          </div>
+          <p class="disclaimer">A starting estimate from the Mifflin–St Jeor equation, not medical advice. Your coach should adjust it after the first two weeks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="floor">
+    <div class="wrap">
+      <p class="label">The floor</p>
+      <h2>Small gym, straight answers</h2>
+      <div class="cards">
+        <div class="card">
+          <div class="k">4.7★</div>
+          <div class="t">34 Google reviews</div>
+          <p>Rated 4.7 out of 5 by members on Google, as of November 2026.</p>
+        </div>
+        <div class="card">
+          <div class="k">5 AM</div>
+          <div class="t">Doors open</div>
+          <p>Early start on 33 Feet Road, open until 10 PM Monday to Saturday.</p>
+        </div>
+        <div class="card">
+          <div class="k">Certified</div>
+          <div class="t">Trainers</div>
+          <p>Members describe the trainers as certified and the equipment as well kept.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="hours">
+    <div class="wrap">
+      <p class="label">Timing</p>
+      <h2>Open six days</h2>
+      <table class="hours">
+        <tbody>
+          <tr><th scope="row">Monday to Saturday</th><td>5:00 AM – 10:00 PM</td></tr>
+          <tr><th scope="row">Sunday</th><td>Closed</td></tr>
+        </tbody>
+      </table>
+      <p class="intro" style="margin:14px 0 0;font-size:13px">Hours as listed on the gym's Google Business profile in November 2026.</p>
+    </div>
+  </section>
+
+  <section id="visit">
+    <div class="wrap">
+      <p class="label">Visit</p>
+      <h2>Mundian Kalan, Ludhiana</h2>
+      <div class="visit">
+        <div class="card">
+          <h3>Address</h3>
+          <p>Sai Enclave, 33 Feet Road</p>
+          <p>Near Ashiana Park, Mundian Kalan, Ludhiana, Punjab 141015.</p>
+        </div>
+        <div class="card">
+          <h3>Phone</h3>
+          <p><a href="tel:+917717453717">+91 77174 53717</a></p>
+          <p>Call for fees, trials and trainer timings.</p>
+        </div>
+        <div class="card">
+          <h3>First visit</h3>
+          <p>Bring shoes with a flat sole and a water bottle.</p>
+          <p>Ask at the desk for a walkthrough before you join.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="foot-note">
+      <b>Independent concept.</b> This page is a design concept prepared by Arshdeep as a portfolio sample for
+      Creative Energy Gym, Mundian Kalan, Ludhiana. It is not the official website of the gym and is not
+      affiliated with, authorised by or endorsed by the business. Details shown are taken from the gym's public
+      Google listing in November 2026.
+    </p>
+    <p class="foot-meta">Concept build · November 2026 · No data is collected or stored on this page.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var sex='m', act=1.35, goal='maintain';
+  var PHONE='917717453717';
+  var kcalEl=document.getElementById('kcal');
+  var kcalSub=document.getElementById('kcalsub');
+  var protEl=document.getElementById('prot');
+  var errEl=document.getElementById('err');
+  var last=null;
+
+  function num(id){var v=parseFloat(document.getElementById(id).value); return isFinite(v)?v:null;}
+
+  function calc(){
+    var kg=num('kg'), cm=num('cm'), age=num('age');
+    if(!kg||!cm||!age||kg<30||cm<120||age<14){return null;}
+    var bmr=10*kg+6.25*cm-5*age+(sex==='m'?5:-161);
+    var tdee=bmr*act;
+    var adj=goal==='lose'?tdee-400:(goal==='gain'?tdee+300:tdee);
+    var proteinPerKg=goal==='lose'?2.0:(goal==='gain'?1.8:1.6);
+    return {kcal:Math.round(adj/10)*10, prot:Math.round(kg*proteinPerKg)};
+  }
+
+  function paint(){
+    var r=calc();
+    last=r;
+    if(!r){
+      kcalEl.innerHTML='—<span> kcal</span>';
+      kcalSub.textContent='Fill the four fields to see your number';
+      protEl.textContent='— g';
+      return;
+    }
+    kcalEl.innerHTML=r.kcal+'<span> kcal</span>';
+    kcalSub.textContent=(goal==='lose'?'a deficit of about 400 kcal':(goal==='gain'?'a surplus of about 300 kcal':'maintenance level'))+' · '+Math.round(act*100)/100+'x activity';
+    protEl.textContent=r.prot+' g';
+  }
+
+  ['kg','cm','age'].forEach(function(id){
+    document.getElementById(id).addEventListener('input',function(){errEl.classList.remove('show');paint();});
+  });
+
+  function bind(id,attr,cb){
+    var g=document.getElementById(id);
+    g.addEventListener('click',function(e){
+      var b=e.target.closest('button[data-'+attr+']');
+      if(!b)return;
+      Array.prototype.forEach.call(g.querySelectorAll('button'),function(x){
+        x.setAttribute('aria-pressed', x===b?'true':'false');
+      });
+      cb(b.getAttribute('data-'+attr));
+      paint();
+    });
+  }
+  bind('sex','sex',function(v){sex=v;});
+  bind('act','act',function(v){act=parseFloat(v);});
+  bind('goal','goal',function(v){goal=v;});
+
+  document.getElementById('send').addEventListener('click',function(){
+    var kg=num('kg'),cm=num('cm'),age=num('age');
+    var name=(document.getElementById('name').value||'').trim();
+    if(!kg||!cm||!age){
+      errEl.textContent='Add your weight, height and age first.';
+      errEl.classList.add('show');
+      document.getElementById(!kg?'kg':(!cm?'cm':'age')).focus();
+      return;
+    }
+    if(!name){
+      errEl.textContent='Add your name so the gym knows who is messaging.';
+      errEl.classList.add('show');
+      document.getElementById('name').focus();
+      return;
+    }
+    errEl.classList.remove('show');
+    var r=calc();
+    var goalText=goal==='lose'?'lose fat':(goal==='gain'?'build muscle':'maintain');
+    var msg='Hi Creative Energy Gym, this is '+name+'. I found you on Google (4.7 from 34 reviews).\n\n'
+      +'Weight '+kg+' kg, height '+cm+' cm, age '+age+'.\n'
+      +'Goal: '+goalText+'.\n'
+      +'My estimated targets: '+r.kcal+' kcal and '+r.prot+' g protein a day.\n\n'
+      +'Can you tell me the monthly fee and the best time for a trial session? Thank you.';
+    window.open('https://wa.me/'+PHONE+'?text='+encodeURIComponent(msg),'_blank','noopener');
+  });
+
+  paint();
+})();
+</script>
+</body>
+</html>
