@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Rex Gym, Central Town Jalandhar — Concept Page</title>
+<meta name="description" content="Independent concept page for Rex Gym, Central Town, Jalandhar. 4.6 stars from 108 Google reviews.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0d0d0b;
+    --ink-2:#161613;
+    --bone:#ece6d8;
+    --bone-dim:#a8a294;
+    --brass:#c9a227;
+    --brass-dim:#8a6f1c;
+    --line:rgba(236,230,216,.14);
+    --display:'Bebas Neue', Impact, sans-serif;
+    --body:'Inter', system-ui, -apple-system, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--ink);
+    color:var(--bone);
+    font-family:var(--body);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;height:auto;display:block}
+  a{color:inherit}
+  .concept-bar{
+    background:var(--brass);
+    color:#141208;
+    font-size:11.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    text-align:center;
+    padding:7px 16px;
+    font-weight:600;
+  }
+  .wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 20px}
+  header.site{
+    border-bottom:1px solid var(--line);
+    position:sticky;top:0;z-index:20;
+    background:rgba(13,13,11,.94);
+    backdrop-filter:blur(8px);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;flex-wrap:wrap}
+  .brand{font-family:var(--display);font-size:27px;letter-spacing:.06em;line-height:1;text-decoration:none;white-space:nowrap}
+  .brand span{color:var(--brass)}
+  .nav-links{display:flex;gap:18px;font-size:13px;letter-spacing:.02em}
+  .nav-links a{text-decoration:none;color:var(--bone-dim)}
+  .nav-links a:hover{color:var(--bone)}
+  .nav-cta{
+    border:1px solid var(--brass);color:var(--brass);
+    padding:8px 14px;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;
+    text-decoration:none;white-space:nowrap;
+  }
+  .hero{padding:44px 0 34px}
+  .eyebrow{
+    font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--brass);margin:0 0 16px;font-weight:600;
+  }
+  h1{
+    font-family:var(--display);
+    font-size:clamp(42px,10vw,86px);
+    line-height:.92;letter-spacing:.01em;
+    margin:0 0 18px;font-weight:400;
+    text-wrap:balance;
+  }
+  h1 em{font-style:normal;color:var(--brass)}
+  .lede{font-size:clamp(15px,3.6vw,18px);color:var(--bone-dim);max-width:46ch;margin:0 0 24px}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:13px;color:var(--bone-dim);border-top:1px solid var(--line);padding-top:18px}
+  .hero-meta b{color:var(--bone);font-weight:600}
+  .stars{color:var(--brass);letter-spacing:.1em}
+
+  section{padding:52px 0;border-top:1px solid var(--line)}
+  .sec-label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin:0 0 10px;font-weight:600}
+  h2{font-family:var(--display);font-size:clamp(30px,7vw,46px);line-height:1;margin:0 0 14px;font-weight:400;letter-spacing:.01em}
+  .sec-intro{color:var(--bone-dim);max-width:56ch;margin:0 0 30px;font-size:15px}
+
+  /* slot finder */
+  .finder{
+    display:grid;grid-template-columns:1fr;gap:0;
+    border:1px solid var(--line);background:var(--ink-2);
+  }
+  .finder-form{padding:24px 20px}
+  .field{margin-bottom:18px}
+  .field:last-child{margin-bottom:0}
+  label{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--bone-dim);margin-bottom:8px;font-weight:600}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{
+    appearance:none;border:1px solid var(--line);background:transparent;color:var(--bone);
+    font-family:var(--body);font-size:13.5px;padding:9px 13px;cursor:pointer;line-height:1.2;
+    transition:border-color .15s, background .15s, color .15s;
+  }
+  .chip:hover{border-color:var(--brass-dim)}
+  .chip[aria-pressed="true"]{background:var(--brass);border-color:var(--brass);color:#141208;font-weight:600}
+  input[type=text]{
+    width:100%;background:transparent;border:1px solid var(--line);color:var(--bone);
+    font-family:var(--body);font-size:15px;padding:11px 13px;border-radius:0;
+  }
+  input[type=text]:focus{outline:2px solid var(--brass);outline-offset:-1px;border-color:var(--brass)}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    width:100%;background:var(--brass);color:#141208;border:0;
+    font-family:var(--body);font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    padding:15px 18px;cursor:pointer;text-decoration:none;
+  }
+  .btn:hover{background:#dcb63a}
+  .btn-ghost{background:transparent;color:var(--bone);border:1px solid var(--line)}
+  .err{color:#ff9b7a;font-size:12.5px;margin:10px 0 0;display:none}
+  .err.show{display:block}
+  .finder-out{
+    padding:24px 20px;border-top:1px solid var(--line);
+    background:linear-gradient(180deg,rgba(201,162,39,.07),transparent);
+  }
+  .out-slot{font-family:var(--display);font-size:clamp(28px,7vw,40px);line-height:1;color:var(--brass);margin:0 0 6px}
+  .out-note{font-size:14px;color:var(--bone-dim);margin:0 0 16px;max-width:40ch}
+  .out-meta{font-size:12.5px;color:var(--bone-dim);border-top:1px solid var(--line);padding-top:14px;margin-top:14px}
+  .out-meta b{color:var(--bone)}
+
+  .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  .fact{background:var(--ink);padding:20px 18px}
+  .fact .n{font-family:var(--display);font-size:clamp(28px,7vw,38px);line-height:1;color:var(--brass)}
+  .fact .l{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--bone-dim);margin-top:6px}
+
+  .quotes{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+  blockquote{margin:0;background:var(--ink);padding:22px 20px}
+  blockquote p{font-size:15.5px;margin:0 0 12px;color:var(--bone)}
+  blockquote cite{font-size:12px;color:var(--bone-dim);font-style:normal;letter-spacing:.04em}
+
+  .hours{width:100%;border-collapse:collapse;font-size:14.5px}
+  .hours th,.hours td{text-align:left;padding:11px 0;border-bottom:1px solid var(--line)}
+  .hours th{font-weight:500;color:var(--bone-dim);width:45%}
+  .hours td{text-align:right;color:var(--bone)}
+  .hours tr:last-child th,.hours tr:last-child td{border-bottom:0}
+
+  .visit-grid{display:grid;grid-template-columns:1fr;gap:28px}
+  .visit-block h3{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass);margin:0 0 8px;font-weight:600}
+  .visit-block p{margin:0;font-size:15px;color:var(--bone)}
+  .visit-block p + p{margin-top:6px;color:var(--bone-dim);font-size:14px}
+  .visit-block a{color:var(--bone);text-decoration:none;border-bottom:1px solid var(--brass-dim)}
+
+  footer{border-top:1px solid var(--line);padding:34px 0 44px}
+  .foot-note{
+    font-size:12.5px;line-height:1.65;color:var(--bone-dim);
+    border-left:2px solid var(--brass-dim);padding-left:14px;max-width:64ch;
+  }
+  .foot-note b{color:var(--bone)}
+  .foot-meta{margin-top:22px;font-size:11.5px;color:#6f6a5f;letter-spacing:.06em}
+
+  @media (min-width:640px){
+    .facts{grid-template-columns:repeat(4,1fr)}
+    .quotes{grid-template-columns:repeat(2,1fr)}
+    .visit-grid{grid-template-columns:repeat(3,1fr)}
+    .finder{grid-template-columns:1.15fr .85fr}
+    .finder-out{border-top:0;border-left:1px solid var(--line)}
+    .finder-form{padding:30px 28px}
+    .finder-out{padding:30px 26px}
+  }
+  @media (min-width:900px){
+    .hero{padding:64px 0 46px}
+    section{padding:68px 0}
+  }
+  @media (max-width:639px){
+    .nav-links{display:none}
+    .nav{padding:12px 0}
+  }
+</style>
+</head>
+<body>
+
+<div class="concept-bar">Independent concept page · not an official website</div>
+
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="#top">REX<span>.</span>GYM</a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#finder">Slot finder</a>
+      <a href="#floor">The floor</a>
+      <a href="#hours">Hours</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <a class="nav-cta" href="tel:+919814200125">Call the gym</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <div class="wrap hero">
+    <p class="eyebrow">Central Town, Jalandhar · 144001</p>
+    <h1>Old-school iron.<br><em>Serious coaching.</em></h1>
+    <p class="lede">A Central Town gym that long-time members describe as one of the oldest in the city. Free weights, machines and coaches who correct your form instead of watching the clock.</p>
+    <div class="hero-meta">
+      <span><span class="stars">★★★★★</span> <b>4.6</b> from <b>108</b> Google reviews</span>
+      <span>Mon–Sat <b>6 AM – 10 PM</b></span>
+      <span>Sun <b>6 AM – 2 PM</b></span>
+    </div>
+  </div>
+
+  <section id="finder">
+    <div class="wrap">
+      <p class="sec-label">Plan your first session</p>
+      <h2>Find your slot</h2>
+      <p class="sec-intro">Pick a goal and the hours that actually fit your day. This builds a WhatsApp message you can send straight to the gym, with no form to fill twice.</p>
+
+      <div class="finder">
+        <div class="finder-form">
+          <div class="field">
+            <label id="lbl-goal">Your goal</label>
+            <div class="chips" role="group" aria-labelledby="lbl-goal" id="goals">
+              <button class="chip" type="button" data-goal="Build strength" aria-pressed="false">Build strength</button>
+              <button class="chip" type="button" data-goal="Lose fat" aria-pressed="false">Lose fat</button>
+              <button class="chip" type="button" data-goal="General fitness" aria-pressed="false">General fitness</button>
+              <button class="chip" type="button" data-goal="Sport performance" aria-pressed="false">Sport performance</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label id="lbl-time">When you can train</label>
+            <div class="chips" role="group" aria-labelledby="lbl-time" id="times">
+              <button class="chip" type="button" data-time="Morning, 6–9 AM" aria-pressed="false">6–9 AM</button>
+              <button class="chip" type="button" data-time="Midday, 11 AM–4 PM" aria-pressed="false">Midday</button>
+              <button class="chip" type="button" data-time="Evening, 6–10 PM" aria-pressed="false">6–10 PM</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" type="text" autocomplete="name" placeholder="e.g. Harpreet" maxlength="40">
+          </div>
+
+          <button class="btn" id="send" type="button">Send this on WhatsApp</button>
+          <p class="err" id="err" role="alert">Pick a goal, a time and add your name first.</p>
+        </div>
+
+        <div class="finder-out" aria-live="polite">
+          <p class="sec-label">Your match</p>
+          <p class="out-slot" id="slot">Pick two options</p>
+          <p class="out-note" id="note">The gym opens at 6 AM and runs to 10 PM on weekdays. Sunday is a short 6 AM to 2 PM session.</p>
+          <div class="out-meta" id="outmeta">
+            <b>Rex Gym</b> · 12/1, Central Town, Jalandhar 144001 · <b>+91 98142 00125</b>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="floor">
+    <div class="wrap">
+      <p class="sec-label">The floor</p>
+      <h2>What the numbers say</h2>
+      <div class="facts">
+        <div class="fact"><div class="n">4.6</div><div class="l">Google rating</div></div>
+        <div class="fact"><div class="n">108</div><div class="l">Reviews</div></div>
+        <div class="fact"><div class="n">16</div><div class="l">Hours open, Mon–Sat</div></div>
+        <div class="fact"><div class="n">144001</div><div class="l">Central Town pin</div></div>
+      </div>
+
+      <div class="quotes" style="margin-top:28px">
+        <blockquote>
+          <p>“There is no quantity crowd in this gym, there is quality crowd.”</p>
+          <cite>Google review, 5 stars, 2018</cite>
+        </blockquote>
+        <blockquote>
+          <p>“One of the oldest gyms in the city. I used to work out there almost 25 years back.”</p>
+          <cite>Google review, 5 stars, 2025</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section id="hours">
+    <div class="wrap">
+      <p class="sec-label">Timing</p>
+      <h2>When the doors are open</h2>
+      <table class="hours">
+        <tbody>
+          <tr><th scope="row">Monday to Friday</th><td>6:00 AM – 10:00 PM</td></tr>
+          <tr><th scope="row">Saturday</th><td>6:00 AM – 10:00 PM</td></tr>
+          <tr><th scope="row">Sunday</th><td>6:00 AM – 2:00 PM</td></tr>
+        </tbody>
+      </table>
+      <p class="sec-intro" style="margin:18px 0 0;font-size:13.5px">Hours as listed on the gym's Google Business profile in November 2026. Call before a public holiday.</p>
+    </div>
+  </section>
+
+  <section id="visit">
+    <div class="wrap">
+      <p class="sec-label">Visit</p>
+      <h2>Central Town, Jalandhar</h2>
+      <div class="visit-grid">
+        <div class="visit-block">
+          <h3>Address</h3>
+          <p>12/1, Central Town<br>Jalandhar, Punjab 144001</p>
+          <p>Near Milap Chowk, Central Town.</p>
+        </div>
+        <div class="visit-block">
+          <h3>Phone</h3>
+          <p><a href="tel:+919814200125">+91 98142 00125</a></p>
+          <p>Call for fees, trial sessions and personal training.</p>
+        </div>
+        <div class="visit-block">
+          <h3>Getting there</h3>
+          <p>Central Town is a short walk from Milap Chowk.</p>
+          <p>Listed on Google as a gym and health club.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="foot-note">
+      <b>Independent concept.</b> This page is a design concept prepared by Arshdeep as a portfolio sample for
+      Rex Gym, Central Town, Jalandhar. It is not the official website of Rex Gym and is not affiliated with,
+      authorised by or endorsed by the business. Business details shown here are taken from the gym's public
+      Google listing in November 2026.
+    </p>
+    <p class="foot-meta">Concept build · November 2026 · No data is collected on this page.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var goal=null, time=null;
+  var PHONE='919814200125';
+  var slotEl=document.getElementById('slot');
+  var noteEl=document.getElementById('note');
+  var errEl=document.getElementById('err');
+  var nameEl=document.getElementById('name');
+
+  var notes={
+    'Build strength':'Come in the morning block. The floor is quieter, the racks are free and a coach can walk you through the big lifts without waiting.',
+    'Lose fat':'Evenings work well here. A steady mix of weights and conditioning, with a coach keeping the pace honest.',
+    'General fitness':'Pick the block you can actually keep. Three sessions a week beats five you skip.',
+    'Sport performance':'Mornings are the better fit. Free weights, space for carries and a coach who will check your positions.'
+  };
+
+  function paint(){
+    var goalOk=!!goal, timeOk=!!time;
+    if(goalOk&&timeOk){
+      slotEl.textContent=time;
+      noteEl.textContent=notes[goal]||'';
+    }else if(goalOk&&!timeOk){
+      slotEl.textContent='Choose a time';
+      noteEl.textContent=notes[goal]||'';
+    }else if(!goalOk&&timeOk){
+      slotEl.textContent=time;
+      noteEl.textContent='Now pick your goal and the plan fills in.';
+    }else{
+      slotEl.textContent='Pick two options';
+      noteEl.textContent='The gym opens at 6 AM and runs to 10 PM on weekdays. Sunday is a short 6 AM to 2 PM session.';
+    }
+  }
+
+  function bindGroup(id,key){
+    var g=document.getElementById(id);
+    g.addEventListener('click',function(e){
+      var b=e.target.closest('button[data-'+key+']');
+      if(!b) return;
+      var v=b.getAttribute('data-'+key);
+      Array.prototype.forEach.call(g.querySelectorAll('button'),function(x){
+        x.setAttribute('aria-pressed', x===b ? 'true':'false');
+      });
+      if(key==='goal'){goal=v;} else {time=v;}
+      errEl.classList.remove('show');
+      paint();
+    });
+  }
+  bindGroup('goals','goal');
+  bindGroup('times','time');
+
+  document.getElementById('send').addEventListener('click',function(){
+    var name=(nameEl.value||'').trim();
+    if(!goal||!time||!name){
+      errEl.textContent=!goal?'Pick a goal first.':(!time?'Pick a time block.':'Add your name so the gym knows who is messaging.');
+      errEl.classList.add('show');
+      if(!goal){document.getElementById('goals').querySelector('button').focus();}
+      else if(!time){document.getElementById('times').querySelector('button').focus();}
+      else {nameEl.focus();}
+      return;
+    }
+    errEl.classList.remove('show');
+    var msg='Hi Rex Gym, this is '+name+'. I found you on Google (4.6 from 108 reviews).\n\n'
+      +'Goal: '+goal+'\n'
+      +'Preferred slot: '+time+'\n\n'
+      +'Can you tell me the monthly fee and whether I can take a trial session this week? Thank you.';
+    window.open('https://wa.me/'+PHONE+'?text='+encodeURIComponent(msg),'_blank','noopener');
+  });
+
+  paint();
+})();
+</script>
+</body>
+</html>
